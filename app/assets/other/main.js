@@ -1,0 +1,1 @@
+angular.module('other', ['other.controllers', 'other.routes']);
