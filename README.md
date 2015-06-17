@@ -13,8 +13,8 @@ to the repository. For this section any commands you'll need to run are highligh
 Make all changes against a personal fork of the repo and submit pull requests.
 
 * use Github UI to create a fork
-* ```git clone https://github.com/<your_user_name>/demo_18F``` (origin)
-* ```git remote add upstream https://github.com/sparcedge/demo_18F``` (upstream)
+* ```git clone https://github.com/<your_user_name>/18F_RFQ``` (origin)
+* ```git remote add upstream https://github.com/sparcedge/18F_RFQ``` (upstream)
 
 ### Run bootstrap script
 Currently written to support OSX only as it relies heavily on homebrew. If you
