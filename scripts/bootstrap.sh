@@ -16,7 +16,7 @@ brew install node
 echo "installing required npm packages"
 cd ..
 npm install
-npm -g install gulp
+npm install -g gulp
 
 echo "starting the app"
 cd scripts
