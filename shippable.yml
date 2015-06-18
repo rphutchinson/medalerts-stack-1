@@ -21,7 +21,8 @@ before_install:
 before_script:
 
 script:
-  - sbt clean test
+# - sbt clean
+  - sbt test
 
 after_success:
   - ./scripts/deploy.sh
