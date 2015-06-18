@@ -27,5 +27,13 @@ class RecallsSpec extends Specification {
         contentType(get) must beSome.which(_ == "application/json")
       }
     }
+
+    "use a query param" in {
+      running(FakeApplication()) {
+        val get = route(FakeRequest(GET, "/api/v1/recalls?search=Hydrochloride")).get
+        contentType(get) must beSome.which(_ === "application/json")
+        //todo: validate that the response contains the requested string
+      }
+    }
   }
 }

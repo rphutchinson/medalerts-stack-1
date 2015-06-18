@@ -14,4 +14,4 @@ GET        /                     controllers.Application.index()
 
 
 #API Routes
-GET        /api/v1/recalls        controllers.api.Recalls.get()
+GET        /api/v1/recalls        controllers.api.Recalls.get(search: Option[String])
