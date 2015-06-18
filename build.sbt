@@ -26,12 +26,13 @@ dockerBaseImage in Docker := "java:8"
 // database
 libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % "1.1.+"
+
 )
 
 // webjars
 libraryDependencies ++= Seq(
-  "org.webjars" %% "webjars-play" % "2.3.0-2",
-  "org.webjars" % "angularjs" % "1.3.15",
+  "org.webjars" %% "webjars-play" % "2.3.0-3",
+  "org.webjars" % "angularjs" % "1.3.16",
   "org.webjars" % "bootstrap" % "3.1.1-2",
   "org.webjars" % "angular-ui-bootstrap" % "0.12.1-1"
 )
