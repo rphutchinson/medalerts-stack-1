@@ -1,0 +1,33 @@
+language: scala
+cache: true
+jdk: oraclejdk8
+scala: 2.11.4
+
+branches:
+  only:
+    - master
+
+env:
+  global:
+    - AWS_ACCESS_KEY_ID=AKIAJ5DLTV3B2BBLBJPQ
+    #Encrypted AWS Secret Key
+    - secure: P//RHvsWLq9Ev3+oNP+TCegoc+lxmLHRy0sHhl3sRsDlhJpIlK7HKdX1krlnLt3aNH94YKf4enHhMEDAh4jN5VGW2md9F3mbOxXjuGXld2vBNAFw+FmDJ1LDYApb6LusdTN+QasgOl6UzZMk/TSkbztJHoASPQf9ZMcctCtnrI5RDibeK5afZgWe9MFWAVsS5CqLR3K/6IT+SNbXvLQUpMVsJtk9Bfr0FQHt7Af1WtFpk2PfAxNhnJ3mqYlO2xI3gbPhq1J8hqyFS50dK6lg8j7dS9YvikxaNuurT6EB0yRwv7WoTSXG0m8sa/Y79NLOp0RVdfnYTkNR/SVtY3C7Cg==
+    - AWS_DEFAULT_REGION=us-east-1
+
+before_install:
+  #install AWS CLI utilities
+  - pip install awscli
+
+before_script:
+
+script:
+  - sbt clean test
+
+after_success:
+  - ./scripts/deploy.sh
+
+notifications:
+  # Email notifications are disabled to not annoy anybody.
+  # See http://about.travis-ci.org/docs/user/build-configuration/ to learn more
+  # about configuring notification recipients and more.
+  email: false
