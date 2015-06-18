@@ -11,7 +11,7 @@ env:
   global:
     - AWS_ACCESS_KEY_ID=AKIAJ5DLTV3B2BBLBJPQ
     #Encrypted AWS Secret Key
-    - secure: k+z8h9FY6hxiH7WOWZDbbWRbHLi/Fwj1+fPQenj3XKFaZj8MP3EZlhqkwwjmLbaYMkliWJor9xB67I0k87ButbGqn6MqJ3hN+dvrhzP4DkXjte7FNvX7shce179J4tMcJSG7v4UxILEVKRbBzKCYBFhpuat/91ZNfCKhqqoJc1tRdHL4XJ/RlbzBBBNe6QjGz2uF7GUiO8wFau983EdTNQoBY3GyotPJSAZAURdc1o3E8/LNPUvJCYUsZ7QlTr1n235lKPiGM3cefMKfC8SBDMfBcCFxwUDBKl+D11k8Q/FmL5KCeZn5eQmp+JVzTOKstS+QUFvsu02Gdyie9QurhQ==    
+    - secure: P//RHvsWLq9Ev3+oNP+TCegoc+lxmLHRy0sHhl3sRsDlhJpIlK7HKdX1krlnLt3aNH94YKf4enHhMEDAh4jN5VGW2md9F3mbOxXjuGXld2vBNAFw+FmDJ1LDYApb6LusdTN+QasgOl6UzZMk/TSkbztJHoASPQf9ZMcctCtnrI5RDibeK5afZgWe9MFWAVsS5CqLR3K/6IT+SNbXvLQUpMVsJtk9Bfr0FQHt7Af1WtFpk2PfAxNhnJ3mqYlO2xI3gbPhq1J8hqyFS50dK6lg8j7dS9YvikxaNuurT6EB0yRwv7WoTSXG0m8sa/Y79NLOp0RVdfnYTkNR/SVtY3C7Cg==
     - AWS_DEFAULT_REGION=us-east-1
 
 before_install:
@@ -21,8 +21,7 @@ before_install:
 before_script:
 
 script:
-# - sbt clean
-  - sbt test
+  - sbt clean test
 
 after_success:
   - ./scripts/deploy.sh
