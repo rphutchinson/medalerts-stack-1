@@ -10,4 +10,8 @@ GET        /assets/*file         controllers.Assets.at(path="/public", file)
 
 # Main routing
 GET        /                     controllers.Application.index()
-GET        /*path                controllers.Application.indexWithPath(path: String)
+
+
+
+#API Routes
+GET        /api/v1/recalls        controllers.api.Recalls.get()
