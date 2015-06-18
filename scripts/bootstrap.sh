@@ -8,7 +8,7 @@ brew tap caskroom/versions
 echo "installing install Java, Scala, SBT, and Node (jenv lets you easily maintain different jdk versions)"
 brew cask install java
 brew install jenv
-jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home
+jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
 brew install scala
 brew install sbt
 brew install node
