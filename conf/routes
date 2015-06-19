@@ -14,7 +14,7 @@ GET         /assets/*file               controllers.Assets.at(path="/public", fi
 POST        /api/v1/access_token        controllers.OAuth2Controller.accessToken
 
 #Recalls
-GET         /api/v1/recalls             controllers.api.Recalls.get(search: Option[String])
+GET         /api/v1/drugs/:name             controllers.api.DrugsApi.get(name)
 
 
 # Main routing

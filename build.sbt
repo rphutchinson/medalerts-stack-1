@@ -40,10 +40,10 @@ libraryDependencies ++= Seq(
 )
 
 // new relic jar and config
-mappings in Universal += {
+mappings in Universal ++= Seq(
 	file("newrelic/newrelic.jar") -> "lib/newrelic.jar",
 	file("newrelic/newrelic.yml") -> "lib/newrelic.yml"
-}
+)
 
 // run gulp
 playRunHooks += RunSubProcess("gulp")
