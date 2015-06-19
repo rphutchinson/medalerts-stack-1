@@ -13,7 +13,7 @@ import scalaoauth2.provider.OAuth2Provider
 /**
  * Created by patrickhutchinson on 6/18/15.
  */
-object Recalls extends Controller with XhrActionSupport with OAuth2Provider {
+object DrugsApi extends Controller with XhrActionSupport with OAuth2Provider {
   val baseUrl = "https://api.fda.gov/drug/enforcement.json"
   val apiKey = current.configuration.getString("fda.api.key").getOrElse("")
 
@@ -21,19 +21,16 @@ object Recalls extends Controller with XhrActionSupport with OAuth2Provider {
    * Get a list of Recalls, if a search param is provided pass through to the
    * underlying FDA api to restrict the results to recalls that match the string
    * in ANY field
-   * @param search Option[String] optional search parameter
+   * @param name String the Drug to look up data for
    * @return
    */
-  def get(search: Option[String]) = Action.async { implicit request =>
+  def get(name: String) = Action.async { implicit request =>
     authorize(new DemoDataHandler()) { authInfo =>
       //build the list of query params for the FDA api
-      var params = ListBuffer(
+      val params = ListBuffer(
         "api_key" -> apiKey,
-        "limit" -> "10")
-
-      if (search.isDefined) {
-        params += ("search" -> search.get)
-      }
+        "limit" -> "10",
+        "search" -> name)
 
       //construct the request
       val holder: WSRequestHolder = WS.url(baseUrl).withQueryString(params: _*)

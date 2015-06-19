@@ -6,13 +6,11 @@
 
         <!-- @todo: replace with typeahead -->
         <label for="selectDrugInput">Search for medications by name</label>
-        <select name="selectDrugInput" id="selectDrugInput">
-        	<option ng-repeat="drug in vm.drugs"
+        <select data-ng-model="selectedDrug" name="selectDrugInput" id="selectDrugInput">
+        	<option ng-repeat="drug in drugs"
         			value="{{ drug | encodeURIComponent }}">
 				{{ drug }}
 			</option>
         </select>
-        <a class="btn btn-default">Go to main-sub</a>
-        <a class="btn btn-default">Go to another module</a>
     </div>
 </div>
