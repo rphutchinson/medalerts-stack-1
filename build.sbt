@@ -1,3 +1,4 @@
+import com.typesafe.sbt.SbtNativePackager.Universal
 import play.PlayImport.PlayKeys.playRunHooks
 import NativePackagerKeys._
 
@@ -27,7 +28,7 @@ dockerBaseImage in Docker := "java:8"
 libraryDependencies ++= Seq(
   "com.nulab-inc" %% "play2-oauth2-provider" % "0.14.0",
   "ch.qos.logback" % "logback-classic" % "1.1.+"
-) 
+)
 
 // webjars
 libraryDependencies ++= Seq(
@@ -36,6 +37,16 @@ libraryDependencies ++= Seq(
   "org.webjars" % "bootstrap" % "3.1.1-2",
   "org.webjars" % "angular-ui-bootstrap" % "0.12.1-1"
 )
+
+// new relic jar
+libraryDependencies ++= Seq(
+  "com.newrelic.agent.java" % "newrelic-api" % "3.17.0"
+)
+
+// new relic config
+mappings in Universal += {
+	file("newrelic.yml") -> "lib/newrelic.yml"
+}
 
 // run gulp
 playRunHooks += RunSubProcess("gulp")
