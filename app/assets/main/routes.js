@@ -4,11 +4,12 @@ angular.module('main.routes', [])
       $routeProvider
           .when('/', {
             templateUrl: 'assets/main/partials/main-index.html',
-            controller: 'IndexCtrl'
+            controller: 'IndexCtrl',
+            controllerAs: 'vm'
           })
-          .when('/sub', {
-            templateUrl: 'assets/main/partials/main-sub.html',
-            controller: 'SubCtrl'
+          .when('/drugs/:id', {
+            templateUrl: 'assets/main/partials/drug-detail.html',
+            controller: 'DrugDetailsCtrl'
           });
 
     });
