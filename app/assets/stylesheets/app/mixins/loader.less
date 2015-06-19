@@ -1,0 +1,56 @@
+/*
+	loader.less
+*/
+// 1. Ajax // --------------------------------------------------
+.pane-loader{
+	height: 100%;
+	width: 100%;
+	display: none;
+	position: fixed;
+	z-index: @zIndex-7;
+    .backdrop{
+    	background-color: #000;
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		opacity: .2;
+		height: 100%;
+		width: 100%;
+		z-index: @zIndex-8;	
+	}
+	.loading-image{
+		background-image: url('@{image-path}/bg/ajax-loader.gif');
+	    position: absolute;
+	    width: 31px;
+	    height: 31px;
+	    left: 50%;
+	    top:45%;
+	   z-index: @zIndex-9;		
+	}
+}
+
+
+// 2. View // --------------------------------------------------
+.page-loader{
+    background-color: #135462; /* app teal 03*/
+    position: absolute;
+    height: 3px;
+    width: 0;
+    top: 0;
+    z-index: @zIndex-6;
+    -webkit-transition: all 500ms cubic-bezier(1.000, 0.295, 0.960, 0); 
+    -webkit-transition: all 500ms cubic-bezier(1.000, 0.295, 0.960, -0.150); 
+    -moz-transition: all 500ms cubic-bezier(1.000, 0.295, 0.960, -0.150); 
+    -o-transition: all 500ms cubic-bezier(1.000, 0.295, 0.960, -0.150); 
+    transition: all 500ms cubic-bezier(1.000, 0.295, 0.960, -0.150); 
+}
+.loading{
+	width: 75%;
+}
+.complete{
+	width: 100%;
+}
+.complete-unload{
+	opacity: 0;
+}

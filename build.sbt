@@ -34,7 +34,8 @@ libraryDependencies ++= Seq(
   "org.webjars" %% "webjars-play" % "2.3.0-3",
   "org.webjars" % "angularjs" % "1.3.16",
   "org.webjars" % "bootstrap" % "3.1.1-2",
-  "org.webjars" % "angular-ui-bootstrap" % "0.12.1-1"
+  "org.webjars" % "angular-ui-bootstrap" % "0.12.1-1",
+  "org.webjars" % "angular-ui-select" % "0.11.2"
 )
 
 // run gulp

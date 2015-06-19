@@ -1,0 +1,285 @@
+/*
+    inputs.less
+*/
+
+// Default Input(s) // --------------------------------------------------
+// Rest all focus state colors to brand color
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+input[type="select"]:focus,
+input[type="submit"]:focus,
+input[type="button"]:focus,
+.btn:focus, 
+.btn:active:focus, 
+.btn.active:focus, 
+.btn.focus, 
+.btn:active.focus,
+.btn.active.focus 
+{   
+  outline: 5px auto @input-border-focus;
+  box-shadow:0 0 0 .3px #fff, 0 0 3px 3px @input-border-focus;
+}
+a:focus{
+  outline: 5px auto @input-border-focus;
+}
+
+// Checkbox - Control // --------------------------------------------------
+.control-elm{
+  position: relative;
+  &.checkbox-inline{
+    cursor: default;
+  }
+  input[type="checkbox"]{
+    margin-bottom: 10px;
+    margin-right: 22px;
+    opacity: 0;
+    position: relative;
+    vertical-align: middle;
+    z-index: -1;
+    @media (max-width: @screen-lg-min) {
+      margin-right: 17px;
+    }
+  }
+}
+.control-elm-sm{
+  input[type="checkbox"] ~ .control-indicator{
+    border-width: 3px;
+    font-size: 11px;
+    height: 18px;
+    width: 18px;
+  }
+  input[type="checkbox"]:checked ~ .control-indicator{
+    &:before{
+      padding: 0;
+    }
+  }
+}
+input[type="checkbox"] ~ .control-indicator{
+    background-color: @app-white;
+    border: 4px solid @app-gray-01;
+    display: block;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+}
+input[type="checkbox"]:checked ~ .control-indicator{
+    &:before{
+      content: "\f103";
+      display: inline-block;
+      font-family: "icons";
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      line-height: 1;
+      padding-top: 2px;
+      padding-left: 2px;
+      text-decoration: inherit;
+      text-rendering: optimizeLegibility;
+      text-transform: none;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      font-smoothing: antialiased;
+    }
+}
+input[type="checkbox"]:focus ~ .control-indicator{
+  box-shadow:0 0 0 .3px #fff, 0 0 3px 3px @input-border-focus;
+}
+.warn.errors{
+  .control-indicator{
+    border-color: @brand-warning;
+  }
+}
+.error.errors,
+.error.warn.errors{
+  .control-indicator{
+    border-color: @brand-danger;
+  }
+}
+
+// Label // --------------------------------------------------
+label{
+  color: @app-gray-02;
+  font-weight: 300;
+    font-size: 16px;
+}
+
+// Radio // --------------------------------------------------
+input[type="radio"]{
+  margin: 0 16px 0 0;
+}
+// Radio - Control // --------------------------------------------------
+.control-elm{
+  position: relative;
+  input[type="radio"]{
+    margin-bottom: 10px;
+    margin-right: 22px;
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    @media (max-width: @screen-lg-min) {
+      margin-right: 17px;
+    }
+  }
+}
+.control-elm-sm{
+  input[type="radio"] {
+    margin-right: 11px;
+  }
+  input[type="radio"] ~ .control-indicator{
+    border-width: 3px;
+    width: 18px;
+    height: 18px;
+  }
+  &.radio-inline{
+    margin-right: 4px;
+  }  
+}
+input[type="radio"] ~ .control-indicator{
+    background-color: @app-white;
+    border: 4px solid @app-gray-01;
+    .border-bottom-radius(15px);
+    .border-top-radius(15px);
+    display: block;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+}
+input[type="radio"]:checked ~ .control-indicator{
+    background-color: @app-gray-03;
+}
+input[type="radio"]:focus ~ .control-indicator{
+  box-shadow:0 0 0 .3px #fff, 0 0 3px 3px @input-border-focus;
+}
+.warn.errors{
+  .control-indicator{
+    border-color: @brand-warning;
+  }
+}
+.error.errors,
+.error.warn.errors{
+  .control-indicator{
+    border-color: @brand-danger;
+  }
+}
+
+// Inline lable that wrap a radio
+.radio-inline{
+  margin-left: 0;
+  margin-right: 19px;
+  padding-left: 0;
+  input[type="radio"]{
+    margin-left: 0;
+    position: relative;
+  }
+  label{
+    margin-bottom: 15px;
+    padding-top: 5px;
+    padding-left: 0;
+  }
+  @media (max-width: @screen-lg-min) {
+      margin-right: 12px;
+  }
+  @media (max-width: @screen-md-min) {
+      margin-right: 10px;
+  }
+  @media (max-width: @screen-xs-min) {
+    display: block;
+    label:first-child{
+      margin-top:7px;
+    }
+  }
+}
+.radio-inline + .radio-inline{
+  margin-left: 0;
+  padding-left:0;
+}
+.errors{
+  .radio-inline{
+    label{
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Select // --------------------------------------------------
+
+// Text // --------------------------------------------------
+input[type="text"]{
+  color:@text-color;
+  &:active, &:focus{
+    color:@app-gray-02;
+  }
+  padding: 10px;
+  width: 330px;
+  @media (max-width: @screen-sm-min) { 
+    width: 100%;
+  }
+}
+input[type="text"].form-control{
+  width: 100%;
+}
+[data-template="currency"]{
+  input[type="text"]{
+    padding: 10px;
+    width: @ui-select-width;
+  }
+}
+// ok to move forward, will be required to complete intake process
+.warn.errors{
+  input[type="text"]{
+     border-color: @brand-warning;
+  }
+}
+// required to advance from current intake view 
+.error.errors,
+.error.warn.errors{
+  input[type="text"]{
+     border-color: @brand-danger;
+  }
+}
+
+
+// Textarea // ------------------------------------------------
+textarea.form-control{
+  border: 4px solid @app-gray-01;
+  color:@text-color;
+  font-family: "proxima-nova", sans-serif;
+  font-size: 16px;
+  .type-spaced;
+  &:active, &:focus{
+    color:@app-gray-02;
+    border: 4px solid @app-gray-02;
+    box-shadow:0 0 0 .3px #fff, 0 0 3px 3px @input-border-focus;
+  }
+  .border-top-radius(0);
+  .border-bottom-radius(0);
+}
+// ok to move forward, will be required to complete intake process
+.warn.errors{
+ textarea.form-control{
+     border-color: @brand-warning;
+  }
+}
+// required to advance from current intake view 
+.error.errors,
+.error.warn.errors{
+  textarea.form-control{
+     border-color: @brand-danger;
+  }
+}

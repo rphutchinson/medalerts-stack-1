@@ -1,4 +1,30 @@
-#body [ng-cloak],
-#body .ng-hide {
-  display: none !important;
-}
+/*
+  Main.less
+*/
+
+// Bootstrap // --------------------------------------------------
+@import "lib/bootstrap/less/variables.less"; //to be able to use boostrap variables
+@import "lib/bootstrap/less/mixins.less"; //to be able to use boostrap mixins
+@import "lib/bootstrap/less/scaffolding.less";
+
+// Core // --------------------------------------------------
+@import "app/core/variables.less";
+@import "app/core/buttons.less";
+@import "app/core/forms.less";
+@import "app/core/inputs.less";
+@import "app/core/table.less";
+@import "app/core/typography.less";
+
+// Layout // --------------------------------------------------
+@import "app/layouts/admin.less";
+@import "app/layouts/pattern.less";
+
+// Mixins // --------------------------------------------------
+@import "app/mixins/components.less";
+@import "app/mixins/alerts.less";
+@import "app/mixins/loader.less";
+@import "app/mixins/modal.less";
+@import "app/mixins/uiselect.less";
+@import "app/mixins/inputs.less";
+@import "app/mixins/pagination.less";
+@import "app/mixins/tooltip.less";
