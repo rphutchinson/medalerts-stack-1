@@ -1,0 +1,76 @@
+/*
+  Components.less
+*/
+
+// Components // --------------------------------------------------
+.component-canvas-background(@file-1x: @image-component-canvas-00, @file-2x: @image-component-canvas-00){
+	/**
+	* The canvas background component position requires the height
+	* of the navigation bar to be subtracted from the margin. This
+	* calculation places the element directly behind the nav.
+	@background-image: /bg/placeholder.jpg 
+	**/
+	background-image: url(@file-1x);
+	background-position: 50% 50%;
+	background-size: cover;
+	height: 900px;
+	margin-top: -@nav-height;
+	padding: @nav-height + 60px;
+	position: absolute;
+	width: 100%;
+	z-index: @zIndex-1;
+	@media
+  	only screen and (-webkit-min-device-pixel-ratio: 2),
+  	only screen and (   min--moz-device-pixel-ratio: 2),
+	only screen and (     -o-min-device-pixel-ratio: 2/1),
+	only screen and (        min-device-pixel-ratio: 2),
+	only screen and (                min-resolution: 192dpi),
+	only screen and (                min-resolution: 2dppx) {
+	    background-image: url(@file-2x);
+	}
+}
+
+.component-triangle(@color: @app-teal-01){
+	// The triangle componet adds a triangle to any block element.
+	@triangle-size: 20px;
+	&:before{
+		content: ' ';
+		background-color: @color;
+		display: block;
+		height: @triangle-size;
+		left:0;
+		right:0;
+    	margin:auto;
+		position: absolute;
+		width: @triangle-size;
+		top: -(@triangle-size / 2);
+		-ms-transform: rotate(45deg); /* IE 9 */
+        -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+    	transform: rotate(45deg);
+    	z-index: 0;
+	}
+}
+
+.align-vert{
+	//Uses transform function in the Y direction to position element.
+	position:relative;
+	top:50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+}
+
+.title{
+  // Quickly add a title
+  border-bottom: 3px solid #bac2c4;
+  margin-bottom: 9px;
+  .title{
+  	.h5;
+  	color: #135462;
+  	line-height: 40px;
+  	margin-bottom: 0;
+  }
+  .subtitle{
+  	.h6;
+  }
+}

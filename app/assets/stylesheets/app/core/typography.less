@@ -1,0 +1,131 @@
+/*
+    Typography.less
+*/
+
+// Button Text // --------------------------------------------------
+// This style has nothing to do with buttons! 
+.button-text{
+    font-family: "ff-tisa-web-pro", serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 27px;
+    text-align: center;
+    text-transform: uppercase;
+}    
+
+// Heading // --------------------------------------------------
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6{
+    font-family: @headings-font-family;
+}
+h1, 
+.h1 {
+    &.white{
+        color: @app-white;
+    }
+    &.teal{
+        color: @app-teal-03;
+    }
+    color: @gray-base;
+    font-size: @font-size-h1;
+}
+
+h2,
+.h2 {
+    &.white{
+        color: @app-white;
+    }
+    &.teal{
+        color: @app-teal-03;
+    }
+    color: @gray-base;
+    font-size: @font-size-h2;
+    line-height: 36px;
+}
+
+h3,
+.h3 {
+    &.white{
+        color: @app-white;
+    }
+    &.teal{
+        color: @app-teal-03;
+    }
+    color: @gray-base;
+    font-size: @font-size-h2; 
+    line-height: 36px;
+}        
+
+h4,
+.h4 {
+    &.gray{
+        color: @app-gray-03;
+    }
+    &.white{
+        color: @app-white;
+    }
+    &.teal{
+        color: @app-teal-03;
+    }
+    color: @gray-base;
+    font-size: @font-size-h3;
+    line-height: 43px;
+}
+       
+h5,
+.h5 {
+    &.white{
+        color: @app-white;
+    }
+    &.teal{
+        color: @app-teal-03;
+    }
+    color: @gray-base;
+    font-size: @font-size-h4;
+    line-height: 43px;
+}  
+
+h6,
+.h6 {
+    &.white{
+        color: @app-white;
+    }
+    &.teal{
+        color: @gray-base;
+    }
+    color: @app-teal-03; 
+    font-size: @font-size-h6;
+}
+
+// Font Variation // --------------------------------------------------
+.type-elipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.type-gray{
+    a{
+        color: @app-gray-02;
+    }
+    color: @app-gray-02;
+}
+.type-white{
+    color: @app-white;
+}
+.type-large{
+    font-size: 40px;
+    line-height: 37px;
+}
+.type-light{
+    font-weight: 100;
+}
+.type-small{
+    font-weight: 300;
+    font-size: 16px;
+}
+.type-spaced{
+    letter-spacing: 1px;
+}

@@ -1,0 +1,212 @@
+/*
+    Pattern.less
+*/
+
+
+// Pattern Library // --------------------------------------------------
+.pl{
+  margin-bottom: 600px;
+}
+.pl-example{
+  border: 1px solid #ddd;
+  padding: 18px;
+  word-wrap: break-word;
+  .border-bottom-radius(@border-radius-base);
+  .border-top-radius(@border-radius-base);
+  .border-right-radius(@border-radius-base);  
+  .border-left-radius(@border-radius-base); 
+  .clearfix;
+}
+.pl-code-sample + .pl-example,
+.pl-example + .pl-example{
+  margin-top:15px;
+}
+.pl-example:before{
+  content: 'Pattern';
+  color: @app-gray-01;
+  display: block;
+  margin-left: -7px;
+}
+.pl-code-sample pre{
+  margin: -10px 0 0 0;
+  padding: 0;
+  .border-top-radius(0);
+}
+.pl-code-sample span{
+  float: left;
+  padding-left: 15px;
+}
+.pl-example + p,
+.pl-code-sample + p{
+  margin: 10px 0 10px 0;
+}
+
+// Color Swatch // --------------------------------------------------
+.pl-color-swatch{
+  &.pl-color-swatch-white{
+    background-color: @app-white;
+  }
+  &.pl-color-swatch-teal-00{
+    background-color: @app-teal-00;
+  }    
+  &.pl-color-swatch-teal-01{           
+    background-color: @app-teal-01;
+  }
+  &.pl-color-swatch-teal-02{           
+    background-color: @app-teal-02;
+  }
+  &.pl-color-swatch-teal-03{          
+    background-color: @app-teal-03;
+  }
+  &.pl-color-swatch-teal-04{          
+    background-color: @app-teal-04;
+  }
+  &.pl-color-swatch-gray-xtra-light{   
+    background-color: @app-gray-xtra-light;
+  }
+  &.pl-color-swatch-gray-light{        
+    background-color: @app-gray-light;
+  }
+  &.pl-color-swatch-gray-00{           
+    background-color: @app-gray-00;
+  }
+  &.pl-color-swatch-gray-01{           
+    background-color: @app-gray-01;
+  }
+  &.pl-color-swatch-gray-02{           
+    background-color: @app-gray-02;
+  }
+  &.pl-color-swatch-gray-03{          
+    background-color: @app-gray-03;
+  }
+  &.pl-color-swatch-gray-04{           
+    background-color: @app-gray-04;
+  }
+  &.pl-color-swatch-green-00{         
+    background-color: @app-green-00;
+  }
+  &.pl-color-swatch-green-01{         
+    background-color: @app-green-01;
+  }
+  &.pl-color-swatch-green-02{         
+    background-color: @app-green-02;
+  }
+  &.pl-color-swatch-green-03{          
+    background-color: @app-green-03;
+  }
+  &.pl-color-swatch-green-04{          
+    background-color: @app-green-04;
+  }
+  &.pl-color-swatch-yellow-00{         
+    background-color: @app-yellow-00;
+  }
+  &.pl-color-swatch-yellow-01{         
+    background-color: @app-yellow-01;
+  }
+  &.pl-color-swatch-yellow-02{         
+    background-color: @app-yellow-02;
+  }
+  &.pl-color-swatch-yellow-03{         
+    background-color: @app-yellow-03;
+  }
+  &.pl-color-swatch-yellow-04{         
+    background-color: @app-yellow-04;
+  }
+  &.pl-color-swatch-orange-00{         
+    background-color: @app-orange-00;
+  }
+  &.pl-color-swatch-orange-01{         
+    background-color: @app-orange-01;
+  }
+  &.pl-color-swatch-orange-02{        
+    background-color: @app-orange-02;
+  }
+  &.pl-color-swatch-orange-03{        
+    background-color: @app-orange-03;
+  }
+  &.pl-color-swatch-orange-04{         
+    background-color: @app-orange-04;
+  }
+  &.pl-color-swatch-plum-00{           
+    background-color: @app-plum-00;
+  }
+  &.pl-color-swatch-plum-01{           
+    background-color: @app-plum-01;
+  }
+  &.pl-color-swatch-plum-02{           
+    background-color: @app-plum-02;
+  }
+  &.pl-color-swatch-plum-03{           
+    background-color: @app-plum-03;
+  }
+  &.pl-color-swatch-plum-04{           
+    background-color: @app-plum-04;
+  }        
+  float: left;
+  margin: 5px;
+  height: 100px;
+  width: 100px;
+  .border-bottom-radius(@border-radius-base);
+  .border-top-radius(@border-radius-base);
+}
+// Code Syntax // --------------------------------------------------
+.pl-syntax-comment{
+  color: @app-gray-01;  
+}
+.pl-syntax-less{
+  color: @app-teal-01;
+}
+.pl-syntax-html{
+  color: @app-orange-03;
+}
+
+.pl-syntax-comment,
+.pl-syntax-less{
+  padding: 0;
+}
+// Buttons // --------------------------------------------------
+.pl-example .btn + .btn{
+  margin: 5px 0 5px 0;
+}
+// ui-select // --------------------------------------------------
+.pl-ui-select{
+  ul{
+    list-style: none;
+    .example{
+      padding-bottom: 13px;
+      padding-top: 13px;
+    }
+    p{
+      padding-top: 40px;
+    }
+  }
+}
+
+// Fonts // --------------------------------------------------
+.pl-fonts{
+  list-style: none;
+  li{
+    background-color: @app-gray-00;
+     .border-bottom-radius(4px);
+    .border-top-radius(4px);
+    float: left;
+    padding: 35px 7px 7px 7px;
+    min-height: 145px;
+    margin: 1%;
+    width: 24%;
+    text-align: center;
+    p{
+      padding-top: 15px;
+    }
+  }
+}
+
+// Navigation // --------------------------------------------------
+#navbar{
+  font-size: 15px;
+  margin-top: 10px;
+  position: fixed;
+  li{
+    list-style: none;
+  }
+}
