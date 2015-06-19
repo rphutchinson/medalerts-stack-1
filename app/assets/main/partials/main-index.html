@@ -3,12 +3,16 @@
         <div class="page-header">
             <h1>Hello main-index!</h1>
         </div>
+
         <!-- @todo: replace with typeahead -->
-        <ol>
-        	<li ng-repeat="drug in vm.drugs">
-        		{{ drug }}
-        	</li>
-        </ol>
-        <a class="btn btn-default" ng-click="vm.getTypeaheadDrugs()">Go to main-sub</a>
+        <label for="selectDrugInput">Search for medications by name</label>
+        <select name="selectDrugInput" id="selectDrugInput">
+        	<option ng-repeat="drug in vm.drugs"
+        			value="{{ drug | encodeURIComponent }}">
+				{{ drug }}
+			</option>
+        </select>
+        <a class="btn btn-default">Go to main-sub</a>
+        <a class="btn btn-default">Go to another module</a>
     </div>
 </div>
