@@ -1,1 +1,1 @@
-angular.module('main', ['main.controllers', 'main.routes']);
+angular.module('main', ['main.controllers', 'main.routes', 'main.services']);

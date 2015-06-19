@@ -3,7 +3,13 @@
         <div class="page-header">
             <h1>Hello main-index!</h1>
         </div>
-        <a class="btn btn-success" href="/pattern">Go to main-sub</a>
-        <a class="btn btn-default" href="/other">Go to another module</a>
+        <!-- @todo: replace with typeahead -->
+        <ol>
+        	<li ng-repeat="drug in vm.drugs">
+        		{{ drug }}
+        	</li>
+        </ol>
+        <a class="btn btn-default" ng-click="vm.getTypeaheadDrugs()">Go to main-sub</a>
+        <a class="btn btn-default">Go to another module</a>
     </div>
 </div>
