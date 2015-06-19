@@ -3,15 +3,20 @@
 # ~~~~
 
 # webjars
-GET        /webjars/*file        controllers.WebJarAssets.at(file)
+GET     /webjars/*file              controllers.WebJarAssets.at(file)
 
 # Map static resources from the /public folder to the /assets URL path
-GET        /assets/*file         controllers.Assets.at(path="/public", file)
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # Main routing
-GET        /                     controllers.Application.index()
+GET     /                           controllers.Application.index()
 
 
 
 #API Routes
-GET        /api/v1/recalls        controllers.api.Recalls.get()
+
+#Auth
+POST    /api/v1/access_token        controllers.OAuth2Controller.accessToken
+
+#Recalls
+GET     /api/v1/recalls             controllers.api.Recalls.get(search: Option[String])
