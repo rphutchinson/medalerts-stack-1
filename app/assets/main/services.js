@@ -31,17 +31,15 @@
 				return deferred.promise;
 
 			},
-			getDrugById: function(medId) {
-				var deferred = $q.defer();
-
-				$http.get( API_URL + 'drug-info/' + medId )
-					.success(function(meds) {
-						deferred.resolve(meds);
-					})
-					.error(function(data) {
-						deferred.reject("Problem retrieving medicines: " + data);
-					});
-				return deferred.promise;
+			getDrugByName: function(drugName) {
+        return $http.get(API_URL + 'drugs/' + drugName).then(
+            function(response){
+              return response.data;
+            },
+            function(err){
+              $log.error(err);
+            }
+        )
 			}
 
 		}
