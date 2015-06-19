@@ -4,12 +4,13 @@ angular.module('main.controllers', [])
 
       this.endpoint = API_URL + "drugs";
       this.drugs = [];
-      this.getTypeaheadDrugs = function() {
+      this.selectedDrug = undefined;
+
+      this.getTypeaheadDrugs = (function() {
 	      DrugService.getTypeaheadDrugs().then(function(drugs) {
-	      	$scope.drugs = drugs;
 	      	self.drugs = drugs;
 	      });
-      }
+      })();
 
     })
     .controller('DrugDetailsCtrl', function ($scope) {
