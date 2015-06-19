@@ -1,30 +1,38 @@
 @(title: String)
 <!DOCTYPE html>
 <html>
-<head>
-  <title>@title</title>
-  <link rel="stylesheet" media="screen" href='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.css"))'>
-  <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
-  <link rel="shortcut icon" type="image/png" href='@routes.Assets.at("images/favicon.png")'>
-</head>
-<body id="body" data-ng-app="app" ng-strict-di>
-  <!-- Navbar -->
-  <nav class="navbar navbar-default navbar-static-top" >
-    <div class="container">
-      <!-- Brand -->
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">An Awesome Demo App</a>
-      </div>
-    </div>
-  </nav>
-  <!-- Main content -->
-  <div data-ng-view></div>
-  <!-- scripts -->
-  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("angular.min.js"))'></script>
-  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("angular-animate.min.js"))'></script>
-  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("angular-route.min.js"))'></script>
-  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("ui-bootstrap.min.js"))'></script>
-  <script type='text/javascript' src='@routes.Assets.at("javascripts/app.js")'></script>
-  <script type='text/javascript' src='@routes.Assets.at("javascripts/app.tpl.js")'></script>
-</body>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.css"))'>
+        <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
+        <link rel="shortcut icon" type="image/png" href='@routes.Assets.at("images/favicon.png")'>
+    </head>
+    <body id="body" data-ng-app="app" ng-strict-di>
+            <!-- Navbar -->
+        <nav class="navbar navbar-default navbar-static-top" >
+            <div class="container">
+                    <!-- Brand -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">An Awesome Demo App</a>
+                </div>
+            </div>
+        </nav>
+            <!-- Main content -->
+        <div data-ng-view></div>
+            <!-- scripts -->
+
+            <!-- AngularJS and plugins -->
+        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("angular.min.js"))'></script>
+        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("angular-animate.min.js"))'></script>
+        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("angular-route.min.js"))'></script>
+        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("angular-sanitize.min.js"))'></script>
+
+            <!-- Angular UI -->
+        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("ui-bootstrap.min.js"))'></script>
+        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("select.min.js"))'></script>
+
+            <!-- Application files -->
+        <script type='text/javascript' src='@routes.Assets.at("javascripts/app.js")'></script>
+        <script type='text/javascript' src='@routes.Assets.at("javascripts/app.tpl.js")'></script>
+    </body>
 </html>

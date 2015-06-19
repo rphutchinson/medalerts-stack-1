@@ -1,0 +1,174 @@
+/*
+	Variables.less - Table of Contents
+	
+	1. Path(s)
+	2. Colors
+	3. Typography
+	4. Z-Index Scale
+	5. AngularJS
+	6. Buttons
+	7. Heights
+	8. UI Select
+	9. Fontcustom (Custom Fonts)
+
+*/
+// 1. Path(s) // --------------------------------------------------
+@image-path: '/assets/images';
+@image-component-canvas-path: '@{image-path}/bg';
+@image-component-canvas-00: '@{image-component-canvas-path}/placeholder.jpg';
+@image-component-canvas-01-1x: '@{image-component-canvas-path}/meeting-1x.jpg';
+@image-component-canvas-01-2x: '@{image-component-canvas-path}/meeting-2x.jpg';
+
+// 2. Colors // --------------------------------------------------
+// Applicaion
+@app-white:             #FFFFFF;
+@app-teal-00:           #A9D5DA;
+@app-teal-01:           #67ABB8;
+@app-teal-02:           #017389;
+@app-teal-03:           #135462;
+@app-teal-04:           #1F363C;
+@app-teal-05: 			#A2C7D0;
+@app-teal-06:			#448FA0;
+@app-gray-xtra-light:   #F8F9F9;
+@app-gray-light:        #F1F3F3;
+@app-gray-warm:			#e2e2e2;
+@app-gray-00:           #EDEDED;
+@app-gray-01:           #BAC2C4;
+@app-gray-02:           #79868A;
+@app-gray-03:           #555C5E;
+@app-gray-04:           #3C4142;
+@app-gray-05:           #e2e2e2;
+@app-green-00:          #D6E2D7;
+@app-green-01:          #ADC7AF;
+@app-green-02:          #76A27A;
+@app-green-03:          #5E7F60;
+@app-green-04:          #425E43;
+@app-yellow-00:         #FFF2D4;
+@app-yellow-01:         #FFE6A7;
+@app-yellow-02:         #FFCE00;
+@app-yellow-03:         #D3AC07;
+@app-yellow-04:         #A88909;
+@app-orange-00:         #FED8CD;
+@app-orange-01:         #FFB39A;
+@app-orange-02:         #F96A23;
+@app-orange-03:         #CC5825;
+@app-orange-04:         #A54321;
+@app-plum-00:           #DEC2CE;
+@app-plum-01:           #BE859E;
+@app-plum-02:           #6F1043;
+@app-plum-03:           #540E36;
+@app-plum-04:           #380C29;
+
+
+// Bootstrap Override
+@body-bg:                #fff;
+@gray-base:              @app-gray-04;
+@gray-darker:            lighten(@gray-base, 13.5%); // #222
+@gray-dark:              lighten(@gray-base, 20%);   // #333
+@gray:                   lighten(@gray-base, 33.5%); // #555
+@gray-light:             lighten(@gray-base, 46.7%); // #777
+@gray-lighter:           lighten(@gray-base, 93.5%); // #eee
+
+@brand-primary:         @app-teal-01;
+@brand-success:         @app-green-03;
+@brand-info:            @app-teal-00;
+@brand-warning:         @app-yellow-02;
+@brand-danger:          @app-orange-03;
+
+@link-color:            @app-teal-04;
+@link-hover-color:      darken(@link-color, 15%);
+@text-color:            @app-gray-04;
+
+@input-border-focus:	@app-teal-01;
+
+// 3. Typography // --------------------------------------------------
+// Applicaion
+
+// Bootstrap Override
+@font-family-sans-serif: "proxima-nova", sans-serif;
+@font-family-serif:       Georgia, "Times New Roman", Times, serif;
+@font-family-serif-alt: "ff-tisa-web-pro", serif;
+//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+@font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+@font-family-base:        @font-family-sans-serif;
+
+@font-size-base:          20px;
+@font-size-large:         40px;
+@font-size-small:         16px;
+
+@font-size-h1:            52px;
+@font-size-h2:            37px;
+@font-size-h3:            29px;
+@font-size-h4:            26px;
+@font-size-h5:            23px;
+@font-size-h6:            21px;
+
+//** Unit-less `line-height` for use in components like buttons.
+@line-height-base:        1.35; // 27
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+@line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
+
+//** By default, this inherits from the `<body>`.
+@headings-font-family:    "ff-tisa-web-pro", serif;
+@headings-font-weight:    400;
+@headings-line-height:    @line-height-computed;
+@headings-color:          inherit;
+
+// 4. Z-Index Scale // --------------------------------------------------
+// Vars
+@zIndex-1:   100;
+@zIndex-2:   200;
+@zIndex-3:   300;
+@zIndex-4:   400;
+@zIndex-5:   500;
+@zIndex-6:   600;
+@zIndex-7:   700;
+@zIndex-8:   800;
+@zIndex-9:   900;
+@zIndex-10: 1000;
+
+
+// 5. AngularJS // --------------------------------------------------
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none;
+}
+
+// 6. Buttons // --------------------------------------------------
+// Bootstrap Override
+@btn-default-border: @app-gray-03;
+@btn-default-bg: @app-gray-03;
+@btn-default-color: @app-white;
+
+@btn-primary-color: @app-white;
+@btn-primary-bg: @app-teal-01;
+@btn-primary-border: @btn-primary-bg;
+
+@btn-success-color: @app-white;
+@btn-success-bg: @brand-success;
+@btn-success-border: @btn-success-bg;
+
+@btn-info-color: @app-white;
+@btn-info-bg: @brand-info;
+@btn-info-border: @brand-info;
+
+@btn-warning-color: @app-white;
+@btn-warning-bg: @brand-warning;
+@btn-warning-border: @brand-warning;
+
+@btn-danger-color: @app-white; 
+@btn-danger-bg: @brand-danger;
+@btn-danger-border: @brand-danger;
+
+@btn-link-disabled-color:@app-gray-01;
+
+// 7. Height(s) // --------------------------------------------------
+@nav-height: 58px;
+
+// 8. UI Select // --------------------------------------------------
+@ui-select-width : 354px;
+
+// 8. Aside // --------------------------------------------------
+@aside-width: 339px;
+
+// Fontcustom (DRD Custom Fonts) // --------------------------------------------------
+@fontcustom-name: icons;

@@ -1,0 +1,186 @@
+/*
+    Buttons.less
+*/
+
+// Default Buttons // --------------------------------------------------
+.btn-default,
+.btn-default-alt,
+.btn-primary,
+.btn-primary-alt,
+.btn-success,
+.btn-info,
+.btn-warning,
+.btn-danger{
+  font-family: "ff-tisa-web-pro",serif;
+  font-weight: normal;
+  font-size: 16px;
+  padding: 19px 45px;
+  line-height: 27px;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  &.white{
+    color: @app-white;
+  }
+  &.small{
+    color: @app-teal-03;
+    font-size: 14px;
+  }
+  &.skinny{
+    padding: 5px 17px;
+    line-height: 28px;
+  }
+  .border-bottom-radius(0);
+  .border-top-radius(0);
+}
+
+.btn-default {
+  .button-variant(@app-white; @app-gray-03; @btn-default-border);
+}
+.btn-default-alt{
+  .button-variant(@app-gray-04; @app-gray-01; @app-gray-01);
+}
+.btn-primary {
+  .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+}
+.btn-primary-alt{
+  .button-variant(@btn-primary-color; @app-teal-02; @app-teal-02);
+}
+// Success appears as green
+.btn-success {
+  .button-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
+}
+// Info appears as blue-green
+.btn-info {
+  .button-variant(@btn-info-color; @btn-info-bg; @btn-info-border);
+}
+// Warning appears as orange
+.btn-warning {
+  .button-variant(@btn-warning-color; @btn-warning-bg; @btn-warning-border);
+}
+// Danger and error appear as red
+.btn-danger {
+  .button-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
+}
+.btn-link{
+  border: 4px solid @app-teal-00;
+  color: @app-teal-03;
+  font-family: "ff-tisa-web-pro", serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  &:active,
+  &:hover,
+  &:focus{
+    border: 4px solid @app-teal-01;
+    color: @app-teal-03;
+    text-decoration: none;
+  }
+  &.white{
+    color: @app-white;
+  }
+  &.teal{
+    border: 4px solid @app-teal-02;
+    &:active,
+    &:hover,
+    &:focus{
+      border: 4px solid @app-teal-01;
+    }
+  }
+}
+.btn-text{
+  background-color: @app-white;
+  border: 0 none;
+  color: @app-teal-03;
+  font-family: "ff-tisa-web-pro", serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  &:active,
+  &:hover,
+  &:focus{
+    background-color: @app-white;
+    border: 0 none;
+    color: lighten(@app-teal-03, 10%);
+    text-decoration: none;
+  }
+  &.white{
+    color: @app-white;
+  }
+}
+.btn-field{
+  @btn-field-width: 330px;
+  background: @app-white;
+  box-shadow: none!important;
+  min-width: @btn-field-width;
+  text-align: left;
+  &.btn{
+    padding: 0 0 0 10px; 
+    &:active,
+    &:hover,
+    &:focus{
+      color: @app-gray-02;
+      .icon-arrow-down{
+        color: @app-gray-02;
+      }
+    }
+  }
+  .icon-arrow-down{
+    color: @app-gray-01;
+    float: right;
+    margin-right: 12px;
+  }
+  .type-gray;
+  .type-small;
+  + .dropdown-menu{
+    background-color: @app-gray-00;
+    border: 0 none;
+    margin-top: 15px;
+    padding: 0;
+    min-width: @btn-field-width;
+    .component-triangle(@app-gray-00;);
+    &:before{
+      right: -80%;
+      z-index: -1;
+    }
+    .type-gray;
+    .type-small;
+    li{
+      min-height: 65px;
+      &:first-child{
+         a{
+            .border-top-radius(4px);
+          }
+        }
+      &:last-child{
+       a{
+          .border-bottom-radius(4px);
+        }
+      }
+      a{
+        font-weight: 100;
+        padding: 21px 20px;
+        border-top: 6px solid @app-gray-00;
+        &:active,
+        &:hover{
+          background-color: @app-teal-02;
+          border-top: 6px solid @app-teal-03;
+          color: @app-white;
+        }
+      }
+      &.divider{
+        background-color: @app-gray-01;
+        margin: 1px 0;
+        min-height: 1px;
+      }
+    }
+  }
+}
+.btn-prev{
+  @media (max-width: @screen-sm-min) { 
+     .btn-prev-label{
+        display: none;
+     }
+    padding-right: 0;
+    width: 75px;
+    padding-left: 4px;
+  }
+}

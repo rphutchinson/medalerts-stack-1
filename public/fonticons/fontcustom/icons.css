@@ -1,0 +1,126 @@
+/*
+  Icon Font: icons
+*/
+
+@font-face {
+  font-family: "icons";
+  src: url("/assets/fonticons/fontcustom/icons.eot");
+  src: url("/assets/fonticons/fontcustom/icons.eot?#iefix") format("embedded-opentype"),
+       url("/assets/fonticons/fontcustom/icons.woff") format("woff"),
+       url("/assets/fonticons/fontcustom/icons.ttf") format("truetype"),
+       url("/assets/fonticons/fontcustom/icons.svg#icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "icons";
+    src: url("/assets/fonticons/fontcustom/icons.svg#icons") format("svg");
+  }
+}
+
+
+[data-icon]:before { content: attr(data-icon); }
+
+[data-icon]:before,
+.icon-all:before,
+.icon-arrow-down:before,
+.icon-arrow-left:before,
+.icon-arrow-right:before,
+.icon-check:before,
+.icon-favicon:before,
+.icon-industry-aerospace:before,
+.icon-industry-banking:before,
+.icon-industry-commerical-contracts:before,
+.icon-industry-construction:before,
+.icon-industry-employment:before,
+.icon-industry-energy:before,
+.icon-industry-entertainment:before,
+.icon-industry-finance:before,
+.icon-industry-franchise-agreements:before,
+.icon-industry-healthcare:before,
+.icon-industry-hospitality:before,
+.icon-industry-insurance-reinsurance:before,
+.icon-industry-intellectual-property:before,
+.icon-industry-licensing-agreements:before,
+.icon-industry-mass-claims-class-actions:before,
+.icon-industry-mergers-aquisitions:before,
+.icon-industry-oil-gas:before,
+.icon-industry-other:before,
+.icon-industry-partnerships:before,
+.icon-industry-pharmaceuticals:before,
+.icon-industry-securities-investments:before,
+.icon-industry-technology:before,
+.icon-industry-telecommunications:before,
+.icon-login-account:before,
+.icon-login-password:before,
+.icon-region-africa:before,
+.icon-region-asia:before,
+.icon-region-europe:before,
+.icon-region-latin-amer:before,
+.icon-region-mid-east:before,
+.icon-region-north-amer:before,
+.icon-region-oceania:before,
+.icon-social-fb:before,
+.icon-social-linked:before,
+.icon-social-twitter:before,
+.icon-tick:before,
+.icon-x:before {
+  display: inline-block;
+  font-family: "icons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.icon-all:before { content: "\f130"; }
+.icon-arrow-down:before { content: "\f100"; }
+.icon-arrow-left:before { content: "\f101"; }
+.icon-arrow-right:before { content: "\f102"; }
+.icon-check:before { content: "\f103"; }
+.icon-favicon:before { content: "\f104"; }
+.icon-industry-aerospace:before { content: "\f105"; }
+.icon-industry-banking:before { content: "\f106"; }
+.icon-industry-commerical-contracts:before { content: "\f129"; }
+.icon-industry-construction:before { content: "\f107"; }
+.icon-industry-employment:before { content: "\f108"; }
+.icon-industry-energy:before { content: "\f109"; }
+.icon-industry-entertainment:before { content: "\f10a"; }
+.icon-industry-finance:before { content: "\f10b"; }
+.icon-industry-franchise-agreements:before { content: "\f10c"; }
+.icon-industry-healthcare:before { content: "\f10d"; }
+.icon-industry-hospitality:before { content: "\f10e"; }
+.icon-industry-insurance-reinsurance:before { content: "\f10f"; }
+.icon-industry-intellectual-property:before { content: "\f110"; }
+.icon-industry-licensing-agreements:before { content: "\f111"; }
+.icon-industry-mass-claims-class-actions:before { content: "\f12f"; }
+.icon-industry-mergers-aquisitions:before { content: "\f113"; }
+.icon-industry-oil-gas:before { content: "\f114"; }
+.icon-industry-other:before { content: "\f115"; }
+.icon-industry-partnerships:before { content: "\f116"; }
+.icon-industry-pharmaceuticals:before { content: "\f117"; }
+.icon-industry-securities-investments:before { content: "\f118"; }
+.icon-industry-technology:before { content: "\f119"; }
+.icon-industry-telecommunications:before { content: "\f11a"; }
+.icon-login-account:before { content: "\f11b"; }
+.icon-login-password:before { content: "\f11c"; }
+.icon-region-africa:before { content: "\f11d"; }
+.icon-region-asia:before { content: "\f11e"; }
+.icon-region-europe:before { content: "\f11f"; }
+.icon-region-latin-amer:before { content: "\f120"; }
+.icon-region-mid-east:before { content: "\f121"; }
+.icon-region-north-amer:before { content: "\f122"; }
+.icon-region-oceania:before { content: "\f123"; }
+.icon-social-fb:before { content: "\f124"; }
+.icon-social-linked:before { content: "\f125"; }
+.icon-social-twitter:before { content: "\f126"; }
+.icon-tick:before { content: "\f127"; }
+.icon-x:before { content: "\f128"; }

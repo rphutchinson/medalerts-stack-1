@@ -1,0 +1,66 @@
+/*
+    Modal.less
+*/
+
+// Modal // --------------------------------------------------
+.modal-backdrop{
+	background-color: @app-gray-00;
+	height: 100%;
+}
+.modal-body{
+	padding-left: 18%;
+	padding-right: 18%;
+	padding-top: 1px;
+	h4{
+		color:@app-teal-03;
+	}
+	p{
+		color:@app-gray-04;
+		font-weight: 100;
+	}
+	.modal-case{
+		padding-top: 12px;
+	}
+	.modal-case-label{	
+		color: @app-teal-04;
+		font-family: @headings-font-family;
+	}
+	.modal-case-number{
+		color: @app-teal-02;
+		font-family: @font-family-sans-serif;
+		font-weight: 100;
+		.type-spaced;
+	}
+}
+.modal-content{
+	background-color: @app-gray-00;
+	border: 1px solid @app-gray-00;
+	border-radius: 2px;
+	color: @app-teal-03;
+	text-align: center;
+	-webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.modal-dialog{
+	@media (min-width: 768px){
+		margin: 80px auto;
+	}
+}
+.modal-header{
+	border-bottom: 0 none;
+	padding-bottom: 0;
+}
+.modal-field{
+	.input(default);
+}
+.modal-footer{
+	border-top: 0 none;
+	padding-top: 41px;
+	padding-bottom: 78px;
+	text-align: center;
+}
+.modal-title{
+	color:@app-teal-03;
+	padding-top: 48px;
+}

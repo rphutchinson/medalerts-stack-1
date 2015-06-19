@@ -1,4 +1,5 @@
-angular.module('app', ['app.tpl', 'ngRoute', 'main', 'other']);
+angular.module('app', ['app.tpl', 'ngSanitize', 'ui.select', 'ui.bootstrap',
+  'ngRoute', 'main', 'other', 'pattern']);
 
 angular.module('app').config(function ($httpProvider) {
 
