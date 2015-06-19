@@ -39,10 +39,14 @@ libraryDependencies ++= Seq(
   "org.webjars" % "angular-ui-select" % "0.11.2"
 )
 
-// new relic jar and config
+// new relic config
+mappings in Universal += {
+	file("newrelic/newrelic.yml") -> "lib/newrelic.yml"
+}
+
+// new relic jar
 mappings in Universal += {
 	file("newrelic/newrelic.jar") -> "lib/newrelic.jar"
-	file("newrelic/newrelic.yml") -> "lib/newrelic.yml"
 }
 
 // run gulp
