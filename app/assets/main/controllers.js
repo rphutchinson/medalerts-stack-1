@@ -2,7 +2,7 @@ angular.module('main.controllers', [])
     .controller('IndexCtrl', function ($scope, DrugService, API_URL) {
       var self = this;
 
-      this.endpoint = API_URL;
+      this.endpoint = API_URL + "drugs";
       this.drugs = [];
       this.getTypeaheadDrugs = function() {
 	      DrugService.getTypeaheadDrugs().then(function(drugs) {
