@@ -13,18 +13,19 @@ import play.api.test.Helpers._
  */
 @RunWith(classOf[JUnitRunner])
 class RecallsSpec extends Specification {
-  "/recalls" should {
+  "/api/v1/recalls" should {
     "have a 200 response for GET" in {
       running(FakeApplication()) {
-        val get = route(FakeRequest(GET, "/api/v1/recalls")).get
+        val get = route(FakeRequest(GET, "/api/v1/recalls").withHeaders("Authorization" -> "Bearer xyz")).get
         status(get) must equalTo(OK)
+        contentType(get) must beSome.which(_ == "application/json")
       }
     }
-
-    "return application/json" in {
+    "use a query param" in {
       running(FakeApplication()) {
-        val get = route(FakeRequest(GET, "/api/v1/recalls")).get
-        contentType(get) must beSome.which(_ == "application/json")
+        val get = route(FakeRequest(GET, "/api/v1/recalls?search=Hydrochloride").withHeaders("Authorization" -> "Bearer xyz")).get
+        contentType(get) must beSome.which(_ === "application/json")
+        //todo: validate that the response contains the requested string
       }
     }
   }

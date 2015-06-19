@@ -25,6 +25,7 @@ dockerBaseImage in Docker := "java:8"
 
 // database
 libraryDependencies ++= Seq(
+  "com.nulab-inc" %% "play2-oauth2-provider" % "0.14.0",
   "ch.qos.logback" % "logback-classic" % "1.1.+"
 
 )
