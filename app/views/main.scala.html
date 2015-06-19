@@ -26,6 +26,7 @@
         <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("angular-animate.min.js"))'></script>
         <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("angular-route.min.js"))'></script>
         <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("angular-sanitize.min.js"))'></script>
+        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("angular-cookies.min.js"))'></script>
 
             <!-- Angular UI -->
         <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("ui-bootstrap.min.js"))'></script>
@@ -34,5 +35,12 @@
             <!-- Application files -->
         <script type='text/javascript' src='@routes.Assets.at("javascripts/app.js")'></script>
         <script type='text/javascript' src='@routes.Assets.at("javascripts/app.tpl.js")'></script>
+
+        <script type="text/javascript">
+        var Conf = window.Conf ||
+        {
+            clientId: '@play.Play.application().configuration().getString("known.client.id")'
+        };
+        </script>
     </body>
 </html>
