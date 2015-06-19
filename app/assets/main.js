@@ -1,14 +1,11 @@
-angular.module('app', ['app.tpl', 'ngRoute', 'main', 'other']);
+var app = angular.module('app', ['app.tpl', 'ngRoute', 'main', 'other']);
+app.constant('API_URL', 'replace-with-api-base-loc')
 
-angular.module('app').config(function ($httpProvider) {
+app.config(function ($httpProvider, $locationProvider) {
 
   $httpProvider.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
   };
-
-});
-
-angular.module('app').config(function ($locationProvider) {
 
   $locationProvider.html5Mode({
     enabled: true,
@@ -16,3 +13,6 @@ angular.module('app').config(function ($locationProvider) {
   });
 
 });
+
+
+
