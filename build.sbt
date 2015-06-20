@@ -42,7 +42,7 @@ libraryDependencies ++= Seq(
 
 // new relic config
 newrelicAppName := "18F"
-newrelicLicenseKey := Some("c2320b771c860ef0d27ce1c7e779db7d37247f13")
+newrelicLicenseKey := Some("c2320b771c860ef0d27ce1c7e779db7d37247f13") 
 
 // run gulp
 playRunHooks += RunSubProcess("gulp")
