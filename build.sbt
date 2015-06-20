@@ -38,7 +38,7 @@ libraryDependencies ++= Seq(
   "org.webjars" % "bootstrap" % "3.1.1-2",
   "org.webjars" % "angular-ui-bootstrap" % "0.12.1-1",
   "org.webjars" % "angular-ui-select" % "0.11.2"
-)
+) 
 
 // new relic config
 //newrelicAppName := "18F"
