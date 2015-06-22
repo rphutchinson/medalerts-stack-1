@@ -9,13 +9,15 @@ module.run(['$templateCache', function($templateCache) {
     '<div class="container">\n' +
     '    <div class="col-sm-12">\n' +
     '        <div class="page-header">\n' +
+    '	        <a class="btn btn-default" data-ng-href="/">\n' +
+    '	        	<i class="glyphicon glyphicon-menu-left"></i> Back\n' +
+    '	        </a>\n' +
     '            <h1>Med Detail View</h1>\n' +
     '            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa vel quas, tempora nisi distinctio veritatis voluptatum aut dolorem laudantium ipsa accusantium laborum? Tenetur illum tempora possimus. Vero impedit magnam autem.</p>\n' +
     '        </div>\n' +
     '        <div>\n' +
     '            {{drugDetails}}\n' +
     '        </div>\n' +
-    '        <a class="btn btn-default" href="/">Go to main-index!</a>\n' +
     '    </div>\n' +
     '</div>\n' +
     '');
@@ -44,6 +46,26 @@ module.run(['$templateCache', function($templateCache) {
     '				{{ drug }}\n' +
     '			</option>\n' +
     '        </select>\n' +
+    '    </div>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('app.tpl');
+} catch (e) {
+  module = angular.module('app.tpl', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/other/partials/main.html',
+    '<div class="container">\n' +
+    '    <div class="col-sm-12">\n' +
+    '        <div class="page-header">\n' +
+    '            <h1>Hello Other!</h1>\n' +
+    '        </div>\n' +
+    '        <a class="btn btn-default" href="/">Go to main-index!</a>\n' +
     '    </div>\n' +
     '</div>\n' +
     '');
@@ -485,26 +507,6 @@ module.run(['$templateCache', function($templateCache) {
     '        </div>\n' +
     '    </div>\n' +
     '</div>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('app.tpl');
-} catch (e) {
-  module = angular.module('app.tpl', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/other/partials/main.html',
-    '<div class="container">\n' +
-    '    <div class="col-sm-12">\n' +
-    '        <div class="page-header">\n' +
-    '            <h1>Hello Other!</h1>\n' +
-    '        </div>\n' +
-    '        <a class="btn btn-default" href="/">Go to main-index!</a>\n' +
-    '    </div>\n' +
     '</div>\n' +
     '');
 }]);

@@ -22,9 +22,6 @@ angular.module('main.controllers', [])
             $scope.drugDetails = response;
           }
       );
-    //@todo: remove CLs like this
-      console.log('Hello main-sub.controller!');
-
 
     });
 

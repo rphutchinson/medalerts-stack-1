@@ -32,14 +32,14 @@
 
 			},
 			getDrugByName: function(drugName) {
-        return $http.get(API_URL + 'drugs/' + drugName).then(
-            function(response){
-              return response.data;
-            },
-            function(err){
-              $log.error(err);
-            }
-        )
+		        return $http.get(API_URL + 'drugs/' + drugName).then(
+		            function(response){
+		              return response.data;
+		            },
+		            function(err){
+		              $log.error(err);
+		            }
+		        )
 			}
 
 		}
