@@ -1,5 +1,6 @@
 import NativePackagerKeys._
 import play.PlayImport.PlayKeys.playRunHooks
+import NativePackagerKeys._
 
 name := """starter"""
 

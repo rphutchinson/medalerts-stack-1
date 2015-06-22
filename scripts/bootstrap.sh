@@ -1,22 +1,16 @@
 #!/bin/sh
 
-echo "installing Homebrew, casks, and versions"
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew install caskroom/cask/brew-cask
-brew tap caskroom/versions
-
-echo "installing install Java, Scala, SBT, and Node (jenv lets you easily maintain different jdk versions)"
-brew cask install java
-brew install jenv
-jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
-brew install scala
-brew install sbt
-brew install node
-
-echo "installing required npm packages"
-cd ..
-npm install
-npm install -g gulp
+# determine which install
+if [ "$(uname)" = 'Linux' ]; then
+  ./install_linux.sh
+else
+  if [ "$(uname)" = 'Darwin' ]; then
+    ./install_macosx.sh
+  else
+    echo "This install script is not currently set up for this Operating System.  Please install manually."
+    exit 1
+  fi
+fi
 
 echo "starting the app"
 cd scripts
