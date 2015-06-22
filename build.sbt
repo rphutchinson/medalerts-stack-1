@@ -23,6 +23,7 @@ maintainer := "SPARCedge"
 dockerExposedPorts in Docker := Seq(9000, 9443)
 dockerBaseImage in Docker := "java:8"
 
+
 // database
 libraryDependencies ++= Seq(
   "com.nulab-inc" %% "play2-oauth2-provider" % "0.14.0",

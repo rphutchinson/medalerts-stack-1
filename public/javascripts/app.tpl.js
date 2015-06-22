@@ -68,8 +68,8 @@ module.run(['$templateCache', function($templateCache) {
     '    <!-- @todo: replace with typeahead -->\n' +
     '	<div class="row" style="padding-top: 15px;">\n' +
     '		<div class="col-sm-6">\n' +
-    '			<div ng-repeat="drug in followedDrugs" class="well">\n' +
-    '					{{ drug }}\n' +
+    '			<div ng-repeat="drug in followedDrugs" class="well" data-ng-class="highlightClass(drug)">\n' +
+    '					{{ drug.name }}\n' +
     '			</div>\n' +
     '		</div>\n' +
     '\n' +
