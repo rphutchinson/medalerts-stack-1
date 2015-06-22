@@ -1,10 +1,11 @@
 import play.PlayImport.PlayKeys.playRunHooks
+import NativePackagerKeys._
 
 name := """starter"""
 
 version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala,JavaAppPackaging)
+lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.11.6"
 
@@ -35,7 +36,7 @@ libraryDependencies ++= Seq(
   "org.webjars" % "bootstrap" % "3.1.1-2",
   "org.webjars" % "angular-ui-bootstrap" % "0.12.1-1",
   "org.webjars" % "angular-ui-select" % "0.11.2",
-  "com.newrelic.agent.java" % "newrelic-agent" % "2.11.0"
+  "com.newrelic.agent.java" % "newrelic-agent" % "3.17.0"
 ) 
 
 // new relic config
