@@ -45,17 +45,17 @@
 		}
 	})
 
-	.factory('DrugsList', function($log) {
+	.factory('DrugsList', function() {
 		return {
 			all: function() {
 				var list = window.localStorage['drugslist'];
 				if (list) {
-					return angular.fromJSON(list);
+					return angular.fromJson(list);
 				}
 				return [];
 			},
 			save: function(drugslist) {
-				window.localStorage['drugslist'] = angular.toJSON(drugslist);
+				window.localStorage['drugslist'] = angular.toJson(drugslist);
 			},
 			add: function(item) {
 				var list = this.all();
@@ -67,16 +67,12 @@
 			remove: function(item) {
 				var list = this.all();
 
-				// @todo: remove console.logs like this.
-				// working - yes?
-				$log("array: ", this.all());
-
 				var index = list.indexOf(item);
 
 				// if list doesn't contain item
 				if (!~index) return;
 				list.splice(index, 1);
-				list.save();
+				this.save(list);
 			}
 		}
 	})
