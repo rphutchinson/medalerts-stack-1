@@ -47,6 +47,21 @@ angular.module('app', ['app.tpl', 'ngSanitize', 'ngCookies', 'ui.select', 'ui.bo
 
 
 
+angular.module('other.controllers', [])
+    .controller('OtherCtrl', ["$scope", function ($scope) {
+      console.log('Hello other controller!');
+    }]);
+angular.module('other', ['other.controllers', 'other.routes']);
+angular.module('other.routes', [])
+    .config(["$routeProvider", function ($routeProvider) {
+
+      $routeProvider
+          .when('/other', {
+            templateUrl: 'assets/other/partials/main.html',
+            controller: 'OtherCtrl'
+          });
+
+    }]);
 angular.module('main.controllers', [])
     .controller('IndexCtrl', ["$scope", "$location", "DrugService", "DrugsList", "API_URL", function ($scope, $location, DrugService, DrugsList, API_URL) {
 
@@ -232,21 +247,6 @@ angular.module('main.routes', [])
 	})
 })();
 
-angular.module('other.controllers', [])
-    .controller('OtherCtrl', ["$scope", function ($scope) {
-      console.log('Hello other controller!');
-    }]);
-angular.module('other', ['other.controllers', 'other.routes']);
-angular.module('other.routes', [])
-    .config(["$routeProvider", function ($routeProvider) {
-
-      $routeProvider
-          .when('/other', {
-            templateUrl: 'assets/other/partials/main.html',
-            controller: 'OtherCtrl'
-          });
-
-    }]);
 angular.module('pattern.controllers', [])
     .controller('PatternCtrl', ["$scope", function ($scope) {
       $scope.options = [{ "indy": "Aerospace" },
