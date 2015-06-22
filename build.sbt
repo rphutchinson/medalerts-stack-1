@@ -41,3 +41,7 @@ libraryDependencies ++= Seq(
 
 // run gulp
 playRunHooks += RunSubProcess("gulp")
+
+//disable documentation to speed build time
+sources in (Compile, doc) := Seq.empty
+publishArtifact in (Compile, packageDoc) := false
