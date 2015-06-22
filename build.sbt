@@ -1,4 +1,4 @@
-import com.typesafe.sbt.SbtNativePackager.Universal
+import NativePackagerKeys._
 import play.PlayImport.PlayKeys.playRunHooks
 
 name := """starter"""
