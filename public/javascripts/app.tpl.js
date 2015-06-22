@@ -9,11 +9,14 @@ module.run(['$templateCache', function($templateCache) {
     '<div class="container">\n' +
     '    <div class="col-sm-12">\n' +
     '        <div class="page-header">\n' +
+    '        	<h1>{{ drug }}</h1>\n' +
     '	        <a class="btn btn-default" data-ng-href="/">\n' +
-    '	        	<i class="glyphicon glyphicon-menu-left"></i> Back\n' +
+    '	        	<i class="icon-arrow-left"></i> Back\n' +
     '	        </a>\n' +
-    '            <h1>Med Detail View</h1>\n' +
-    '            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa vel quas, tempora nisi distinctio veritatis voluptatum aut dolorem laudantium ipsa accusantium laborum? Tenetur illum tempora possimus. Vero impedit magnam autem.</p>\n' +
+    '	        <a class="btn btn-default" ng-click="toggleFollow()">\n' +
+    '	        	<span ng-if="!following">Follow</span>\n' +
+    '	        	<span ng-if="following">Unfollow</span>\n' +
+    '	        </a>\n' +
     '        </div>\n' +
     '        <div>\n' +
     '            {{drugDetails}}\n' +
@@ -63,9 +66,15 @@ module.run(['$templateCache', function($templateCache) {
     '        </div>\n' +
     '    </div>\n' +
     '    <!-- @todo: replace with typeahead -->\n' +
+    '	<div class="row" style="padding-top: 15px;">\n' +
+    '		<div class="col-sm-6">\n' +
+    '			<div ng-repeat="drug in followedDrugs" class="well">\n' +
+    '					{{ drug }}\n' +
+    '			</div>\n' +
+    '		</div>\n' +
     '\n' +
+    '	</div>\n' +
     '\n' +
-    '</div>\n' +
     '</div>\n' +
     '');
 }]);
