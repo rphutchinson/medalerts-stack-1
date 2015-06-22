@@ -82,6 +82,7 @@ module.run(['$templateCache', function($templateCache) {
     '    <div class="row pl">\n' +
     '        <div class="col-sm-9">\n' +
     '            <h1>Pattern Libaray</h1>\n' +
+    '\n' +
     '            <h2 id="colorswatch">Color Swatch</h3>\n' +
     '                <!-- Color Swatch -->\n' +
     '                <div class="pl-example">\n' +
