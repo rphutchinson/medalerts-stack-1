@@ -1,16 +1,35 @@
 <div class="container">
-    <div class="col-sm-12">
-        <div class="page-header">
-            <h1>Hello main-index!</h1>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-header">
+                <h1>Hello main-index!</h1>
+            </div>
         </div>
-
-        <!-- @todo: replace with typeahead -->
-        <label for="selectDrugInput">Search for medications by name</label>
-        <select data-ng-model="selectedDrug" name="selectDrugInput" id="selectDrugInput">
-        	<option ng-repeat="drug in drugs"
-        			value="{{ drug | encodeURIComponent }}">
-				{{ drug }}
-			</option>
-        </select>
     </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label for="selectDrugInput">Search for medications by
+                name</label>
+            <ui-select
+                    id="selectDrugInput"
+                    class="ui-select-scroll ui-select-auto-width ui-select-opaque"
+                    theme="bootstrap"
+                    data-ng-model="drug.selected"
+                    search-enabled="true"
+                    reset-search-input="true"
+                    >
+                <ui-select-match>
+                    {{$select.selected}}
+                </ui-select-match>
+                <ui-select-choices
+                        repeat="drug as drug in drugs | filter: $select.search">
+                    {{drug}}
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <!-- @todo: replace with typeahead -->
+
+
+</div>
 </div>

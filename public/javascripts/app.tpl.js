@@ -31,19 +31,58 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/main/partials/main-index.html',
     '<div class="container">\n' +
+    '    <div class="row">\n' +
+    '        <div class="col-sm-12">\n' +
+    '            <div class="page-header">\n' +
+    '                <h1>Hello main-index!</h1>\n' +
+    '            </div>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '    <div class="row">\n' +
+    '        <div class="col-sm-6">\n' +
+    '            <label for="selectDrugInput">Search for medications by\n' +
+    '                name</label>\n' +
+    '            <ui-select\n' +
+    '                    id="selectDrugInput"\n' +
+    '                    class="ui-select-scroll ui-select-auto-width ui-select-opaque"\n' +
+    '                    theme="bootstrap"\n' +
+    '                    data-ng-model="drug.selected"\n' +
+    '                    search-enabled="true"\n' +
+    '                    reset-search-input="true"\n' +
+    '                    >\n' +
+    '                <ui-select-match>\n' +
+    '                    {{$select.selected}}\n' +
+    '                </ui-select-match>\n' +
+    '                <ui-select-choices\n' +
+    '                        repeat="drug as drug in drugs | filter: $select.search">\n' +
+    '                    {{drug}}\n' +
+    '                </ui-select-choices>\n' +
+    '            </ui-select>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '    <!-- @todo: replace with typeahead -->\n' +
+    '\n' +
+    '\n' +
+    '</div>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('app.tpl');
+} catch (e) {
+  module = angular.module('app.tpl', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/other/partials/main.html',
+    '<div class="container">\n' +
     '    <div class="col-sm-12">\n' +
     '        <div class="page-header">\n' +
-    '            <h1>Hello main-index!</h1>\n' +
+    '            <h1>Hello Other!</h1>\n' +
     '        </div>\n' +
-    '\n' +
-    '        <!-- @todo: replace with typeahead -->\n' +
-    '        <label for="selectDrugInput">Search for medications by name</label>\n' +
-    '        <select data-ng-model="selectedDrug" name="selectDrugInput" id="selectDrugInput">\n' +
-    '        	<option ng-repeat="drug in drugs"\n' +
-    '        			value="{{ drug | encodeURIComponent }}">\n' +
-    '				{{ drug }}\n' +
-    '			</option>\n' +
-    '        </select>\n' +
+    '        <a class="btn btn-default" href="/">Go to main-index!</a>\n' +
     '    </div>\n' +
     '</div>\n' +
     '');
@@ -486,26 +525,6 @@ module.run(['$templateCache', function($templateCache) {
     '        </div>\n' +
     '    </div>\n' +
     '</div>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('app.tpl');
-} catch (e) {
-  module = angular.module('app.tpl', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/other/partials/main.html',
-    '<div class="container">\n' +
-    '    <div class="col-sm-12">\n' +
-    '        <div class="page-header">\n' +
-    '            <h1>Hello Other!</h1>\n' +
-    '        </div>\n' +
-    '        <a class="btn btn-default" href="/">Go to main-index!</a>\n' +
-    '    </div>\n' +
     '</div>\n' +
     '');
 }]);
