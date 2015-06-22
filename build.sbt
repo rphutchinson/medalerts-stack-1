@@ -26,7 +26,8 @@ dockerBaseImage in Docker := "java:8"
 // database
 libraryDependencies ++= Seq(
   "com.nulab-inc" %% "play2-oauth2-provider" % "0.14.0",
-  "ch.qos.logback" % "logback-classic" % "1.1.+"
+  "ch.qos.logback" % "logback-classic" % "1.1.+",
+  "com.newrelic.agent.java" % "newrelic-agent" % "3.17.0"
 )
 
 // webjars
@@ -36,7 +37,7 @@ libraryDependencies ++= Seq(
   "org.webjars" % "bootstrap" % "3.1.1-2",
   "org.webjars" % "angular-ui-bootstrap" % "0.12.1-1",
   "org.webjars" % "angular-ui-select" % "0.11.2",
-  "com.newrelic.agent.java" % "newrelic-agent" % "3.17.0"
+  "org.webjars.bower" % "lodash" % "3.9.3"
 ) 
 
 // new relic config
