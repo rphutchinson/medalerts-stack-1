@@ -22,6 +22,18 @@
 // 2. Colors // --------------------------------------------------
 // Applicaion
 @app-white:             #FFFFFF;
+@app-black:				#000000;
+@app-light-blue:        #02A9F4;
+@app-dark-blue:         #0088D1;
+@app-light-red:			#F54336;
+@app-light-yellow:		#FBC02C;
+@app-light-green:		#4CAF4F;
+
+@app-light-gray:        #E6E7E8;
+@app-dark-gray:       	#3C3C3C;
+
+
+
 @app-teal-00:           #A9D5DA;
 @app-teal-01:           #67ABB8;
 @app-teal-02:           #017389;
@@ -62,54 +74,55 @@
 
 // Bootstrap Override
 @body-bg:                #fff;
-@gray-base:              @app-gray-04;
+@gray-base:              @app-dark-gray;
 @gray-darker:            lighten(@gray-base, 13.5%); // #222
 @gray-dark:              lighten(@gray-base, 20%);   // #333
 @gray:                   lighten(@gray-base, 33.5%); // #555
 @gray-light:             lighten(@gray-base, 46.7%); // #777
 @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
 
-@brand-primary:         @app-teal-01;
-@brand-success:         @app-green-03;
-@brand-info:            @app-teal-00;
-@brand-warning:         @app-yellow-02;
-@brand-danger:          @app-orange-03;
+@brand-primary:         @app-light-blue;
+@brand-success:         @app-light-green;
+@brand-info:            @app-light-yellow;
+@brand-warning:         @app-light-red;
+@brand-danger:          @app-light-red;
 
-@link-color:            @app-teal-04;
+
+@link-color:            @app-light-blue;
 @link-hover-color:      darken(@link-color, 15%);
-@text-color:            @app-gray-04;
+@text-color:            @app-dark-gray;
 
-@input-border-focus:	@app-teal-01;
+@input-border-focus:	@app-dark-gray;
 
 // 3. Typography // --------------------------------------------------
 // Applicaion
 
 // Bootstrap Override
-@font-family-sans-serif: "proxima-nova", sans-serif;
-@font-family-serif:       Georgia, "Times New Roman", Times, serif;
-@font-family-serif-alt: "ff-tisa-web-pro", serif;
+@font-family-sans-serif: 	"Open Sans", sans-serif;
+@font-family-serif:       	Georgia, "Times New Roman", Times, serif;
+@font-family-serif-alt: 	"Open Sans", serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
-@font-family-base:        @font-family-sans-serif;
+@font-family-base:         @font-family-sans-serif;
 
 @font-size-base:          20px;
 @font-size-large:         40px;
 @font-size-small:         16px;
 
-@font-size-h1:            52px;
-@font-size-h2:            37px;
+@font-size-h1:            60px;
+@font-size-h2:            42px;
 @font-size-h3:            29px;
 @font-size-h4:            26px;
 @font-size-h5:            23px;
 @font-size-h6:            21px;
 
 //** Unit-less `line-height` for use in components like buttons.
-@line-height-base:        1.35; // 27
+@line-height-base:        1.5; // 30
 //** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
 @line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
 
 //** By default, this inherits from the `<body>`.
-@headings-font-family:    "ff-tisa-web-pro", serif;
+@headings-font-family:    @font-family-serif-alt;
 @headings-font-weight:    400;
 @headings-line-height:    @line-height-computed;
 @headings-color:          inherit;
@@ -135,31 +148,31 @@
 
 // 6. Buttons // --------------------------------------------------
 // Bootstrap Override
-@btn-default-border: @app-gray-03;
-@btn-default-bg: @app-gray-03;
-@btn-default-color: @app-white;
+@btn-default-border: 	#fff;
+@btn-default-bg: 		@app-light-blue;
+@btn-default-color: 	@app-white;
 
-@btn-primary-color: @app-white;
-@btn-primary-bg: @app-teal-01;
-@btn-primary-border: @btn-primary-bg;
+@btn-primary-color:  	#fff;
+@btn-primary-bg: 		@app-light-blue;
+@btn-primary-border: 	#fff;
 
-@btn-success-color: @app-white;
-@btn-success-bg: @brand-success;
-@btn-success-border: @btn-success-bg;
+@btn-success-color: 		@app-white;
+@btn-success-bg: 			@brand-success;
+@btn-success-border: 		@btn-success-bg;
 
-@btn-info-color: @app-white;
-@btn-info-bg: @brand-info;
-@btn-info-border: @brand-info;
+@btn-info-color: 			@app-white;
+@btn-info-bg: 				@brand-info;
+@btn-info-border: 			@brand-info;
 
-@btn-warning-color: @app-white;
-@btn-warning-bg: @brand-warning;
-@btn-warning-border: @brand-warning;
+@btn-warning-color: 		@app-white;
+@btn-warning-bg: 			@brand-warning;
+@btn-warning-border: 		@brand-warning;
 
-@btn-danger-color: @app-white; 
-@btn-danger-bg: @brand-danger;
-@btn-danger-border: @brand-danger;
+@btn-danger-color: 			@app-white; 
+@btn-danger-bg: 			@brand-danger;
+@btn-danger-border: 		@brand-danger;
 
-@btn-link-disabled-color:@app-gray-01;
+@btn-link-disabled-color:	@app-gray-01;
 
 // 7. Height(s) // --------------------------------------------------
 @nav-height: 58px;
