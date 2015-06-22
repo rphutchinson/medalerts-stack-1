@@ -13,7 +13,7 @@ libraryDependencies ++= Seq(
   jdbc,
   cache,
   ws
-)
+) 
 
 // Docker packaging
 // setting a maintainer which is used for all packaging types
