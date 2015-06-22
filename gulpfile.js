@@ -63,7 +63,7 @@ gulp.task('less:compile', function () {
   gulp.src(path.less)
       .pipe(plumber())
       .pipe(less({
-        paths: ['./lib', 'target/web/web-modules/main/webjars']
+        paths: ['lib', 'target/web/web-modules/main/webjars']
       }))
       .pipe(gulp.dest('./public/stylesheets/'))
 });
