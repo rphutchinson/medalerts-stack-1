@@ -48,7 +48,7 @@ angular.module('app', ['app.tpl', 'ngSanitize', 'ngCookies', 'ui.select', 'ui.bo
 
 
 angular.module('main.controllers', [])
-    .controller('IndexCtrl', ["$scope", "$location", "DrugService", "API_URL", function ($scope, $location, DrugService, API_URL) {
+    .controller('IndexCtrl', ["$scope", "$location", "DrugService", "DrugsList", "API_URL", function ($scope, $location, DrugService, DrugsList, API_URL) {
 
       $scope.endpoint = API_URL + "drugs";
       $scope.drug = {};
@@ -57,6 +57,8 @@ angular.module('main.controllers', [])
         $scope.drugs = drugs;
       });
 
+      $scope.followedDrugs = DrugsList.all();
+
       $scope.$watch('drug', function(){
         if($scope.drug && $scope.drug.selected) {
           $location.path('/drugdetail').search('name', $scope.drug.selected);
@@ -64,13 +66,23 @@ angular.module('main.controllers', [])
       }, true);
     }])
 
-    .controller('DrugDetailsCtrl', ["$scope", "$location", "DrugService", function ($scope, $location, DrugService) {
+    .controller('DrugDetailsCtrl', ["$scope", "$location", "DrugService", "DrugsList", function ($scope, $location, DrugService, DrugsList) {
       $scope.drug = $location.search().name;
+      $scope.following = DrugsList.all().indexOf($scope.drug) > -1;
+
       DrugService.getDrugByName($scope.drug).then(
           function(response){
             $scope.drugDetails = response;
           }
       );
+      // @todo: remove
+
+      $scope.toggleFollow = function() {
+      	DrugsList[!$scope.following ? 'add' : 'remove']($scope.drug);
+      	$scope.following = !$scope.following;
+      }
+
+
 
     }]);
 
@@ -145,17 +157,17 @@ angular.module('main.routes', [])
 		}
 	}])
 
-	.factory('DrugsList', ["$log", function($log) {
+	.factory('DrugsList', function() {
 		return {
 			all: function() {
 				var list = window.localStorage['drugslist'];
 				if (list) {
-					return angular.fromJSON(list);
+					return angular.fromJson(list);
 				}
 				return [];
 			},
 			save: function(drugslist) {
-				window.localStorage['drugslist'] = angular.toJSON(drugslist);
+				window.localStorage['drugslist'] = angular.toJson(drugslist);
 			},
 			add: function(item) {
 				var list = this.all();
@@ -167,19 +179,15 @@ angular.module('main.routes', [])
 			remove: function(item) {
 				var list = this.all();
 
-				// @todo: remove console.logs like this.
-				// working - yes?
-				$log("array: ", this.all());
-
 				var index = list.indexOf(item);
 
 				// if list doesn't contain item
 				if (!~index) return;
 				list.splice(index, 1);
-				list.save();
+				this.save(list);
 			}
 		}
-	}])
+	})
 })();
 
 angular.module('other.controllers', [])

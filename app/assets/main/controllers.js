@@ -1,5 +1,5 @@
 angular.module('main.controllers', [])
-    .controller('IndexCtrl', function ($scope, $location, DrugService, API_URL) {
+    .controller('IndexCtrl', function ($scope, $location, DrugService, DrugsList, API_URL) {
 
       $scope.endpoint = API_URL + "drugs";
       $scope.drug = {};
@@ -8,6 +8,8 @@ angular.module('main.controllers', [])
         $scope.drugs = drugs;
       });
 
+      $scope.followedDrugs = DrugsList.all();
+
       $scope.$watch('drug', function(){
         if($scope.drug && $scope.drug.selected) {
           $location.path('/drugdetail').search('name', $scope.drug.selected);
@@ -15,13 +17,23 @@ angular.module('main.controllers', [])
       }, true);
     })
 
-    .controller('DrugDetailsCtrl', function ($scope, $location, DrugService) {
+    .controller('DrugDetailsCtrl', function ($scope, $location, DrugService, DrugsList) {
       $scope.drug = $location.search().name;
+      $scope.following = DrugsList.all().indexOf($scope.drug) > -1;
+
       DrugService.getDrugByName($scope.drug).then(
           function(response){
             $scope.drugDetails = response;
           }
       );
+      // @todo: remove
+
+      $scope.toggleFollow = function() {
+      	DrugsList[!$scope.following ? 'add' : 'remove']($scope.drug);
+      	$scope.following = !$scope.following;
+      }
+
+
 
     });
 
