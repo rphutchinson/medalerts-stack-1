@@ -4,7 +4,7 @@ name := """starter"""
 
 version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala,JavaAppPackaging,NewRelic)
+lazy val root = (project in file(".")).enablePlugins(PlayScala,JavaAppPackaging)
 
 scalaVersion := "2.11.6"
 
@@ -34,8 +34,14 @@ libraryDependencies ++= Seq(
   "org.webjars" % "angularjs" % "1.3.16",
   "org.webjars" % "bootstrap" % "3.1.1-2",
   "org.webjars" % "angular-ui-bootstrap" % "0.12.1-1",
-  "org.webjars" % "angular-ui-select" % "0.11.2"
+  "org.webjars" % "angular-ui-select" % "0.11.2",
+  "com.newrelic.agent.java" % "newrelic-agent" % "2.11.0"
 ) 
+
+// new relic config
+mappings in Universal += {
+	file("newrelic/newrelic.yml") -> "lib/newrelic.yml"
+}
 
 // run gulp
 playRunHooks += RunSubProcess("gulp")
@@ -43,8 +49,4 @@ playRunHooks += RunSubProcess("gulp")
 //disable documentation to speed build time
 sources in (Compile, doc) := Seq.empty
 publishArtifact in (Compile, packageDoc) := false
-
-// new relic config
-newrelicAppName := "18F"
-newrelicLicenseKey := Some("c2320b771c860ef0d27ce1c7e779db7d37247f13") 
 
