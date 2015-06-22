@@ -57,26 +57,6 @@ try {
   module = angular.module('app.tpl', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/other/partials/main.html',
-    '<div class="container">\n' +
-    '    <div class="col-sm-12">\n' +
-    '        <div class="page-header">\n' +
-    '            <h1>Hello Other!</h1>\n' +
-    '        </div>\n' +
-    '        <a class="btn btn-default" href="/">Go to main-index!</a>\n' +
-    '    </div>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('app.tpl');
-} catch (e) {
-  module = angular.module('app.tpl', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/pattern/partials/main.html',
     '<div class="container">\n' +
     '    <div class="row pl">\n' +
@@ -505,6 +485,26 @@ module.run(['$templateCache', function($templateCache) {
     '        </div>\n' +
     '    </div>\n' +
     '</div>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('app.tpl');
+} catch (e) {
+  module = angular.module('app.tpl', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/other/partials/main.html',
+    '<div class="container">\n' +
+    '    <div class="col-sm-12">\n' +
+    '        <div class="page-header">\n' +
+    '            <h1>Hello Other!</h1>\n' +
+    '        </div>\n' +
+    '        <a class="btn btn-default" href="/">Go to main-index!</a>\n' +
+    '    </div>\n' +
     '</div>\n' +
     '');
 }]);
