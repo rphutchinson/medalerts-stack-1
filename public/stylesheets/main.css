@@ -6447,3 +6447,12 @@ h6 {
 #navbar li {
   list-style: none;
 }
+.drug-status-recall {
+  background-color: #f54336;
+}
+.drug-status-label {
+  background-color: #fbc02c;
+}
+.drug-status-ok {
+  background-color: #4caf4f;
+}

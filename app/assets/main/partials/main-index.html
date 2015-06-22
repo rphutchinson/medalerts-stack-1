@@ -31,8 +31,8 @@
     <!-- @todo: replace with typeahead -->
 	<div class="row" style="padding-top: 15px;">
 		<div class="col-sm-6">
-			<div ng-repeat="drug in followedDrugs" class="well">
-					{{ drug }}
+			<div ng-repeat="drug in followedDrugs" class="well" data-ng-class="highlightClass(drug)">
+					{{ drug.name }}
 			</div>
 		</div>
 
