@@ -182,6 +182,21 @@ angular.module('main.routes', [])
 	}])
 })();
 
+angular.module('other.controllers', [])
+    .controller('OtherCtrl', ["$scope", function ($scope) {
+      console.log('Hello other controller!');
+    }]);
+angular.module('other', ['other.controllers', 'other.routes']);
+angular.module('other.routes', [])
+    .config(["$routeProvider", function ($routeProvider) {
+
+      $routeProvider
+          .when('/other', {
+            templateUrl: 'assets/other/partials/main.html',
+            controller: 'OtherCtrl'
+          });
+
+    }]);
 angular.module('pattern.controllers', [])
     .controller('PatternCtrl', ["$scope", function ($scope) {
       $scope.options = [{ "indy": "Aerospace" },
@@ -216,19 +231,4 @@ angular.module('pattern.routes', [])
             templateUrl: 'assets/pattern/partials/main.html',
             controller: 'PatternCtrl'
           });
-    }]);
-angular.module('other.controllers', [])
-    .controller('OtherCtrl', ["$scope", function ($scope) {
-      console.log('Hello other controller!');
-    }]);
-angular.module('other', ['other.controllers', 'other.routes']);
-angular.module('other.routes', [])
-    .config(["$routeProvider", function ($routeProvider) {
-
-      $routeProvider
-          .when('/other', {
-            templateUrl: 'assets/other/partials/main.html',
-            controller: 'OtherCtrl'
-          });
-
     }]);
