@@ -9,7 +9,7 @@ angular.module('main.controllers', [])
       $scope.drug = {};
 
       DrugService.getTypeaheadDrugs().then(function(drugs) {
-        $scope.drugs = drugs;
+        $scope.drugs = _.sortBy(drugs);
       });
 
       _loadFollowedDrugs();
