@@ -13,7 +13,7 @@ angular.module('main.controllers', [])
       });
 
       _loadFollowedDrugs();
-
+      _populateDrugList();
 
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Scope functions
@@ -35,6 +35,14 @@ angular.module('main.controllers', [])
       	DrugsList[drug.isFollowed ? 'remove' : 'add'](drug.name);
       	drug.isFollowed = !drug.isFollowed;
       };
+
+      $scope.hoverFollow = function() {
+      	this.followHovered = true;
+      }
+
+      $scope.leaveFollow = function() {
+      	this.followHovered = false;
+      }
 
       $scope.manuallySelectDrug = function(drug) {
       	$scope.drug.selected = drug.name;

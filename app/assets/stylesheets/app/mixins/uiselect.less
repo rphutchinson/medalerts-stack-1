@@ -8,7 +8,7 @@
 .ui-select-container{
   display: inline-block;
   &.ui-select-auto-width{
-    width: 100%;  
+    width: 100%;
   }
   // resets
   input[type="text"]{
@@ -35,14 +35,14 @@
     border: 4px solid @app-gray-01;
     font-family: @font-family-sans-serif;
     min-width: 0;
-    .caret{
+    .caret {
       border: 0 none;
       position: absolute;
       height: 100%;
       top: 10px;
       right: 30px;
       margin-top: -2px;
-      &:before {  
+      &:before {
         display: inline-block;
         font-family: @fontcustom-name;
         font-style: normal;
@@ -55,9 +55,9 @@
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
         font-smoothing: antialiased;
-        content: "\f100"; 
+        content: "\f100";
       }
-    } 
+    }
   }
   .ui-select-toggle.btn{
     overflow: hidden;
@@ -82,7 +82,7 @@
     }
   }
   width: @ui-select-width;
-  @media (max-width: @screen-md-min) { 
+  @media (max-width: @screen-md-min) {
     display: block;
     margin: 5px 0 5px 0;
     width: 100%;
@@ -100,12 +100,12 @@
     &:active,
     &:focus,
     &:hover{
-      background-color: @app-gray-light;  
+      background-color: @app-gray-light;
     }
-  } 
+  }
   .ui-select-match-text{
     color: @app-gray-02;
-  }   
+  }
 }
 // UI - Select - Fonticons // --------------------------------------------------
 .ui-select-fonticon{
@@ -129,7 +129,7 @@
   }
   .ui-select-match-text{
     span{
-      position: relative;
+      // position: relative;
       top: -5px;
     }
   }
@@ -137,7 +137,7 @@
 // UI - Select - Other // --------------------------------------------------
 .ui-select-with-other{
   width: @ui-select-width;
-  @media (max-width: @screen-md-min) { 
+  @media (max-width: @screen-md-min) {
     display: block;
     margin: 5px 0 5px 0;
     width: 100%;
@@ -152,7 +152,7 @@
 .ui-select-with-other + label > input[type="text"]{
   padding-left: 10px;
   width: 350px;
-  @media (max-width: @screen-md-min) { 
+  @media (max-width: @screen-md-min) {
     width: 100%;
   }
 }
@@ -165,14 +165,14 @@
     width: 100%;
   }
   input{
-    width: @default-width-day; 
+    width: @default-width-day;
   }
   ul{
     width: 100%;
   }
-  @media (max-width: @screen-md-min) { 
+  @media (max-width: @screen-md-min) {
     width: 100%;
-    button, 
+    button,
     input,
     ul{
       width: 100%;
@@ -195,7 +195,7 @@
   ul{
     min-width: 105px;
   }
-  @media (max-width: @screen-md-min) { 
+  @media (max-width: @screen-md-min) {
     width: 100%;
   }
 }
@@ -216,12 +216,12 @@
   border: 0 none;
   max-height: 400px!important;
   .border-bottom-radius(4px);
-  .border-top-radius(0); 
+  .border-top-radius(0);
 }
 
 .ui-select-bootstrap .ui-select-choices-row{
   > a{
-  padding: 3px 20px 3px 20px; 
+  padding: 3px 20px 3px 20px;
   //word-break: break-all;
   white-space: normal;
   .type-small;
@@ -239,7 +239,7 @@
      }
   }
 }
-@media (max-width: @screen-sm-min) { 
+@media (max-width: @screen-sm-min) {
   .ui-select-choices-row > a{
     padding-top: 8px!important;
     padding-bottom: 8px!important;
@@ -254,7 +254,7 @@
   min-width: @btn-field-width;
   text-align: left;
   &.btn{
-    padding: 0 0 0 10px; 
+    padding: 0 0 0 10px;
     &:active,
     &:hover,
     &:focus{
