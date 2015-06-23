@@ -6515,18 +6515,6 @@ section[role="search"] #selectDrugInput .ui-select-search {
   position: relative;
   z-index: 0;
 }
-main.followed-drugs {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 768px) {
-  main.followed-drugs {
-    float: left;
-    width: 50%;
-  }
-}
 main.followed-drugs ul {
   list-style-type: none;
   padding: 0;
@@ -6534,7 +6522,7 @@ main.followed-drugs ul {
 main.followed-drugs ul li {
   cursor: default;
   position: relative;
-  padding: 4px 4px;
+  padding: 4px;
 }
 main.followed-drugs button.btn-follow {
   position: absolute;
@@ -6579,14 +6567,14 @@ footer {
   padding-top: 15px;
 }
 .drug-status-recall {
-  background: #f54336 url("http://18f-cdn.sparcedge.com/recall.svg") no-repeat 12px 30%;
+  background: #f54336 url("http://18f-cdn.sparcedge.com/recall.svg") no-repeat 12px 20px;
   background-size: 36px 36px;
 }
 .drug-status-label {
-  background: #fbc02c url("http://18f-cdn.sparcedge.com/label-change.svg") no-repeat 12px 30%;
+  background: #fbc02c url("http://18f-cdn.sparcedge.com/label-change.svg") no-repeat 12px 20px;
   background-size: 36px 36px;
 }
 .drug-status-ok {
-  background: #4caf4f url("http://18f-cdn.sparcedge.com/all-good.svg") no-repeat 12px 50%;
+  background: #4caf4f url("http://18f-cdn.sparcedge.com/all-good.svg") no-repeat 12px 20px;
   background-size: 36px 36px;
 }

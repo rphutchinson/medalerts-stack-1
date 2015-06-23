@@ -104,7 +104,10 @@ module.run(['$templateCache', function($templateCache) {
     '	<div class="row">\n' +
     '		<main role="main" class="followed-drugs">\n' +
     '			<h2>Your Meds</h2>\n' +
-    '			<ul>\n' +
+    '			<p data-ng-show="followedDrugs.length === 0">\n' +
+    '                To follow a medication, search above and click the “follow” button.\n' +
+    '            </p>\n' +
+    '            <ul data-ng-show="followedDrugs.length">\n' +
     '				<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">\n' +
     '					<span class="status-icon"></span>\n' +
     '					<h3 ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>\n' +
@@ -125,11 +128,9 @@ module.run(['$templateCache', function($templateCache) {
     '	</div>\n' +
     '	<div class="row">\n' +
     '		<aside class="about-med-alerts">\n' +
-    '			<div class="well">\n' +
-    '				<h2>Why Med Alerts</h2>\n' +
-    '				<p>The Med Alerts website allows the informed consumer to research individual drugs for recent recals, changes to the drug\'s label or other useful information. Just like subscribing to follow updates on social media, you may choose to "follow" a frequently used drug to be alerted of future changes.</p>\n' +
-    '				<p>According to FDA Research,approximately 106,000 deaths per year can be attributed to adverse reactions to prescription medications. One in five hospital visits is the direct result of a drug reaction. And adverse drug reactions are estimate to cost our country $135 billion dollars anually.</p>\n' +
-    '			</div>\n' +
+    '			<h2>Why Med Alerts</h2>\n' +
+    '			<p>The Med Alerts website allows the informed consumer to research individual drugs for recent recals, changes to the drug\'s label or other useful information. Just like subscribing to follow updates on social media, you may choose to "follow" a frequently used drug to be alerted of future changes.</p>\n' +
+    '			<p>According to FDA Research,approximately 106,000 deaths per year can be attributed to adverse reactions to prescription medications. One in five hospital visits is the direct result of a drug reaction. And adverse drug reactions are estimate to cost our country $135 billion dollars anually.</p>\n' +
     '		</aside>\n' +
     '	</div>\n' +
     '\n' +
