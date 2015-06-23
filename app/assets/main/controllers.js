@@ -17,7 +17,6 @@ angular.module('main.controllers', [])
       });
 
       _loadFollowedDrugs();
-      _populateDrugList();
 
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Scope functions
