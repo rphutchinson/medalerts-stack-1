@@ -1,23 +1,37 @@
-angular.module('app', ['app.tpl', 'ngSanitize', 'ngCookies', 'ui.select', 'ui.bootstrap',
-  'ngRoute', 'main', 'other', 'pattern'])
+/**
+ * Primary module for Single Page Application (SPA) declares application-wide
+ * dependencies as well as sub-modules.
+ *
+ * Throughout the application we allow the
+ * ng-annotate gulp task to insert all of the Angular dependency injection
+ * annotations which allows us to define angular functions without using either
+ * array notation or explicit dependency injection calls.
+ */
+angular.module('app', ['app.tpl', 'ngSanitize', 'ngRoute', 'ngCookies', 'ui.select',
+  'ui.bootstrap', 'main', 'pattern'])
 
+    /**
+     * Base URL for internal API calls
+     */
     .constant('API_URL', '/api/v1/')
+
+    /**
+     * Configuration block, use html5 mode (history.pushState()) for location
+     * changes.
+     */
     .config(["$httpProvider", "$locationProvider", function ($httpProvider, $locationProvider) {
-
-      $httpProvider.defaults.headers.common = {
-        'X-Requested-With': 'XMLHttpRequest'
-      };
-
       $locationProvider.html5Mode({
         enabled: true,
         requireBase: false
       });
     }])
 
-  /*Automatically obtain an access_token from the auth endpoint and store in
-   a session cookie. In a production application this would likely require
-   some form of user login but just using client credentials is sufficient
-   to demonstrate the OAuth workflow for now.*/
+    /**
+     * Run block to automatically obtain an access_token from the auth endpoint
+     * and store in a session cookie. In a production application this would
+     * likely require some form of user login but just using client credentials
+     * is sufficient to demonstrate the OAuth workflow for this demo application
+     */
     .run(["$http", "$cookieStore", "$log", "$window", function ($http, $cookieStore, $log, $window) {
       $http.post('/api/v1/access_token', {
         grant_type: "client_credentials",
@@ -31,13 +45,16 @@ angular.module('app', ['app.tpl', 'ngSanitize', 'ngCookies', 'ui.select', 'ui.bo
           });
     }])
 
-  //if present automatically add the Bearer token to all $http requests
+    /**
+     * Additional Run block to automatically add Authorization header to all
+     * http requests. Written as a separate run block for readability.
+     */
     .run(["$injector", "$cookieStore", function ($injector, $cookieStore) {
 
-      $injector.get("$http").defaults.transformRequest = function (data, headersGetter) {
+      $injector.get("$http").defaults.transformRequest = function (data, headers) {
         var token = $cookieStore.get('access_token');
         if (token) {
-          headersGetter().Authorization = "Bearer " + token;
+          headers().Authorization = "Bearer " + token;
         }
       };
     }]);
@@ -47,21 +64,6 @@ angular.module('app', ['app.tpl', 'ngSanitize', 'ngCookies', 'ui.select', 'ui.bo
 
 
 
-angular.module('other.controllers', [])
-    .controller('OtherCtrl', ["$scope", function ($scope) {
-      console.log('Hello other controller!');
-    }]);
-angular.module('other', ['other.controllers', 'other.routes']);
-angular.module('other.routes', [])
-    .config(["$routeProvider", function ($routeProvider) {
-
-      $routeProvider
-          .when('/other', {
-            templateUrl: 'assets/other/partials/main.html',
-            controller: 'OtherCtrl'
-          });
-
-    }]);
 angular.module('main.controllers', [])
     .controller('IndexCtrl', ["$scope", "$location", "DrugService", "DrugsList", "API_URL", function ($scope, $location, DrugService, DrugsList, API_URL) {
 
@@ -150,7 +152,14 @@ angular.module('main.filters', [])
 		return window.encodeURIComponent;
 	});
 
-angular.module('main', ['main.controllers', 'main.routes', 'main.services', 'main.filters']);
+/**
+ * Main application module supporting Drug search, following, etc.
+ */
+angular.module('main', [
+  'main.controllers',
+  'main.routes',
+  'main.services',
+  'main.filters']);
 
 angular.module('main.routes', [])
     .config(["$routeProvider", function ($routeProvider) {
@@ -248,32 +257,33 @@ angular.module('main.routes', [])
 })();
 
 angular.module('pattern.controllers', [])
+
+    /**
+     * Controller module for Pattern library
+     */
     .controller('PatternCtrl', ["$scope", function ($scope) {
-      $scope.options = [{ "indy": "Aerospace" },
-        { "indy": "Banking"},
-        { "indy": "Commercial Contracts"},
-        { "indy":"Construction"},
-        { "indy": "Employment"},
-        { "indy": "Energy"},
-        { "indy": "Entertainment"},
-        { "indy": "Finance"},
-        { "indy": "Franchise Agreements"},
-        { "indy": "Healthcare"},
-        { "indy": "Hospitality"},
-        { "indy": "Insurance / Reinsurance"},
-        { "indy": "Intellectual Property"},
-        { "indy": "Licensing Agreements"},
-        { "indy": "Mass Claims / Class Actions"},
-        { "indy": "Mergers & Acquisitions"},
-        { "indy": "Oil & Gas"},
-        { "indy": "Partnerships"},
-        { "indy": "Pharmaceuticals"},
-        { "indy": "Securities Investments"},
-        { "indy": "Technology"},
-        { "indy": "Telecommunications" }];
+      $scope.options = [
+        { "name": "Abilify" },
+        { "name": "Namenda"},
+        { "name": "Viagra"},
+        { "name":"Zetia"},
+        { "name": "Cialis"},
+        { "name": "Nasonex"}
+        ];
     }]);
-angular.module('pattern', ['pattern.controllers', 'pattern.routes']);
+/**
+ * Pattern library for the application. available at url /pattern. In a real
+ * application this would be excluded from the production build and only made
+ * available in development.
+ */
+angular.module('pattern', [
+  'pattern.controllers',
+  'pattern.routes']);
 angular.module('pattern.routes', [])
+
+    /**
+     * Configure routes for pattern library
+     */
     .config(["$routeProvider", function ($routeProvider) {
 
       $routeProvider

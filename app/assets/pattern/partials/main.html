@@ -204,7 +204,7 @@
                     <ul class="intake-question-list">
                         <p class="type-gray type-small">Select elements use ui-select to provide a typeahead dropdown. To force a visible scrollbar on select choices add <code>&lt;ui-select-scroll&gt;</code>. Since select elements are created with ui-select, <code>&lt;class="ui-select-scroll"&gt;</code> and <code>&lt;theme="bootstrap"&gt;</code> must be made available to the element.</p>
                         <li class="example">
-                            <span class="intake-question-label"> What is the meaning of life?</span>
+                            <span class="intake-question-label"> Which Drug would you like to follow?</span>
                             <span class="help-block"> This is some helper text</span>
                             <ui-select
                                     name="example_select"
@@ -216,7 +216,7 @@
                                     >
                                 <ui-select-match placeholder="Please Select">Please Select</ui-select-match>
                                 <ui-select-choices repeat="option in options | filter: $select.search">
-                                    <div data-ng-bind-html="option.indy | highlight: $select.search"></div>
+                                    <div data-ng-bind-html="option.name | highlight: $select.search"></div>
                                 </ui-select-choices>
                             </ui-select>
                         </li>

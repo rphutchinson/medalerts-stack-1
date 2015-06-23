@@ -1,4 +1,8 @@
 angular.module('pattern.routes', [])
+
+    /**
+     * Configure routes for pattern library
+     */
     .config(function ($routeProvider) {
 
       $routeProvider

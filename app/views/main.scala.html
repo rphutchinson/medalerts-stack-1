@@ -6,10 +6,10 @@
         <link rel="stylesheet" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
         <link rel="shortcut icon" type="image/png" href='@routes.Assets.at("images/favicon.png")'>
     </head>
-    <body id="body" data-ng-app="app" ng-strict-di>
+    <body id="body" data-ng-app="app" data-ng-strict-di>
             <!-- Navbar -->
 
-            <!-- Main content -->
+            <!-- Main content - loads the correct partial as defined by the angular route -->
         <div data-ng-view></div>
             <!-- scripts -->
 
@@ -24,7 +24,7 @@
         <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("ui-bootstrap.min.js"))'></script>
         <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("select.min.js"))'></script>
 
-        <!-- Other JS Libraries -->
+            <!-- Other JS Libraries -->
         <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("lodash.min.js"))'></script>
 
             <!-- Application files -->
@@ -32,9 +32,8 @@
         <script type='text/javascript' src='@routes.Assets.at("javascripts/app.tpl.js")'></script>
 
         <script type="text/javascript">
-        var Conf = window.Conf ||
-        {
-            clientId: '@play.Play.application().configuration().getString("known.client.id")'
+        var Conf = window.Conf || {
+            clientId : ' @play.Play.application().configuration().getString("known.client.id") '
         };
         </script>
     </body>
