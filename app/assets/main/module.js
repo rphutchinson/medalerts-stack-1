@@ -3,6 +3,7 @@
  */
 angular.module('main', [
   'main.controllers',
+  'main.directives',
   'main.routes',
   'main.services',
   'main.filters']);

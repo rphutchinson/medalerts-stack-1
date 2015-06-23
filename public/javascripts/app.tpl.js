@@ -62,12 +62,16 @@ module.run(['$templateCache', function($templateCache) {
     '		<main role="main" class="followed-drugs">\n' +
     '			<h2>Your Meds</h2>\n' +
     '			<ul>\n' +
-    '				<li ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)" ng-click="manuallySelectDrug(drug)">\n' +
+    '				<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)" ng-click="manuallySelectDrug(drug)">\n' +
     '					<h3>{{ drug.name }}</h3>\n' +
     '					<button class="btn btn-xs btn-follow" ng-click="toggleItem(drug)">\n' +
-    '						<span ng-show="drug.isFollowed">unfollow</span>\n' +
-    '						<span ng-hide="drug.isFollowed">follow</span>\n' +
+    '						<span data-ng-show="drug.isFollowed">unfollow</span>\n' +
+    '						<span data-ng-hide="drug.isFollowed">follow</span>\n' +
     '					</button>\n' +
+    '                    <div class="drug-summary">\n' +
+    '                        <p data-drug-summary data-drug="drug" data-type=" \'recall\' "></p>\n' +
+    '                        <p data-drug-summary data-drug="drug" data-type=" \'label\' "></p>\n' +
+    '                    </div>\n' +
     '				</li>\n' +
     '			</ul>\n' +
     '\n' +
@@ -124,26 +128,6 @@ module.run(['$templateCache', function($templateCache) {
     '	</div>\n' +
     '\n' +
     '</div> -->\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('app.tpl');
-} catch (e) {
-  module = angular.module('app.tpl', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/other/partials/main.html',
-    '<div class="container">\n' +
-    '    <div class="col-sm-12">\n' +
-    '        <div class="page-header">\n' +
-    '            <h1>Hello Other!</h1>\n' +
-    '        </div>\n' +
-    '        <a class="btn btn-default" href="/">Go to main-index!</a>\n' +
-    '    </div>\n' +
-    '</div>\n' +
     '');
 }]);
 })();

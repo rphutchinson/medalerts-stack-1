@@ -6468,6 +6468,9 @@ h6,
 .drug-status-ok {
   background-color: #4caf4f;
 }
+.drug-summary {
+  background-color: #ffffff;
+}
 header[role="banner"] {
   background: #02a9f4;
   padding: 8px 0 8px 15px;

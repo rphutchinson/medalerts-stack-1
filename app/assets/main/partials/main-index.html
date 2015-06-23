@@ -25,12 +25,16 @@
 		<main role="main" class="followed-drugs">
 			<h2>Your Meds</h2>
 			<ul>
-				<li ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)" ng-click="manuallySelectDrug(drug)">
+				<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)" ng-click="manuallySelectDrug(drug)">
 					<h3>{{ drug.name }}</h3>
 					<button class="btn btn-xs btn-follow" ng-click="toggleItem(drug)">
-						<span ng-show="drug.isFollowed">unfollow</span>
-						<span ng-hide="drug.isFollowed">follow</span>
+						<span data-ng-show="drug.isFollowed">unfollow</span>
+						<span data-ng-hide="drug.isFollowed">follow</span>
 					</button>
+                    <div class="drug-summary">
+                        <p data-drug-summary data-drug="drug" data-type=" 'recall' "></p>
+                        <p data-drug-summary data-drug="drug" data-type=" 'label' "></p>
+                    </div>
 				</li>
 			</ul>
 

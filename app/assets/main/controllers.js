@@ -14,6 +14,7 @@ angular.module('main.controllers', [])
 
       _loadFollowedDrugs();
 
+
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Scope functions
        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -33,11 +34,11 @@ angular.module('main.controllers', [])
       $scope.toggleItem = function(drug) {
       	DrugsList[drug.isFollowed ? 'remove' : 'add'](drug.name);
       	drug.isFollowed = !drug.isFollowed;
-      }
+      };
 
       $scope.manuallySelectDrug = function(drug) {
       	$scope.drug.selected = drug.name;
-      }
+      };
 
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Private DEV functions
