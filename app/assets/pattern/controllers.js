@@ -1,25 +1,15 @@
 angular.module('pattern.controllers', [])
+
+    /**
+     * Controller module for Pattern library
+     */
     .controller('PatternCtrl', function ($scope) {
-      $scope.options = [{ "indy": "Aerospace" },
-        { "indy": "Banking"},
-        { "indy": "Commercial Contracts"},
-        { "indy":"Construction"},
-        { "indy": "Employment"},
-        { "indy": "Energy"},
-        { "indy": "Entertainment"},
-        { "indy": "Finance"},
-        { "indy": "Franchise Agreements"},
-        { "indy": "Healthcare"},
-        { "indy": "Hospitality"},
-        { "indy": "Insurance / Reinsurance"},
-        { "indy": "Intellectual Property"},
-        { "indy": "Licensing Agreements"},
-        { "indy": "Mass Claims / Class Actions"},
-        { "indy": "Mergers & Acquisitions"},
-        { "indy": "Oil & Gas"},
-        { "indy": "Partnerships"},
-        { "indy": "Pharmaceuticals"},
-        { "indy": "Securities Investments"},
-        { "indy": "Technology"},
-        { "indy": "Telecommunications" }];
+      $scope.options = [
+        { "name": "Abilify" },
+        { "name": "Namenda"},
+        { "name": "Viagra"},
+        { "name":"Zetia"},
+        { "name": "Cialis"},
+        { "name": "Nasonex"}
+        ];
     });

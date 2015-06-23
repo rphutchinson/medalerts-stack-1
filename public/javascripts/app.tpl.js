@@ -294,7 +294,7 @@ module.run(['$templateCache', function($templateCache) {
     '                    <ul class="intake-question-list">\n' +
     '                        <p class="type-gray type-small">Select elements use ui-select to provide a typeahead dropdown. To force a visible scrollbar on select choices add <code>&lt;ui-select-scroll&gt;</code>. Since select elements are created with ui-select, <code>&lt;class="ui-select-scroll"&gt;</code> and <code>&lt;theme="bootstrap"&gt;</code> must be made available to the element.</p>\n' +
     '                        <li class="example">\n' +
-    '                            <span class="intake-question-label"> What is the meaning of life?</span>\n' +
+    '                            <span class="intake-question-label"> Which Drug would you like to follow?</span>\n' +
     '                            <span class="help-block"> This is some helper text</span>\n' +
     '                            <ui-select\n' +
     '                                    name="example_select"\n' +
@@ -306,7 +306,7 @@ module.run(['$templateCache', function($templateCache) {
     '                                    >\n' +
     '                                <ui-select-match placeholder="Please Select">Please Select</ui-select-match>\n' +
     '                                <ui-select-choices repeat="option in options | filter: $select.search">\n' +
-    '                                    <div data-ng-bind-html="option.indy | highlight: $select.search"></div>\n' +
+    '                                    <div data-ng-bind-html="option.name | highlight: $select.search"></div>\n' +
     '                                </ui-select-choices>\n' +
     '                            </ui-select>\n' +
     '                        </li>\n' +
@@ -369,26 +369,6 @@ module.run(['$templateCache', function($templateCache) {
     '        </div>\n' +
     '    </div>\n' +
     '</div>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('app.tpl');
-} catch (e) {
-  module = angular.module('app.tpl', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/other/partials/main.html',
-    '<div class="container">\n' +
-    '    <div class="col-sm-12">\n' +
-    '        <div class="page-header">\n' +
-    '            <h1>Hello Other!</h1>\n' +
-    '        </div>\n' +
-    '        <a class="btn btn-default" href="/">Go to main-index!</a>\n' +
-    '    </div>\n' +
     '</div>\n' +
     '');
 }]);

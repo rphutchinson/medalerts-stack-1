@@ -1,1 +1,0 @@
-angular.module('pattern', ['pattern.controllers', 'pattern.routes']);
