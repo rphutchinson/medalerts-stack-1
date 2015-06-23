@@ -105,8 +105,11 @@ module.run(['$templateCache', function($templateCache) {
     '	<div class="row">\n' +
     '		<main role="main" class="followed-drugs">\n' +
     '			<h2>Your Meds</h2>\n' +
-    '			<ul>\n' +
-    '				<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)" ng-click="manuallySelectDrug(drug)">\n' +
+    '			<p data-ng-show="followedDrugs.length === 0">\n' +
+    '                To follow a medication, search above and click the “follow” button.\n' +
+    '            </p>\n' +
+    '            <ul data-ng-show="followedDrugs.length">\n' +
+    '				<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)" data-ng-click="manuallySelectDrug(drug)">\n' +
     '					<h3>{{ drug.name }}</h3>\n' +
     '					<button class="btn btn-xs btn-follow" ng-click="toggleItem(drug)">\n' +
     '						<span data-ng-show="drug.isFollowed">unfollow</span>\n' +
