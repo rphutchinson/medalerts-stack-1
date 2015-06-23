@@ -1,0 +1,65 @@
+<div class="drug-detail-modal">
+	<div class="modal-header">
+		<h1 class="modal-title h2">
+			<span role="button" ng-click="done()">{{ drug.name }}</span>
+		</h1>
+
+	    <a class="follow-button btn btn-default"
+	    	ng-click="toggleFollow()"
+	    	ng-class="{'following': drug.following}">
+	        <span ng-hide="drug.following">Follow</span>
+	        <span ng-show="drug.following">Unfollow</span>
+	    </a>
+
+	</div>
+	<div class="modal-body">
+	 	<div data-ng-if="drug.details">
+			<h2>Recalls</h2>
+
+			<div data-ng-if="drug.details.recalls">
+			    <h3>{{drug.details.recallDetails.length}} ongoing recall(s)</h3>
+
+			    <div data-ng-repeat="r in drug.details.recallDetails">
+			        <dl>
+			            <dt>Recall Number</dt>
+			            <dd>{{r.recall_number}}</dd>
+			            <dt>Product Description</dt>
+			            <dd>{{r.product_description}}</dd>
+			            <dt>Reason</dt>
+			            <dd>{{r.reason_for_recall}}</dd>
+			        </dl>
+
+			        <hr data-ng-if="!$last"/>
+			    </div>
+			</div>
+			<div data-ng-if="!drug.details.recalls">
+			    <p>There are no open recalls.</p>
+			</div>
+
+			<h2>Label Changes</h2>
+
+			<div data-ng-if="drug.details.labelChanges">
+			    <h3>{{drug.details.labelDetails.length}} recent label
+			        change(s)</h3>
+
+			    <div data-ng-repeat="l in drug.details.labelDetails">
+			        <dl>
+			            <dt>Label Version</dt>
+			            <dd>{{l.version}}</dd>
+			            <dt>Effective Date</dt>
+			            <dd>{{l.effective_time | fdaDate}}</dd>
+			            <dt>Indications and Usage</dt>
+			            <dd>{{l.indications_and_usage}}</dd>
+			            <dt>Dosage and Administration</dt>
+			            <dd>{{l.dosage_and_administration}}</dd>
+			        </dl>
+			    </div>
+
+			</div>
+			<div data-ng-if="!drug.details.labelChanges">
+			    <p>There have been no label changes in the last 90 days.</p>
+			</div>
+		</div>
+	</div>
+</div>
+

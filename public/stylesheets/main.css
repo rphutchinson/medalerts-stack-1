@@ -6498,6 +6498,15 @@ section[role="search"] #selectDrugInput {
   margin: 0 auto;
   position: relative;
 }
+section[role="search"] #selectDrugInput .ui-select-match {
+  background: transparent;
+  border-radius: 2em;
+}
+section[role="search"] #selectDrugInput .ui-select-search {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: normal;
+}
 section[role="search"] #selectDrugInput .ui-select-match .btn,
 section[role="search"] #selectDrugInput .ui-select-search {
   width: 100%;
@@ -6511,11 +6520,18 @@ section[role="search"] #selectDrugInput .ui-select-search {
   vertical-align: middle;
   box-shadow: 0px 0px 3px 0px #B3B3B3 !important;
 }
-#content {
-  position: relative;
-  z-index: 0;
+section[role="search"] #selectDrugInput .ui-select-match .btn .ui-select-placeholder,
+section[role="search"] #selectDrugInput .ui-select-search .ui-select-placeholder {
+  line-height: 62px;
+}
+main.followed-drugs h2 {
+  text-align: center;
 }
 main.followed-drugs ul {
+  width: 100%;
+  max-width: 570px;
+  margin: 0 auto;
+  position: relative;
   list-style-type: none;
   padding: 0;
 }
@@ -6523,6 +6539,18 @@ main.followed-drugs ul li {
   cursor: default;
   position: relative;
   padding: 4px;
+}
+main.followed-drugs .drug-status-recall {
+  background: #f54336 url("http://18f-cdn.sparcedge.com/recall.svg") no-repeat 12px 20px;
+  background-size: 36px 36px;
+}
+main.followed-drugs .drug-status-label {
+  background: #fbc02c url("http://18f-cdn.sparcedge.com/label-change.svg") no-repeat 12px 20px;
+  background-size: 36px 36px;
+}
+main.followed-drugs .drug-status-ok {
+  background: #4caf4f url("http://18f-cdn.sparcedge.com/all-good.svg") no-repeat 12px 20px;
+  background-size: 36px 36px;
 }
 main.followed-drugs button.btn-follow {
   position: absolute;
@@ -6565,16 +6593,4 @@ footer {
   text-align: center;
   font-size: 16px;
   padding-top: 15px;
-}
-.drug-status-recall {
-  background: #f54336 url("http://18f-cdn.sparcedge.com/recall.svg") no-repeat 12px 20px;
-  background-size: 36px 36px;
-}
-.drug-status-label {
-  background: #fbc02c url("http://18f-cdn.sparcedge.com/label-change.svg") no-repeat 12px 20px;
-  background-size: 36px 36px;
-}
-.drug-status-ok {
-  background: #4caf4f url("http://18f-cdn.sparcedge.com/all-good.svg") no-repeat 12px 20px;
-  background-size: 36px 36px;
 }

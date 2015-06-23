@@ -5,6 +5,83 @@ try {
   module = angular.module('app.tpl', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/main/partials/details-modal.html',
+    '<div class="drug-detail-modal">\n' +
+    '	<div class="modal-header">\n' +
+    '		<h1 class="modal-title h2">\n' +
+    '			<span role="button" ng-click="done()">{{ drug.name }}</span>\n' +
+    '		</h1>\n' +
+    '\n' +
+    '	    <a class="follow-button btn btn-default"\n' +
+    '	    	ng-click="toggleFollow()"\n' +
+    '	    	ng-class="{\'following\': drug.following}">\n' +
+    '	        <span ng-hide="drug.following">Follow</span>\n' +
+    '	        <span ng-show="drug.following">Unfollow</span>\n' +
+    '	    </a>\n' +
+    '\n' +
+    '	</div>\n' +
+    '	<div class="modal-body">\n' +
+    '	 	<div data-ng-if="drug.details">\n' +
+    '			<h2>Recalls</h2>\n' +
+    '\n' +
+    '			<div data-ng-if="drug.details.recalls">\n' +
+    '			    <h3>{{drug.details.recallDetails.length}} ongoing recall(s)</h3>\n' +
+    '\n' +
+    '			    <div data-ng-repeat="r in drug.details.recallDetails">\n' +
+    '			        <dl>\n' +
+    '			            <dt>Recall Number</dt>\n' +
+    '			            <dd>{{r.recall_number}}</dd>\n' +
+    '			            <dt>Product Description</dt>\n' +
+    '			            <dd>{{r.product_description}}</dd>\n' +
+    '			            <dt>Reason</dt>\n' +
+    '			            <dd>{{r.reason_for_recall}}</dd>\n' +
+    '			        </dl>\n' +
+    '\n' +
+    '			        <hr data-ng-if="!$last"/>\n' +
+    '			    </div>\n' +
+    '			</div>\n' +
+    '			<div data-ng-if="!drug.details.recalls">\n' +
+    '			    <p>There are no open recalls.</p>\n' +
+    '			</div>\n' +
+    '\n' +
+    '			<h2>Label Changes</h2>\n' +
+    '\n' +
+    '			<div data-ng-if="drug.details.labelChanges">\n' +
+    '			    <h3>{{drug.details.labelDetails.length}} recent label\n' +
+    '			        change(s)</h3>\n' +
+    '\n' +
+    '			    <div data-ng-repeat="l in drug.details.labelDetails">\n' +
+    '			        <dl>\n' +
+    '			            <dt>Label Version</dt>\n' +
+    '			            <dd>{{l.version}}</dd>\n' +
+    '			            <dt>Effective Date</dt>\n' +
+    '			            <dd>{{l.effective_time | fdaDate}}</dd>\n' +
+    '			            <dt>Indications and Usage</dt>\n' +
+    '			            <dd>{{l.indications_and_usage}}</dd>\n' +
+    '			            <dt>Dosage and Administration</dt>\n' +
+    '			            <dd>{{l.dosage_and_administration}}</dd>\n' +
+    '			        </dl>\n' +
+    '			    </div>\n' +
+    '\n' +
+    '			</div>\n' +
+    '			<div data-ng-if="!drug.details.labelChanges">\n' +
+    '			    <p>There have been no label changes in the last 90 days.</p>\n' +
+    '			</div>\n' +
+    '		</div>\n' +
+    '	</div>\n' +
+    '</div>\n' +
+    '\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('app.tpl');
+} catch (e) {
+  module = angular.module('app.tpl', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/main/partials/drug-detail.html',
     '<div class="container">\n' +
     '    <div class="col-sm-12">\n' +
@@ -90,7 +167,7 @@ module.run(['$templateCache', function($templateCache) {
     '				search-enabled="true"\n' +
     '				reset-search-input="true"\n' +
     '				>\n' +
-    '			<ui-select-match>\n' +
+    '			<ui-select-match placeholder="Type a Medication Name...">\n' +
     '				{{$select.selected}}\n' +
     '			</ui-select-match>\n' +
     '			<ui-select-choices\n' +
@@ -100,10 +177,10 @@ module.run(['$templateCache', function($templateCache) {
     '		</ui-select>\n' +
     '	</div>\n' +
     '</section>\n' +
-    '<div id="content" class="container">\n' +
-    '	<div class="row">\n' +
-    '		<main role="main" class="followed-drugs">\n' +
-    '			<h2>Your Meds</h2>\n' +
+    '<main role="main" class="followed-drugs">\n' +
+    '	<div id="content" class="container">\n' +
+    '		<div class="row">\n' +
+    '			<h2>Medications you\'re Following</h2>\n' +
     '			<p data-ng-show="followedDrugs.length === 0">\n' +
     '                To follow a medication, search above and click the “follow” button.\n' +
     '            </p>\n' +
@@ -112,10 +189,8 @@ module.run(['$templateCache', function($templateCache) {
     '					<span class="status-icon"></span>\n' +
     '					<h3 data-ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>\n' +
     '					<button class="btn btn-xs btn-follow" data-ng-click="removeDrug(drug)" data-ng-mouseover="hoverFollow()" data-ng-mouseleave="leaveFollow()">\n' +
-    '						<span>\n' +
     '							<span data-ng-show="followHovered">Unfollow</span>\n' +
     '							<span data-ng-hide="followHovered">Following</span>\n' +
-    '						</span>\n' +
     '					</button>\n' +
     '                    <div class="drug-summary">\n' +
     '                        <p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" \'recall\' " ></p>\n' +
@@ -123,60 +198,38 @@ module.run(['$templateCache', function($templateCache) {
     '                    </div>\n' +
     '				</li>\n' +
     '			</ul>\n' +
-    '		</main>\n' +
-    '	</div>\n' +
-    '	<div class="row">\n' +
-    '		<aside class="about-med-alerts">\n' +
-    '			<h2>Why Med Alerts</h2>\n' +
-    '			<p>The Med Alerts website allows the informed consumer to research individual drugs for recent recals, changes to the drug\'s label or other useful information. Just like subscribing to follow updates on social media, you may choose to "follow" a frequently used drug to be alerted of future changes.</p>\n' +
-    '			<p>According to FDA Research,approximately 106,000 deaths per year can be attributed to adverse reactions to prescription medications. One in five hospital visits is the direct result of a drug reaction. And adverse drug reactions are estimate to cost our country $135 billion dollars anually.</p>\n' +
-    '		</aside>\n' +
-    '	</div>\n' +
-    '\n' +
-    '</div>\n' +
-    '<footer>\n' +
-    '	<div class="container">\n' +
-    '		<p role="contentinfo">This prototype leverages the openFDA research project and is not for clinical use. Please refer to their Terms of Service.</p>\n' +
-    '	</div>\n' +
-    '</footer>\n' +
-    '\n' +
-    '<!-- <div class="container">\n' +
-    '	<div class="row">\n' +
-    '		<div class="col-sm-6">\n' +
-    '			<label for="selectDrugInput">Search for medications by\n' +
-    '				name</label>\n' +
-    '			<ui-select\n' +
-    '					id="selectDrugInput"\n' +
-    '					class="ui-select-scroll ui-select-auto-width ui-select-opaque"\n' +
-    '					theme="bootstrap"\n' +
-    '					data-ng-model="drug.selected"\n' +
-    '					search-enabled="true"\n' +
-    '					reset-search-input="true"\n' +
-    '					>\n' +
-    '				<ui-select-match>\n' +
-    '					{{$select.selected}}\n' +
-    '				</ui-select-match>\n' +
-    '				<ui-select-choices\n' +
-    '						repeat="drug as drug in drugs | filter: $select.search">\n' +
-    '					{{drug}}\n' +
-    '				</ui-select-choices>\n' +
-    '			</ui-select>\n' +
     '		</div>\n' +
     '	</div>\n' +
-    '	<div class="row" style="padding-top: 15px;">\n' +
-    '		<div class="col-sm-6">\n' +
-    '			<div ng-repeat="drug in followedDrugs" class="well" data-ng-class="highlightClass(drug)">\n' +
-    '					{{ drug.name }}\n' +
-    '\n' +
-    '					<p data-ng-if="drug.details">\n' +
-    '						{{drug.details}}\n' +
-    '					</p>\n' +
+    '</main>\n' +
+    '<aside class="about-med-alerts">\n' +
+    '	<div class="container">\n' +
+    '		<div class="row">\n' +
+    '			<h2>Why Med Alerts</h2>\n' +
+    '<<<<<<< HEAD\n' +
+    '			<p>The Med Alerts website allows the informed consumer to research individual drugs for recent recalls, changes to the drug\'s label, or other useful information. Just like subscribing to follow updates on social media, you may choose to "follow" a frequently used drug to be alerted of future changes.</p>\n' +
+    '			<p>According to FDA Research, approximately 106,000 deaths per year can be attributed to adverse reactions to prescription medications. One in five hospital visits is the direct result of a drug reaction, and adverse drug reactions are estimated to cost our country $135 billion dollars annually.</p>\n' +
+    '		</aside>\n' +
+    '=======\n' +
+    '			<div class="col-sm-4 col-sm-push-8">\n' +
+    '				<p><span clas="percentage">82%</span> of American adults take at least one medication.</p>\n' +
+    '			</div>\n' +
+    '			<div class="introduction col-sm-8 col-sm-pull-4">\n' +
+    '				<p>The Med Alerts website allows the informed consumer to research individual drugs for recent recals, changes to the drug\'s label or other useful information. Just like subscribing to follow updates on social media, you may choose to "follow" a frequently used drug to be alerted of future changes.</p>\n' +
     '			</div>\n' +
     '		</div>\n' +
-    '\n' +
+    '		<div class="row">\n' +
+    '			<div class="statistics">\n' +
+    '				<p>According to FDA Research,approximately 106,000 deaths per year can be attributed to adverse reactions to prescription medications. One in five hospital visits is the direct result of a drug reaction. And adverse drug reactions are estimate to cost our country $135 billion dollars anually.</p>\n' +
+    '			</div>\n' +
+    '		</div>\n' +
+    '>>>>>>> more layout\n' +
     '	</div>\n' +
-    '\n' +
-    '</div> -->\n' +
+    '</aside>\n' +
+    '<footer>\n' +
+    '	<div class="container">\n' +
+    '		<p role="contentinfo">This prototype leverages the openFDA research project and is not for clinical use. Please refer to their <a href="https://open.fda.gov/terms/" target="_blank">Terms of Service</a>.</p>\n' +
+    '	</div>\n' +
+    '</footer>\n' +
     '');
 }]);
 })();
@@ -192,7 +245,7 @@ module.run(['$templateCache', function($templateCache) {
     '<div class="container">\n' +
     '    <div class="row pl">\n' +
     '        <div class="col-sm-9">\n' +
-    '            <h1>Pattern Libaray</h1>\n' +
+    '            <h1>Pattern Library</h1>\n' +
     '\n' +
     '            <h2 id="colorswatch">Color Swatch</h3>\n' +
     '                <!-- Color Swatch -->\n' +
