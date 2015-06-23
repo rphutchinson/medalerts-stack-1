@@ -29,13 +29,12 @@
             <ul data-ng-show="followedDrugs.length">
 				<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">
 					<span class="status-icon"></span>
-					<h3 ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>
-					<button class="btn btn-xs btn-follow" ng-click="toggleItem(drug)" ng-mouseover="hoverFollow()" ng-mouseleave="leaveFollow()">
-						<span data-ng-show="drug.isFollowed">
-							<span ng-show="followHovered">Unfollow</span>
-							<span ng-hide="followHovered">Following</span>
+					<h3 data-ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>
+					<button class="btn btn-xs btn-follow" data-ng-click="removeDrug(drug)" data-ng-mouseover="hoverFollow()" data-ng-mouseleave="leaveFollow()">
+						<span>
+							<span data-ng-show="followHovered">Unfollow</span>
+							<span data-ng-hide="followHovered">Following</span>
 						</span>
-						<span data-ng-hide="drug.isFollowed">Follow</span>
 					</button>
                     <div class="drug-summary">
                         <p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" 'recall' " ></p>

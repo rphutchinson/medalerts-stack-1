@@ -44,18 +44,24 @@ angular.module('main.controllers', [])
        * Adds or removes a drug from the DrugList
        * @param drug
        */
-      $scope.toggleItem = function(drug) {
-      	DrugsList[drug.isFollowed ? 'remove' : 'add'](drug.name);
-      	drug.isFollowed = !drug.isFollowed;
+      $scope.removeDrug = function(drug) {
+      	DrugsList.remove(drug.name); //use the service to remove from stored values
+      	$scope.followedDrugs = _.reject($scope.followedDrugs, {name: drug.name})
       };
 
+      /**
+       * handle hover state for button
+       */
       $scope.hoverFollow = function() {
       	this.followHovered = true;
-      }
+      };
 
+      /**
+       * handle hover state for button
+       */
       $scope.leaveFollow = function() {
       	this.followHovered = false;
-      }
+      };
 
       /**
        * select a drug outside of the ui-select control. Triggers the $watch
@@ -70,7 +76,7 @@ angular.module('main.controllers', [])
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Watches
        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
+      
       $scope.$watch('drug', function(){
         if($scope.drug && $scope.drug.selected) {
           $location.path('/drugdetail').search('name', $scope.drug.selected);
