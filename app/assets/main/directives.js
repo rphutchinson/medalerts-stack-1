@@ -25,11 +25,9 @@ angular.module('main.directives', [])
 
           if('label' === type && drug.details.labelChanges){
             //get the date of the most recent label change
-            var effectiveTime =  _.first(drug.details.labelDetails).effective_time;
-            effectiveTime = effectiveTime.substring(0,4) + '-' +
-                            effectiveTime.substring(4,6) + '-' +
-                            effectiveTime.substring(6,8);
-            description += 'Label was last changed on ' + $filter('date')(effectiveTime);
+
+            description += 'Label was last changed on ' +
+                $filter('fdaDate')(_.first(drug.details.labelDetails).effective_time);
           }
 
           return description;

@@ -64,6 +64,42 @@ angular.module('app', ['app.tpl', 'ngSanitize', 'ngRoute', 'ngCookies', 'ui.sele
 
 
 
+angular.module('pattern.controllers', [])
+
+    /**
+     * Controller module for Pattern library
+     */
+    .controller('PatternCtrl', ["$scope", function ($scope) {
+      $scope.options = [
+        { "name": "Abilify" },
+        { "name": "Namenda"},
+        { "name": "Viagra"},
+        { "name":"Zetia"},
+        { "name": "Cialis"},
+        { "name": "Nasonex"}
+        ];
+    }]);
+/**
+ * Pattern library for the application. available at url /pattern. In a real
+ * application this would be excluded from the production build and only made
+ * available in development.
+ */
+angular.module('pattern', [
+  'pattern.controllers',
+  'pattern.routes']);
+angular.module('pattern.routes', [])
+
+    /**
+     * Configure routes for pattern library
+     */
+    .config(["$routeProvider", function ($routeProvider) {
+
+      $routeProvider
+          .when('/pattern', {
+            templateUrl: 'assets/pattern/partials/main.html',
+            controller: 'PatternCtrl'
+          });
+    }]);
 angular.module('main.controllers', [])
     .controller('IndexCtrl', ["$scope", "$location", "$log", "$timeout", "DrugService", "DrugsList", "API_URL", function ($scope, $location, $log, $timeout, DrugService, DrugsList, API_URL) {
 
@@ -155,7 +191,7 @@ angular.module('main.controllers', [])
 
     .controller('DrugDetailsCtrl', ["$scope", "$location", "DrugService", "DrugsList", function ($scope, $location, DrugService, DrugsList) {
       $scope.drug = $location.search().name;
-      $scope.following = DrugsList.all().indexOf($scope.drug) > -1;
+      $scope.following = _.includes(DrugsList.all(), $scope.drug);
 
       DrugService.getDrugByName($scope.drug).then(
           function(response){
@@ -198,11 +234,9 @@ angular.module('main.directives', [])
 
           if('label' === type && drug.details.labelChanges){
             //get the date of the most recent label change
-            var effectiveTime =  _.first(drug.details.labelDetails).effective_time;
-            effectiveTime = effectiveTime.substring(0,4) + '-' +
-                            effectiveTime.substring(4,6) + '-' +
-                            effectiveTime.substring(6,8);
-            description += 'Label was last changed on ' + $filter('date')(effectiveTime);
+
+            description += 'Label was last changed on ' +
+                $filter('fdaDate')(_.first(drug.details.labelDetails).effective_time);
           }
 
           return description;
@@ -222,9 +256,18 @@ angular.module('main.directives', [])
       }
     });
 angular.module('main.filters', [])
-	.filter('encodeURIComponent', function() {
-		return window.encodeURIComponent;
-	});
+    .filter('encodeURIComponent', function () {
+      return window.encodeURIComponent;
+    })
+
+    .filter('fdaDate', ["$filter", function ($filter) {
+      return function(string){
+        var parsed = string.substring(0,4) + '-' +
+            string.substring(4,6) + '-' +
+            string.substring(6,8);
+        return $filter('date')(parsed);
+      };
+    }]);
 
 /**
  * Main application module supporting Drug search, following, etc.
@@ -330,40 +373,3 @@ angular.module('main.routes', [])
 		}
 	})
 })();
-
-angular.module('pattern.controllers', [])
-
-    /**
-     * Controller module for Pattern library
-     */
-    .controller('PatternCtrl', ["$scope", function ($scope) {
-      $scope.options = [
-        { "name": "Abilify" },
-        { "name": "Namenda"},
-        { "name": "Viagra"},
-        { "name":"Zetia"},
-        { "name": "Cialis"},
-        { "name": "Nasonex"}
-        ];
-    }]);
-/**
- * Pattern library for the application. available at url /pattern. In a real
- * application this would be excluded from the production build and only made
- * available in development.
- */
-angular.module('pattern', [
-  'pattern.controllers',
-  'pattern.routes']);
-angular.module('pattern.routes', [])
-
-    /**
-     * Configure routes for pattern library
-     */
-    .config(["$routeProvider", function ($routeProvider) {
-
-      $routeProvider
-          .when('/pattern', {
-            templateUrl: 'assets/pattern/partials/main.html',
-            controller: 'PatternCtrl'
-          });
-    }]);

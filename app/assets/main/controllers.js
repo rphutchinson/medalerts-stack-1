@@ -89,7 +89,7 @@ angular.module('main.controllers', [])
 
     .controller('DrugDetailsCtrl', function ($scope, $location, DrugService, DrugsList) {
       $scope.drug = $location.search().name;
-      $scope.following = DrugsList.all().indexOf($scope.drug) > -1;
+      $scope.following = _.includes(DrugsList.all(), $scope.drug);
 
       DrugService.getDrugByName($scope.drug).then(
           function(response){

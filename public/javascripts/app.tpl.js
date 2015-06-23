@@ -9,17 +9,61 @@ module.run(['$templateCache', function($templateCache) {
     '<div class="container">\n' +
     '    <div class="col-sm-12">\n' +
     '        <div class="page-header">\n' +
-    '        	<h1>{{ drug }}</h1>\n' +
-    '	        <a class="btn btn-default" data-ng-href="/">\n' +
-    '	        	<i class="icon-arrow-left"></i> Back\n' +
-    '	        </a>\n' +
-    '	        <a class="btn btn-default" ng-click="toggleFollow()">\n' +
-    '	        	<span ng-if="!following">Follow</span>\n' +
-    '	        	<span ng-if="following">Unfollow</span>\n' +
-    '	        </a>\n' +
+    '            <h1>{{ drug }}</h1>\n' +
+    '            <a class="btn btn-default" data-ng-href="/">\n' +
+    '                <i class="icon-arrow-left"></i> Back\n' +
+    '            </a>\n' +
+    '            <a class="btn btn-default" ng-click="toggleFollow()">\n' +
+    '                <span ng-if="!following">Follow</span>\n' +
+    '                <span ng-if="following">Unfollow</span>\n' +
+    '            </a>\n' +
     '        </div>\n' +
-    '        <div>\n' +
-    '            {{drugDetails}}\n' +
+    '        <div data-ng-if="drugDetails">\n' +
+    '            <h2>Recalls</h2>\n' +
+    '\n' +
+    '            <div data-ng-if="drugDetails.recalls">\n' +
+    '                <h3>{{drugDetails.recallDetails.length}} ongoing recall(s)</h3>\n' +
+    '\n' +
+    '                <div data-ng-repeat="r in drugDetails.recallDetails">\n' +
+    '                    <dl>\n' +
+    '                        <dt>Recall Number</dt>\n' +
+    '                        <dd>{{r.recall_number}}</dd>\n' +
+    '                        <dt>Product Description</dt>\n' +
+    '                        <dd>{{r.product_description}}</dd>\n' +
+    '                        <dt>Reason</dt>\n' +
+    '                        <dd>{{r.reason_for_recall}}</dd>\n' +
+    '                    </dl>\n' +
+    '\n' +
+    '                    <hr data-ng-if="!$last"/>\n' +
+    '                </div>\n' +
+    '            </div>\n' +
+    '            <div data-ng-if="!drugDetails.recalls">\n' +
+    '                <p>There are no open recalls.</p>\n' +
+    '            </div>\n' +
+    '\n' +
+    '            <h2>Label Changes</h2>\n' +
+    '\n' +
+    '            <div data-ng-if="drugDetails.labelChanges">\n' +
+    '                <h3>{{drugDetails.labelDetails.length}} recent label\n' +
+    '                    change(s)</h3>\n' +
+    '\n' +
+    '                <div data-ng-repeat="l in drugDetails.labelDetails">\n' +
+    '                    <dl>\n' +
+    '                        <dt>Label Version</dt>\n' +
+    '                        <dd>{{l.version}}</dd>\n' +
+    '                        <dt>Effective Date</dt>\n' +
+    '                        <dd>{{l.effective_time | fdaDate}}</dd>\n' +
+    '                        <dt>Indications and Usage</dt>\n' +
+    '                        <dd>{{l.indications_and_usage}}</dd>\n' +
+    '                        <dt>Dosage and Administration</dt>\n' +
+    '                        <dd>{{l.dosage_and_administration}}</dd>\n' +
+    '                    </dl>\n' +
+    '                </div>\n' +
+    '\n' +
+    '            </div>\n' +
+    '            <div data-ng-if="!drugDetails.labelChanges">\n' +
+    '                <p>There have been no label changes in the last 90 days.</p>\n' +
+    '            </div>\n' +
     '        </div>\n' +
     '    </div>\n' +
     '</div>\n' +
