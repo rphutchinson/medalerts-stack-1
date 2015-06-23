@@ -64,6 +64,42 @@ angular.module('app', ['app.tpl', 'ngSanitize', 'ngRoute', 'ngCookies', 'ui.sele
 
 
 
+angular.module('pattern.controllers', [])
+
+    /**
+     * Controller module for Pattern library
+     */
+    .controller('PatternCtrl', ["$scope", function ($scope) {
+      $scope.options = [
+        { "name": "Abilify" },
+        { "name": "Namenda"},
+        { "name": "Viagra"},
+        { "name":"Zetia"},
+        { "name": "Cialis"},
+        { "name": "Nasonex"}
+        ];
+    }]);
+/**
+ * Pattern library for the application. available at url /pattern. In a real
+ * application this would be excluded from the production build and only made
+ * available in development.
+ */
+angular.module('pattern', [
+  'pattern.controllers',
+  'pattern.routes']);
+angular.module('pattern.routes', [])
+
+    /**
+     * Configure routes for pattern library
+     */
+    .config(["$routeProvider", function ($routeProvider) {
+
+      $routeProvider
+          .when('/pattern', {
+            templateUrl: 'assets/pattern/partials/main.html',
+            controller: 'PatternCtrl'
+          });
+    }]);
 angular.module('main.controllers', [])
     .controller('IndexCtrl', ["$scope", "$location", "$log", "$timeout", "DrugService", "DrugsList", "API_URL", function ($scope, $location, $log, $timeout, DrugService, DrugsList, API_URL) {
 
@@ -79,7 +115,7 @@ angular.module('main.controllers', [])
       });
 
       _loadFollowedDrugs();
-      _populateDrugList();
+      // _populateDrugList();
 
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Scope functions
@@ -345,40 +381,3 @@ angular.module('main.routes', [])
 		}
 	})
 })();
-
-angular.module('pattern.controllers', [])
-
-    /**
-     * Controller module for Pattern library
-     */
-    .controller('PatternCtrl', ["$scope", function ($scope) {
-      $scope.options = [
-        { "name": "Abilify" },
-        { "name": "Namenda"},
-        { "name": "Viagra"},
-        { "name":"Zetia"},
-        { "name": "Cialis"},
-        { "name": "Nasonex"}
-        ];
-    }]);
-/**
- * Pattern library for the application. available at url /pattern. In a real
- * application this would be excluded from the production build and only made
- * available in development.
- */
-angular.module('pattern', [
-  'pattern.controllers',
-  'pattern.routes']);
-angular.module('pattern.routes', [])
-
-    /**
-     * Configure routes for pattern library
-     */
-    .config(["$routeProvider", function ($routeProvider) {
-
-      $routeProvider
-          .when('/pattern', {
-            templateUrl: 'assets/pattern/partials/main.html',
-            controller: 'PatternCtrl'
-          });
-    }]);
