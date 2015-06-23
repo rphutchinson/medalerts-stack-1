@@ -6460,13 +6460,13 @@ h6,
   list-style: none;
 }
 .drug-status-recall {
-  background-color: #f54336;
+  background: #f54336 url("http://18f-cdn.sparcedge.com/recall.svg") no-repeat left;
 }
 .drug-status-label {
-  background-color: #fbc02c;
+  background: #fbc02c url("http://18f-cdn.sparcedge.com/label-change.svg") no-repeat left;
 }
 .drug-status-ok {
-  background-color: #4caf4f;
+  background: #4caf4f url("http://18f-cdn.sparcedge.com/all-good.svg") no-repeat left;
 }
 .drug-summary {
   background-color: #ffffff;
