@@ -1,5 +1,9 @@
 angular.module('main.controllers', [])
-    .controller('IndexCtrl', function ($scope, $location, $log, $timeout, DrugService, DrugsList, API_URL) {
+    /**
+     * Controller for main application page
+     */
+    .controller('IndexCtrl', function ($scope, $location, $log, $timeout,
+                                       DrugService, DrugsList, API_URL) {
 
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Controller Initialization
@@ -13,12 +17,17 @@ angular.module('main.controllers', [])
       });
 
       _loadFollowedDrugs();
-      // _populateDrugList();
 
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Scope functions
        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+      /**
+       * determines the class to use for a followed drug element. Indended to be
+       * used as the input to an ng-class directive
+       * @param drug The drug to inspect
+       * @returns {string}
+       */
       $scope.highlightClass = function(drug){
         if(!drug.details){
           return 'drug-status-loading';
@@ -31,35 +40,38 @@ angular.module('main.controllers', [])
         }
       };
 
-      $scope.toggleItem = function(drug) {
-      	DrugsList[drug.isFollowed ? 'remove' : 'add'](drug.name);
-      	drug.isFollowed = !drug.isFollowed;
+      /**
+       * Adds or removes a drug from the DrugList
+       * @param drug
+       */
+      $scope.removeDrug = function(drug) {
+      	DrugsList.remove(drug.name); //use the service to remove from stored values
+      	$scope.followedDrugs = _.reject($scope.followedDrugs, {name: drug.name})
       };
 
+      /**
+       * handle hover state for button
+       */
       $scope.hoverFollow = function() {
       	this.followHovered = true;
-      }
+      };
 
+      /**
+       * handle hover state for button
+       */
       $scope.leaveFollow = function() {
       	this.followHovered = false;
-      }
+      };
 
+      /**
+       * select a drug outside of the ui-select control. Triggers the $watch
+       * function when a drug is selected
+       * @param drug the selected drug
+       */
       $scope.manuallySelectDrug = function(drug) {
       	$scope.drug.selected = drug.name;
       };
 
-      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-       Private DEV functions
-       @todo: delete
-       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-      function _populateDrugList() {
-      	DrugsList.save([]);
-      	["Namenda", "Nasonex", "Micardis"].forEach(function(drug, i) {
-      		console.log(drug);
-      		if (!~DrugsList.all().indexOf(drug)) DrugsList.add(drug);
-      	})
-      }
 
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Watches
@@ -76,35 +88,54 @@ angular.module('main.controllers', [])
        Private helper functions
        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+      /**
+       * Loads drugs using the DrugList service and for each one makes an
+       * additional API call to populate the details for that drug
+       * @private
+       */
       function _loadFollowedDrugs(){
         $scope.followedDrugs = _.map(DrugsList.all(), function(name){
           return {name: name, isFollowed: true}
         });
 
         _.forEach($scope.followedDrugs, function(drug){
-
-        	$timeout(function(){
-	          DrugService.getDrugByName(drug.name).then(
-	              function(response){
-	                drug.details = response;
-	              }
-	          );
-      		}, 10);
-
+          DrugService.getDrugByName(drug.name).then(
+              function(response){
+                drug.details = response;
+              }
+          );
         });
       }
     })
 
-    .controller('DrugDetailsCtrl', function ($scope, $location, DrugService, DrugsList) {
+    /**
+     * Controller for drug details
+     */
+    .controller('DrugDetailsCtrl', function ($scope, $location, DrugService,
+                                             DrugsList) {
+
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       Controller Initialization
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
       $scope.drug = $location.search().name;
       $scope.following = _.includes(DrugsList.all(), $scope.drug);
-
+      //use the service to load detail information for the given drug
       DrugService.getDrugByName($scope.drug).then(
           function(response){
             $scope.drugDetails = response;
           }
       );
 
+
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       Scope functions
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+      /**
+       * Allow the user to follow/unfollow a drug from the details view via the
+       * DrugsList service
+       */
       $scope.toggleFollow = function() {
       	DrugsList[!$scope.following ? 'add' : 'remove']($scope.drug);
       	$scope.following = !$scope.following;

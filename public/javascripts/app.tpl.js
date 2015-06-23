@@ -110,13 +110,12 @@ module.run(['$templateCache', function($templateCache) {
     '            <ul data-ng-show="followedDrugs.length">\n' +
     '				<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">\n' +
     '					<span class="status-icon"></span>\n' +
-    '					<h3 ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>\n' +
-    '					<button class="btn btn-xs btn-follow" ng-click="toggleItem(drug)" ng-mouseover="hoverFollow()" ng-mouseleave="leaveFollow()">\n' +
-    '						<span data-ng-show="drug.isFollowed">\n' +
-    '							<span ng-show="followHovered">Unfollow</span>\n' +
-    '							<span ng-hide="followHovered">Following</span>\n' +
+    '					<h3 data-ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>\n' +
+    '					<button class="btn btn-xs btn-follow" data-ng-click="removeDrug(drug)" data-ng-mouseover="hoverFollow()" data-ng-mouseleave="leaveFollow()">\n' +
+    '						<span>\n' +
+    '							<span data-ng-show="followHovered">Unfollow</span>\n' +
+    '							<span data-ng-hide="followHovered">Following</span>\n' +
     '						</span>\n' +
-    '						<span data-ng-hide="drug.isFollowed">Follow</span>\n' +
     '					</button>\n' +
     '                    <div class="drug-summary">\n' +
     '                        <p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" \'recall\' " ></p>\n' +
