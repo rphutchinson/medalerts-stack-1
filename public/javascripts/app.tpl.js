@@ -81,8 +81,7 @@ module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/main/partials/main-index.html',
     '<section role="search">\n' +
     '	<div class="container">\n' +
-    '		<input type="text" placeholder="Search medications by name...">\n' +
-    '		<label for="selectDrugInput">Search for medications by\n' +
+    '		<label for="selectDrugInput" class="sr-only">Search for medications by\n' +
     '			name</label>\n' +
     '		<ui-select id="selectDrugInput"\n' +
     '				class="ui-select-scroll ui-select-auto-width ui-select-opaque"\n' +
@@ -105,24 +104,26 @@ module.run(['$templateCache', function($templateCache) {
     '	<div class="row">\n' +
     '		<main role="main" class="followed-drugs">\n' +
     '			<h2>Your Meds</h2>\n' +
-    '			<p data-ng-show="followedDrugs.length === 0">\n' +
-    '                To follow a medication, search above and click the “follow” button.\n' +
-    '            </p>\n' +
-    '            <ul data-ng-show="followedDrugs.length">\n' +
-    '				<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)" data-ng-click="manuallySelectDrug(drug)">\n' +
-    '					<h3>{{ drug.name }}</h3>\n' +
-    '					<button class="btn btn-xs btn-follow" ng-click="toggleItem(drug)">\n' +
-    '						<span data-ng-show="drug.isFollowed">unfollow</span>\n' +
-    '						<span data-ng-hide="drug.isFollowed">follow</span>\n' +
+    '			<ul>\n' +
+    '				<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">\n' +
+    '					<span class="status-icon"></span>\n' +
+    '					<h3 ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>\n' +
+    '					<button class="btn btn-xs btn-follow" ng-click="toggleItem(drug)" ng-mouseover="hoverFollow()" ng-mouseleave="leaveFollow()">\n' +
+    '						<span data-ng-show="drug.isFollowed">\n' +
+    '							<span ng-show="followHovered">Unfollow</span>\n' +
+    '							<span ng-hide="followHovered">Following</span>\n' +
+    '						</span>\n' +
+    '						<span data-ng-hide="drug.isFollowed">Follow</span>\n' +
     '					</button>\n' +
     '                    <div class="drug-summary">\n' +
-    '                        <p data-drug-summary data-drug="drug" data-type=" \'recall\' "></p>\n' +
-    '                        <p data-drug-summary data-drug="drug" data-type=" \'label\' "></p>\n' +
+    '                        <p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" \'recall\' " ></p>\n' +
+    '                        <p data-ng-if="drug.details.labelChanges" data-drug-summary data-drug="drug" data-type=" \'label\' "></p>\n' +
     '                    </div>\n' +
     '				</li>\n' +
     '			</ul>\n' +
-    '\n' +
     '		</main>\n' +
+    '	</div>\n' +
+    '	<div class="row">\n' +
     '		<aside class="about-med-alerts">\n' +
     '			<div class="well">\n' +
     '				<h2>Why Med Alerts</h2>\n' +
@@ -131,10 +132,11 @@ module.run(['$templateCache', function($templateCache) {
     '			</div>\n' +
     '		</aside>\n' +
     '	</div>\n' +
+    '\n' +
     '</div>\n' +
     '<footer>\n' +
     '	<div class="container">\n' +
-    '		<p>This prototype leverages the openFDA research project and not for clinical use. Please refer to their Terms of Service.</p>\n' +
+    '		<p role="contentinfo">This prototype leverages the openFDA research project and not for clinical use. Please refer to their Terms of Service.</p>\n' +
     '	</div>\n' +
     '</footer>\n' +
     '\n' +

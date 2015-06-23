@@ -1,7 +1,6 @@
 <section role="search">
 	<div class="container">
-		<input type="text" placeholder="Search medications by name...">
-		<label for="selectDrugInput">Search for medications by
+		<label for="selectDrugInput" class="sr-only">Search for medications by
 			name</label>
 		<ui-select id="selectDrugInput"
 				class="ui-select-scroll ui-select-auto-width ui-select-opaque"
@@ -28,20 +27,25 @@
                 To follow a medication, search above and click the “follow” button.
             </p>
             <ul data-ng-show="followedDrugs.length">
-				<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)" data-ng-click="manuallySelectDrug(drug)">
-					<h3>{{ drug.name }}</h3>
-					<button class="btn btn-xs btn-follow" ng-click="toggleItem(drug)">
-						<span data-ng-show="drug.isFollowed">unfollow</span>
-						<span data-ng-hide="drug.isFollowed">follow</span>
+				<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">
+					<span class="status-icon"></span>
+					<h3 ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>
+					<button class="btn btn-xs btn-follow" ng-click="toggleItem(drug)" ng-mouseover="hoverFollow()" ng-mouseleave="leaveFollow()">
+						<span data-ng-show="drug.isFollowed">
+							<span ng-show="followHovered">Unfollow</span>
+							<span ng-hide="followHovered">Following</span>
+						</span>
+						<span data-ng-hide="drug.isFollowed">Follow</span>
 					</button>
                     <div class="drug-summary">
-                        <p data-drug-summary data-drug="drug" data-type=" 'recall' "></p>
-                        <p data-drug-summary data-drug="drug" data-type=" 'label' "></p>
+                        <p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" 'recall' " ></p>
+                        <p data-ng-if="drug.details.labelChanges" data-drug-summary data-drug="drug" data-type=" 'label' "></p>
                     </div>
 				</li>
 			</ul>
-
 		</main>
+	</div>
+	<div class="row">
 		<aside class="about-med-alerts">
 			<div class="well">
 				<h2>Why Med Alerts</h2>
@@ -50,10 +54,11 @@
 			</div>
 		</aside>
 	</div>
+
 </div>
 <footer>
 	<div class="container">
-		<p>This prototype leverages the openFDA research project and not for clinical use. Please refer to their Terms of Service.</p>
+		<p role="contentinfo">This prototype leverages the openFDA research project and not for clinical use. Please refer to their Terms of Service.</p>
 	</div>
 </footer>
 
