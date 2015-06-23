@@ -127,11 +127,9 @@ module.run(['$templateCache', function($templateCache) {
     '	</div>\n' +
     '	<div class="row">\n' +
     '		<aside class="about-med-alerts">\n' +
-    '			<div class="well">\n' +
-    '				<h2>Why Med Alerts</h2>\n' +
-    '				<p>The Med Alerts website allows the informed consumer to research individual drugs for recent recals, changes to the drug\'s label or other useful information. Just like subscribing to follow updates on social media, you may choose to "follow" a frequently used drug to be alerted of future changes.</p>\n' +
-    '				<p>According to FDA Research,approximately 106,000 deaths per year can be attributed to adverse reactions to prescription medications. One in five hospital visits is the direct result of a drug reaction. And adverse drug reactions are estimate to cost our country $135 billion dollars anually.</p>\n' +
-    '			</div>\n' +
+    '			<h2>Why Med Alerts</h2>\n' +
+    '			<p>The Med Alerts website allows the informed consumer to research individual drugs for recent recals, changes to the drug\'s label or other useful information. Just like subscribing to follow updates on social media, you may choose to "follow" a frequently used drug to be alerted of future changes.</p>\n' +
+    '			<p>According to FDA Research,approximately 106,000 deaths per year can be attributed to adverse reactions to prescription medications. One in five hospital visits is the direct result of a drug reaction. And adverse drug reactions are estimate to cost our country $135 billion dollars anually.</p>\n' +
     '		</aside>\n' +
     '	</div>\n' +
     '\n' +

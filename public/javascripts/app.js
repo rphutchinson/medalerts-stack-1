@@ -142,7 +142,7 @@ angular.module('main.controllers', [])
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Watches
        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-      
+
       $scope.$watch('drug', function(){
         if($scope.drug && $scope.drug.selected) {
           $location.path('/drugdetail').search('name', $scope.drug.selected);
