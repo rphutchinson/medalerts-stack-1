@@ -82,10 +82,10 @@ object DrugsApi extends Controller with XhrActionSupport with OAuth2Provider {
         .withQueryString(List(
         "api_key" -> apiKey,
         "limit" -> "3",
-        "search" -> name): _*)
+        "search" -> name.replace(" ", "+")): _*)
         .get()
 
-      val label = WS.url(s"${baseUrl}label.json?api_key=$apiKey&search=$name+AND+$dateFilter")
+      val label = WS.url(s"${baseUrl}label.json?api_key=$apiKey&search=${name.replace(" ", "+")}+AND+$dateFilter")
         .get()
 
       /*Once both WS futures are resolved process the result into our custom
