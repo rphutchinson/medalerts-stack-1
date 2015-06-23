@@ -65,7 +65,7 @@ angular.module('app', ['app.tpl', 'ngSanitize', 'ngRoute', 'ngCookies', 'ui.sele
 
 
 angular.module('main.controllers', [])
-    .controller('IndexCtrl', ["$scope", "$location", "DrugService", "DrugsList", "API_URL", function ($scope, $location, DrugService, DrugsList, API_URL) {
+    .controller('IndexCtrl', ["$scope", "$location", "$log", "$timeout", "DrugService", "DrugsList", "API_URL", function ($scope, $location, $log, $timeout, DrugService, DrugsList, API_URL) {
 
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Controller Initialization
@@ -79,7 +79,6 @@ angular.module('main.controllers', [])
       });
 
       _loadFollowedDrugs();
-
 
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Scope functions
@@ -97,6 +96,27 @@ angular.module('main.controllers', [])
         }
       };
 
+      $scope.toggleItem = function(drug) {
+      	DrugsList[drug.isFollowed ? 'remove' : 'add'](drug.name);
+      	drug.isFollowed = !drug.isFollowed;
+      }
+
+      $scope.manuallySelectDrug = function(drug) {
+      	$scope.drug.selected = drug.name;
+      }
+
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       Private DEV functions
+       @todo: delete
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+      function _populateDrugList() {
+      	DrugsList.save([]);
+      	["Namenda", "Nasonex", "Micardis"].forEach(function(drug, i) {
+      		console.log(drug);
+      		if (!~DrugsList.all().indexOf(drug)) DrugsList.add(drug);
+      	})
+      }
 
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Watches
@@ -115,15 +135,19 @@ angular.module('main.controllers', [])
 
       function _loadFollowedDrugs(){
         $scope.followedDrugs = _.map(DrugsList.all(), function(name){
-          return {name: name}
+          return {name: name, isFollowed: true}
         });
 
         _.forEach($scope.followedDrugs, function(drug){
-          DrugService.getDrugByName(drug.name).then(
-              function(response){
-                drug.details = response;
-              }
-          );
+
+        	$timeout(function(){
+	          DrugService.getDrugByName(drug.name).then(
+	              function(response){
+	                drug.details = response;
+	              }
+	          );
+      		}, 10);
+
         });
       }
     }])
@@ -137,7 +161,6 @@ angular.module('main.controllers', [])
             $scope.drugDetails = response;
           }
       );
-      // @todo: remove
 
       $scope.toggleFollow = function() {
       	DrugsList[!$scope.following ? 'add' : 'remove']($scope.drug);
@@ -256,6 +279,21 @@ angular.module('main.routes', [])
 	})
 })();
 
+angular.module('other.controllers', [])
+    .controller('OtherCtrl', ["$scope", function ($scope) {
+      console.log('Hello other controller!');
+    }]);
+angular.module('other', ['other.controllers', 'other.routes']);
+angular.module('other.routes', [])
+    .config(["$routeProvider", function ($routeProvider) {
+
+      $routeProvider
+          .when('/other', {
+            templateUrl: 'assets/other/partials/main.html',
+            controller: 'OtherCtrl'
+          });
+
+    }]);
 angular.module('pattern.controllers', [])
 
     /**

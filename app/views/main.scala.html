@@ -8,8 +8,12 @@
     </head>
     <body id="body" data-ng-app="app" data-ng-strict-di>
             <!-- Navbar -->
-
-            <!-- Main content - loads the correct partial as defined by the angular route -->
+		<header role="banner">
+			<div class="container">
+				<img src='@routes.Assets.at("images/logo.jpg")' alt="Med Alerts logo">
+			</div>
+		</header>
+        <!-- Main content -->
         <div data-ng-view></div>
             <!-- scripts -->
 

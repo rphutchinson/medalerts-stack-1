@@ -35,46 +35,114 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/main/partials/main-index.html',
-    '<div class="container">\n' +
-    '    <div class="row">\n' +
-    '        <div class="col-sm-12">\n' +
-    '            <div class="page-header">\n' +
-    '                <h1>Hello main-index!</h1>\n' +
-    '            </div>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '    <div class="row">\n' +
-    '        <div class="col-sm-6">\n' +
-    '            <label for="selectDrugInput">Search for medications by\n' +
-    '                name</label>\n' +
-    '            <ui-select\n' +
-    '                    id="selectDrugInput"\n' +
-    '                    class="ui-select-scroll ui-select-auto-width ui-select-opaque"\n' +
-    '                    theme="bootstrap"\n' +
-    '                    data-ng-model="drug.selected"\n' +
-    '                    search-enabled="true"\n' +
-    '                    reset-search-input="true"\n' +
-    '                    >\n' +
-    '                <ui-select-match>\n' +
-    '                    {{$select.selected}}\n' +
-    '                </ui-select-match>\n' +
-    '                <ui-select-choices\n' +
-    '                        repeat="drug as drug in drugs | filter: $select.search">\n' +
-    '                    {{drug}}\n' +
-    '                </ui-select-choices>\n' +
-    '            </ui-select>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '    <!-- @todo: replace with typeahead -->\n' +
+    '<section role="search">\n' +
+    '	<div class="container">\n' +
+    '		<input type="text" placeholder="Search medications by name...">\n' +
+    '		<label for="selectDrugInput">Search for medications by\n' +
+    '			name</label>\n' +
+    '		<ui-select id="selectDrugInput"\n' +
+    '				class="ui-select-scroll ui-select-auto-width ui-select-opaque"\n' +
+    '				theme="bootstrap"\n' +
+    '				data-ng-model="drug.selected"\n' +
+    '				search-enabled="true"\n' +
+    '				reset-search-input="true"\n' +
+    '				>\n' +
+    '			<ui-select-match>\n' +
+    '				{{$select.selected}}\n' +
+    '			</ui-select-match>\n' +
+    '			<ui-select-choices\n' +
+    '					repeat="drug as drug in drugs | filter: $select.search">\n' +
+    '				{{drug}}\n' +
+    '			</ui-select-choices>\n' +
+    '		</ui-select>\n' +
+    '	</div>\n' +
+    '</section>\n' +
+    '<div id="content" class="container">\n' +
+    '	<div class="row">\n' +
+    '		<main role="main" class="followed-drugs">\n' +
+    '			<h2>Your Meds</h2>\n' +
+    '			<ul>\n' +
+    '				<li ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)" ng-click="manuallySelectDrug(drug)">\n' +
+    '					<h3>{{ drug.name }}</h3>\n' +
+    '					<button class="btn btn-xs btn-follow" ng-click="toggleItem(drug)">\n' +
+    '						<span ng-show="drug.isFollowed">unfollow</span>\n' +
+    '						<span ng-hide="drug.isFollowed">follow</span>\n' +
+    '					</button>\n' +
+    '				</li>\n' +
+    '			</ul>\n' +
+    '\n' +
+    '		</main>\n' +
+    '		<aside class="about-med-alerts">\n' +
+    '			<div class="well">\n' +
+    '				<h2>Why Med Alerts</h2>\n' +
+    '				<p>The Med Alerts website allows the informed consumer to research individual drugs for recent recals, changes to the drug\'s label or other useful information. Just like subscribing to follow updates on social media, you may choose to "follow" a frequently used drug to be alerted of future changes.</p>\n' +
+    '				<p>According to FDA Research,approximately 106,000 deaths per year can be attributed to adverse reactions to prescription medications. One in five hospital visits is the direct result of a drug reaction. And adverse drug reactions are estimate to cost our country $135 billion dollars anually.</p>\n' +
+    '			</div>\n' +
+    '		</aside>\n' +
+    '	</div>\n' +
+    '</div>\n' +
+    '<footer>\n' +
+    '	<div class="container">\n' +
+    '		<p>This prototype leverages the openFDA research project and not for clinical use. Please refer to their Terms of Service.</p>\n' +
+    '	</div>\n' +
+    '</footer>\n' +
+    '\n' +
+    '<!-- <div class="container">\n' +
+    '	<div class="row">\n' +
+    '		<div class="col-sm-6">\n' +
+    '			<label for="selectDrugInput">Search for medications by\n' +
+    '				name</label>\n' +
+    '			<ui-select\n' +
+    '					id="selectDrugInput"\n' +
+    '					class="ui-select-scroll ui-select-auto-width ui-select-opaque"\n' +
+    '					theme="bootstrap"\n' +
+    '					data-ng-model="drug.selected"\n' +
+    '					search-enabled="true"\n' +
+    '					reset-search-input="true"\n' +
+    '					>\n' +
+    '				<ui-select-match>\n' +
+    '					{{$select.selected}}\n' +
+    '				</ui-select-match>\n' +
+    '				<ui-select-choices\n' +
+    '						repeat="drug as drug in drugs | filter: $select.search">\n' +
+    '					{{drug}}\n' +
+    '				</ui-select-choices>\n' +
+    '			</ui-select>\n' +
+    '		</div>\n' +
+    '	</div>\n' +
     '	<div class="row" style="padding-top: 15px;">\n' +
     '		<div class="col-sm-6">\n' +
     '			<div ng-repeat="drug in followedDrugs" class="well" data-ng-class="highlightClass(drug)">\n' +
     '					{{ drug.name }}\n' +
+    '\n' +
+    '					<p data-ng-if="drug.details">\n' +
+    '						{{drug.details}}\n' +
+    '					</p>\n' +
     '			</div>\n' +
     '		</div>\n' +
     '\n' +
     '	</div>\n' +
     '\n' +
+    '</div> -->\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('app.tpl');
+} catch (e) {
+  module = angular.module('app.tpl', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/other/partials/main.html',
+    '<div class="container">\n' +
+    '    <div class="col-sm-12">\n' +
+    '        <div class="page-header">\n' +
+    '            <h1>Hello Other!</h1>\n' +
+    '        </div>\n' +
+    '        <a class="btn btn-default" href="/">Go to main-index!</a>\n' +
+    '    </div>\n' +
     '</div>\n' +
     '');
 }]);

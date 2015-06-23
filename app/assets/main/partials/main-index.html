@@ -1,41 +1,89 @@
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h1>Hello main-index!</h1>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <label for="selectDrugInput">Search for medications by
-                name</label>
-            <ui-select
-                    id="selectDrugInput"
-                    class="ui-select-scroll ui-select-auto-width ui-select-opaque"
-                    theme="bootstrap"
-                    data-ng-model="drug.selected"
-                    search-enabled="true"
-                    reset-search-input="true"
-                    >
-                <ui-select-match>
-                    {{$select.selected}}
-                </ui-select-match>
-                <ui-select-choices
-                        repeat="drug as drug in drugs | filter: $select.search">
-                    {{drug}}
-                </ui-select-choices>
-            </ui-select>
-        </div>
-    </div>
-    <!-- @todo: replace with typeahead -->
+<section role="search">
+	<div class="container">
+		<input type="text" placeholder="Search medications by name...">
+		<label for="selectDrugInput">Search for medications by
+			name</label>
+		<ui-select id="selectDrugInput"
+				class="ui-select-scroll ui-select-auto-width ui-select-opaque"
+				theme="bootstrap"
+				data-ng-model="drug.selected"
+				search-enabled="true"
+				reset-search-input="true"
+				>
+			<ui-select-match>
+				{{$select.selected}}
+			</ui-select-match>
+			<ui-select-choices
+					repeat="drug as drug in drugs | filter: $select.search">
+				{{drug}}
+			</ui-select-choices>
+		</ui-select>
+	</div>
+</section>
+<div id="content" class="container">
+	<div class="row">
+		<main role="main" class="followed-drugs">
+			<h2>Your Meds</h2>
+			<ul>
+				<li ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)" ng-click="manuallySelectDrug(drug)">
+					<h3>{{ drug.name }}</h3>
+					<button class="btn btn-xs btn-follow" ng-click="toggleItem(drug)">
+						<span ng-show="drug.isFollowed">unfollow</span>
+						<span ng-hide="drug.isFollowed">follow</span>
+					</button>
+				</li>
+			</ul>
+
+		</main>
+		<aside class="about-med-alerts">
+			<div class="well">
+				<h2>Why Med Alerts</h2>
+				<p>The Med Alerts website allows the informed consumer to research individual drugs for recent recals, changes to the drug's label or other useful information. Just like subscribing to follow updates on social media, you may choose to "follow" a frequently used drug to be alerted of future changes.</p>
+				<p>According to FDA Research,approximately 106,000 deaths per year can be attributed to adverse reactions to prescription medications. One in five hospital visits is the direct result of a drug reaction. And adverse drug reactions are estimate to cost our country $135 billion dollars anually.</p>
+			</div>
+		</aside>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<p>This prototype leverages the openFDA research project and not for clinical use. Please refer to their Terms of Service.</p>
+	</div>
+</footer>
+
+<!-- <div class="container">
+	<div class="row">
+		<div class="col-sm-6">
+			<label for="selectDrugInput">Search for medications by
+				name</label>
+			<ui-select
+					id="selectDrugInput"
+					class="ui-select-scroll ui-select-auto-width ui-select-opaque"
+					theme="bootstrap"
+					data-ng-model="drug.selected"
+					search-enabled="true"
+					reset-search-input="true"
+					>
+				<ui-select-match>
+					{{$select.selected}}
+				</ui-select-match>
+				<ui-select-choices
+						repeat="drug as drug in drugs | filter: $select.search">
+					{{drug}}
+				</ui-select-choices>
+			</ui-select>
+		</div>
+	</div>
 	<div class="row" style="padding-top: 15px;">
 		<div class="col-sm-6">
 			<div ng-repeat="drug in followedDrugs" class="well" data-ng-class="highlightClass(drug)">
 					{{ drug.name }}
+
+					<p data-ng-if="drug.details">
+						{{drug.details}}
+					</p>
 			</div>
 		</div>
 
 	</div>
 
-</div>
+</div> -->
