@@ -72,6 +72,7 @@ object DrugsApi extends Controller with XhrActionSupport with OAuth2Provider {
    */
   def get(name: String) = Action.async { implicit request =>
     authorize(new DemoDataHandler()) { authInfo =>
+      val modifiedName = name.replace(" ", "+")
 
       /*construct and execute webservice requests asynchronously. Both requests
       will execute immediately without blocking. Process the results when both
@@ -82,10 +83,10 @@ object DrugsApi extends Controller with XhrActionSupport with OAuth2Provider {
         .withQueryString(List(
         "api_key" -> apiKey,
         "limit" -> "3",
-        "search" -> name.replace(" ", "+")): _*)
+        "search" -> modifiedName): _*)
         .get()
 
-      val label = WS.url(s"${baseUrl}label.json?api_key=$apiKey&search=${name.replace(" ", "+")}+AND+$dateFilter")
+      val label = WS.url(s"${baseUrl}label.json?api_key=$apiKey&search=$modifiedName+AND+$dateFilter")
         .get()
 
       /*Once both WS futures are resolved process the result into our custom
@@ -94,6 +95,7 @@ object DrugsApi extends Controller with XhrActionSupport with OAuth2Provider {
         case responses =>
           val enforcementResponse = Json.fromJson[EnforcementResponse](responses.head.json)
           val labelResponse = Json.fromJson[LabelResponse](responses(1).json)
+
           val apiResponse = DrugsApiResponse(
             enforcementResponse.asOpt.flatMap(_.error).isEmpty,
             enforcementResponse.asOpt.flatMap(_.results),

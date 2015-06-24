@@ -136,7 +136,7 @@ module.run(['$templateCache', function($templateCache) {
     '</div>\n' +
     '<footer>\n' +
     '	<div class="container">\n' +
-    '		<p role="contentinfo">This prototype leverages the openFDA research project and not for clinical use. Please refer to their Terms of Service.</p>\n' +
+    '		<p role="contentinfo">This prototype leverages the openFDA research project and is not for clinical use. Please refer to their Terms of Service.</p>\n' +
     '	</div>\n' +
     '</footer>\n' +
     '\n' +

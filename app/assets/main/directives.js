@@ -1,11 +1,31 @@
 angular.module('main.directives', [])
+    /**
+     * Displays plain text summary information about a drug, taking the requested
+     * type of information in context
+     */
     .directive('drugSummary', function () {
 
+      /**
+       * Controller for the directive
+       * @param $scope
+       * @param $filter
+       */
       var controller = function($scope, $filter){
+
+        /**
+         * Whenever any part of the drug changes rebuild the description.
+         */
         $scope.$watch('drug', function(drug){
           $scope.description = _buildDescription(drug, $scope.type);
-        }, true)
+        }, true);
 
+        /**
+         * Private function to build a description
+         * @param drug The drug to build the description for
+         * @param type the type of description to build
+         * @returns {string}
+         * @private
+         */
         function _buildDescription(drug, type){
           var description = '';
 
@@ -25,7 +45,6 @@ angular.module('main.directives', [])
 
           if('label' === type && drug.details.labelChanges){
             //get the date of the most recent label change
-
             description += 'Label was last changed on ' +
                 $filter('fdaDate')(_.first(drug.details.labelDetails).effective_time);
           }
