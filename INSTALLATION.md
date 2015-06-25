@@ -1,5 +1,18 @@
 # Installation Instructions
 
+Before diving into the instructions, please enjoy the following haikus our Technical Architect came up during this project:
+
+*written on tues 6/23*
+> sparc team writing code  
+> you should pick us 18f  
+> look at our cool app
+
+*written on wed 6/25*
+> getting scared of drugs  
+> so many ways to kill you  
+> thank god for medalerts
+
+
 ###important notes that need to be documented somewhere
 * based off of activator template https://github.com/rabitarochan/play-scala-angularjs-gulp#master
 

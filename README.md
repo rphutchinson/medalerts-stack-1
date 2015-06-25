@@ -1,19 +1,5 @@
 # 18F Demo Application
-Check out the [live demo](http://18f.sparcedge.com/) or see our [installation instructions](INSTALLATION.md) for the guide to standing this up yourself.
-
-Also, please enjoy the following haikus our Technical Architect came up during this project
-
-
-*tues 6/23*
-> sparc team writing code  
-> you should pick us 18f  
-> look at our cool app
-
-*wed 6/25*
-> getting scared of drugs  
-> so many ways to kill you  
-> thank god for medalerts
-
+Check out the [live demo](http://18f.sparcedge.com/) or our [installation instructions](INSTALLATION.md) for standing this up yourself. Also, Please see our [license](LICENSE.md) regarding details rights and usage for this prototype.
 
 ##  Approach
 
@@ -111,8 +97,3 @@ This protoptype uses a [deployment script](scripts/deploy.sh) and environment va
 The production application environment sits inside a virtual private cloud (VPC) within AWS. This allows us to utilize security groups and network access control lists (ACLs), which handle security and accessibility at both the instance level and subnet level.
 
 The [installation instructions](INSTALLATION.md) detail the steps to install and run this prototype on another machine and includes scripts to automate the process.
-
-## License
-In the spirit of open source software and keeping this prototype free of charge, this software is licensed under the MIT License. 
-
-Please see our [license](LICENSE.md) regarding details rights and usage for this prototype.
