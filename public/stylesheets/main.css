@@ -6609,9 +6609,6 @@ main.followed-drugs .drug-status-ok {
   background: #4caf4f url("http://18f-cdn.sparcedge.com/all-good.svg") no-repeat 12px 20px;
   background-size: 36px 36px;
 }
-main.followed-drugs .drug-status-loading {
-  background-color: #bac2c4;
-}
 main.followed-drugs button.btn-follow {
   position: absolute;
   top: 10px;
@@ -6700,42 +6697,36 @@ aside.about-med-alerts .purpose > p {
 }
 footer {
   background: #02a9f4;
-  color: white;
+  color: rgba(255, 255, 255, 0.87);
   padding-top: 15px;
+  padding-bottom: 40px;
+}
+footer a {
+  color: rgba(255, 255, 255, 0.87);
+  text-decoration: none;
+  display: inline-block;
+}
+footer a:hover,
+footer a:active {
+  color: rgba(255, 255, 255, 0.95);
+}
+footer h2 {
+  color: white;
+  font-weight: 300;
 }
 footer ul {
   display: block;
   width: 100%;
   margin-bottom: 15px;
 }
-footer ul .header > span,
 footer ul .header li {
   color: rgba(255, 255, 255, 0.77);
 }
-footer ul .header > span a:link,
-footer ul .header > span a:visited,
-footer ul .header > span a:hover,
-footer ul .header > span a:active {
-  color: white;
-  text-decoration: none;
-  display: inline-block;
-  border-bottom: 1px solid white;
-}
-footer ul .header h2 {
-  color: white;
-  font-weight: 300;
-  text-align: left;
-}
 footer ul .header ~ li {
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.58);
 }
 footer ul .header ~ li ul {
   color: rgba(255, 255, 255, 0.9);
-}
-footer [role="contentinfo"] {
-  text-align: center;
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.66);
 }
 .modal-backdrop.in {
   opacity: 0.75;
