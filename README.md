@@ -83,9 +83,15 @@ At every layer of the stack, Open Source Software solutions have been explored. 
   * [Scala Test](http://scalatest.org/)
   * [Jasmine](http://jasmine.github.io/)
   * [Karma](http://karma-runner.github.io/0.12/index.html)
-  
+* Operations Layer
+  * [Docker](http://www.docker.com)
+  * [Shippable](http://www.shippable.com)
+
 ### Use Data to Drive Decisions
-In order to measure how well a system performs and how people are interacting with the system in real-time, SPARC has used tools from custom build solutions, to New Relic, to Spunk to Foglight.  For this prototype, we chose to use New Relic for it's ability to monitor system-level resource utilitztion in real-time, system performance in real-time, automated alerts, track concurrent users in real-time and monitor user behaviors, as well as publish metrics internally and externally.
+
+In order to measure how well a system performs and how people are interacting with the application in real time, SPARC has used customized in-house built solutions, as well as third party products including, but not limited to, New Relic, CloudWatch, Splunk, and Foglight. 
+
+For this prototype, we chose to use New Relic for its ability to monitor real-time resource utilization, monitor real-time system and application performance, create automated alerts, track concurrent users in real-time, and monitor user and application behaviors, as well as publish metrics internally and externally.
 
 ### Default to Open
 In an effort to offer users a mechanism to report bugs and issues, and be responsive to these reports, we included a contact email, we included an [email contact](mailto:18f@sparcedge.com) link in this prototpye.
@@ -95,12 +101,14 @@ We also created an API layer for interacting with and aggregating results from [
 Further, by the very nature of this RFQ, we are open sourcing all code for this prototype via GitHub and publishing our Approach to developing.
 
 ### Deploy in a Flexible Hosting Environment
-To ensure we our services were deployed to a flexible infrastructure, where resources could be provisioned in real-time, via APIs to meet traffic spikes and user demand, and only pay for what we use, we chose Amazon Web Services.
+To ensure our services were deployed to a flexible infrastructure where resources could be provisioned in real time via APIs to meet traffic spikes and user demand, and only pay for what we use, we chose Amazon Web Services.
 
-With this approach resources are provisioned on demand and can scale through multiple regions.  This application is currently set up with one region, and multiple availability zones and AWS CloudFront on top of S3 for our Content Delivery Network.
+With this approach, resources are provisioned on demand and can scale through multiple regions and availability zones. This application is currently set up with Elastic Beanstalk in one region with subnets in multiple availability zones. AWS CloudFront is our content delivery network (CDN) serving static application resources from S3.
 
 ### Manage Security and Privacy Through Reusable Processes
 This protoptype uses a [deployment script](scripts/deploy.sh) and environment variables to ensure configuration of production environment remains consistent and controllable.
+
+The production application environment sits inside a virtual private cloud (VPC) within AWS. This allows us to utilize security groups and network access control lists (ACLs), which handle security and accessibility at both the instance level and subnet level.
 
 The [installation instructions](INSTALLATION.md) detail the steps to install and run this prototype on another machine and includes scripts to automate the process.
 
