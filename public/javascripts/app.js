@@ -143,8 +143,15 @@ angular.module('main.controllers', [])
 		function openDetails() {
 			if ($scope.drug && $scope.drug.selected) {
 				var drugName = $scope.drug.selected,
-					drug = _.findWhere($scope.followedDrugs, {name: drugName}) || {name: drugName}
-				drug.following = _.includes(DrugsList.all(), drugName);
+					drug = _.findWhere($scope.followedDrugs, {name: drugName}) || {name: drugName};
+
+        drug.following = _.includes(DrugsList.all(), drugName);
+
+        /*clear the selected drug when opening the modal. we must do this because
+        the opening of the drug details modal is triggered by a $watch on the
+        selected drug. if we don't clear it, then if the next drug selected
+        is the same one then the $watch won't fire*/
+        $scope.drug.selected = undefined;
 
 				var modalInstance = $modal.open({
 					animation: $scope.animationsEnabled,
@@ -228,11 +235,11 @@ angular.module('main.controllers', [])
 		$scope.toggleFollow = function() {
 			DrugsList[$scope.drug.following ? 'remove' : 'add']($scope.drug.name);
 			drug.following = !drug.following;
-		}
+		};
 
 		$scope.done = function() {
 			$modalInstance.close();
-		}
+		};
 	}]);
 
 
