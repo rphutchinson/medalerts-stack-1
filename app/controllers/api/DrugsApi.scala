@@ -23,6 +23,9 @@ object DrugsApi extends Controller with XhrActionSupport with OAuth2Provider {
   val apiKey = current.configuration.getString("fda.api.key").getOrElse("")
   val defaultHistoricDays = 90
 
+  val rxnavBaseUrl = "https://rxnav.nlm.nih.gov/REST/"
+  val interactionUrl = "https://rxnav.nlm.nih.gov/REST/interaction/interaction.json"
+
   //case classes and implicit Reads for handling Enforcement API calls
   case class ApiError(code: String)
 
@@ -47,17 +50,22 @@ object DrugsApi extends Controller with XhrActionSupport with OAuth2Provider {
 
   case class LabelResponse(error: Option[ApiError], results: Option[Seq[LabelResponseResult]])
 
+  case class InteractionResponse(interactionTypeGroup: Option[Seq[JsValue]])
+
   implicit val errorReads = Json.reads[ApiError]
   implicit val enforcementResponseReads = Json.reads[EnforcementResponse]
   implicit val labelResponseResultReads = Json.reads[LabelResponseResult]
   implicit val labelResponseResultWrites = Json.writes[LabelResponseResult]
   implicit val labelResponseReads = Json.reads[LabelResponse]
+  implicit val interactionReads = Json.reads[InteractionResponse]
+  implicit val interactionWrites = Json.writes[InteractionResponse]
 
   //case class and implicits for automatic Json response
   case class DrugsApiResponse(recalls: Boolean,
                               recallDetails: Option[Seq[JsValue]],
                               labelChanges: Boolean,
-                              labelDetails: Option[Seq[LabelResponseResult]])
+                              labelDetails: Option[Seq[LabelResponseResult]],
+                              interactionDetails: Option[InteractionResponse])
 
   implicit val drugsApiResponseWrites = Json.writes[DrugsApiResponse]
 
@@ -85,22 +93,27 @@ object DrugsApi extends Controller with XhrActionSupport with OAuth2Provider {
         "limit" -> "3",
         "search" -> modifiedName): _*)
         .get()
+      val label = WS.url(s"${baseUrl}label.json?api_key=$apiKey&search=$modifiedName+AND+$dateFilter").get()
 
-      val label = WS.url(s"${baseUrl}label.json?api_key=$apiKey&search=$modifiedName+AND+$dateFilter")
-        .get()
+      val interaction: Future[WSResponse] = for {
+        rxNavResponse <- WS.url(s"${rxnavBaseUrl}rxcui").withQueryString("name" -> name, "search" -> "2").get()
+        interactionResponse <- WS.url(s"${rxnavBaseUrl}interaction/interaction.json").withQueryString("rxcui" -> (rxNavResponse.xml \\ "rxnormId").text).get()
+      } yield interactionResponse
 
       /*Once both WS futures are resolved process the result into our custom
       response object and return the result as a Future */
-      Future.sequence(Seq(enforcement, label)).map {
+      Future.sequence(Seq(enforcement, label, interaction)).map {
         case responses =>
-          val enforcementResponse = Json.fromJson[EnforcementResponse](responses.head.json)
+          val enforcementResponse = Json.fromJson[EnforcementResponse](responses(0).json)
           val labelResponse = Json.fromJson[LabelResponse](responses(1).json)
+          val interactionResponse = Json.fromJson[InteractionResponse](responses(2).json)
 
           val apiResponse = DrugsApiResponse(
             enforcementResponse.asOpt.flatMap(_.error).isEmpty,
             enforcementResponse.asOpt.flatMap(_.results),
             labelResponse.asOpt.flatMap(_.error).isEmpty,
-            labelResponse.asOpt.flatMap(_.results))
+            labelResponse.asOpt.flatMap(_.results),
+            interactionResponse.asOpt)
           Ok(Json.toJson(apiResponse))
       }
     }
