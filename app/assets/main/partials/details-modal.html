@@ -36,6 +36,23 @@
 			    <p>There are no open recalls.</p>
 			</div>
 
+            <h2>Drug Interaction Information</h2>
+            <dl data-ng-show="showInteractionDetails()" data-ng-repeat="interactionTypeGroup in drug.details.interactionDetails.interactionTypeGroup">
+                <div data-ng-repeat="interactionType in interactionTypeGroup.interactionType">
+                    <h3>{{interactionType.comment}}</h3>
+                    <dl data-ng-repeat="interactionPair in interactionType.interactionPair">
+                        <dt>Interactions</dt>
+                        <dd>{{interactionPairConcepts(interactionPair)}}</dd>
+                        <dt>Description</dt>
+                        <dd>{{interactionPair.description}}</dd>
+                    </dl>
+                </div>
+                <hr data-ng-if="!$last"/>
+            </dl>
+            <div data-ng-show="!showInteractionDetails()">
+                <p>No drug interaction information available.</p>
+            </div>
+
 			<h2>Label Changes</h2>
 
 			<div data-ng-if="drug.details.labelChanges">

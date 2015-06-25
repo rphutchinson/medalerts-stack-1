@@ -64,183 +64,235 @@ angular.module('app', ['app.tpl', 'ngSanitize', 'ngRoute', 'ngCookies', 'ui.sele
 
 
 
+angular.module('pattern.controllers', [])
+
+    /**
+     * Controller module for Pattern library
+     */
+    .controller('PatternCtrl', ["$scope", function ($scope) {
+      $scope.options = [
+        { "name": "Abilify" },
+        { "name": "Namenda"},
+        { "name": "Viagra"},
+        { "name":"Zetia"},
+        { "name": "Cialis"},
+        { "name": "Nasonex"}
+        ];
+    }]);
+/**
+ * Pattern library for the application. available at url /pattern. In a real
+ * application this would be excluded from the production build and only made
+ * available in development.
+ */
+angular.module('pattern', [
+  'pattern.controllers',
+  'pattern.routes']);
+angular.module('pattern.routes', [])
+
+    /**
+     * Configure routes for pattern library
+     */
+    .config(["$routeProvider", function ($routeProvider) {
+
+      $routeProvider
+          .when('/pattern', {
+            templateUrl: 'assets/pattern/partials/main.html',
+            controller: 'PatternCtrl'
+          });
+    }]);
 angular.module('main.controllers', [])
-	/**
-	 * Controller for main application page
-	 */
-	.controller('IndexCtrl', ["$scope", "$location", "$log", "$timeout", "$templateCache", "$modal", "DrugService", "DrugsList", "API_URL", function ($scope, $location, $log, $timeout, $templateCache, $modal,
-										 DrugService, DrugsList, API_URL) {
+/**
+ * Controller for main application page
+ */
+    .controller('IndexCtrl', ["$scope", "$location", "$log", "$timeout", "$templateCache", "$modal", "DrugService", "DrugsList", "API_URL", function ($scope, $location, $log, $timeout, $templateCache, $modal,
+                                       DrugService, DrugsList, API_URL) {
 
-		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		 Controller Initialization
-		 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       Controller Initialization
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-		$scope.endpoint = API_URL + "drugs";
-		$scope.drug = {};
+      $scope.endpoint = API_URL + "drugs";
+      $scope.drug = {};
 
-		DrugService.getTypeaheadDrugs().then(function(drugs) {
-			$scope.drugs = _.sortBy(drugs);
-		});
+      DrugService.getTypeaheadDrugs().then(function (drugs) {
+        $scope.drugs = _.sortBy(drugs);
+      });
 
-		_loadFollowedDrugs();
+      _loadFollowedDrugs();
 
-		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		 Scope functions
-		 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       Scope functions
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-		/**
-		 * determines the class to use for a followed drug element. Indended to be
-		 * used as the input to an ng-class directive
-		 * @param drug The drug to inspect
-		 * @returns {string}
-		 */
-		$scope.highlightClass = function(drug){
-			if(!drug.details){
-				return 'drug-status-loading';
-			} else if(drug.details.recalls){
-				return 'drug-status-recall'
-			} else if(drug.details.labelChanges){
-				return 'drug-status-label'
-			} else {
-				return 'drug-status-ok'
-			}
-		};
+      /**
+       * determines the class to use for a followed drug element. Indended to be
+       * used as the input to an ng-class directive
+       * @param drug The drug to inspect
+       * @returns {string}
+       */
+      $scope.highlightClass = function (drug) {
+        if (!drug.details) {
+          return 'drug-status-loading';
+        } else if (drug.details.recalls) {
+          return 'drug-status-recall'
+        } else if (drug.details.labelChanges) {
+          return 'drug-status-label'
+        } else {
+          return 'drug-status-ok'
+        }
+      };
 
-		/**
-		 * Adds or removes a drug from the DrugList
-		 * @param drug
-		 */
-		$scope.removeDrug = function(drug) {
-			DrugsList.remove(drug.name); //use the service to remove from stored values
-			$scope.followedDrugs = _.reject($scope.followedDrugs, { name: drug.name })
-		};
+      /**
+       * Adds or removes a drug from the DrugList
+       * @param drug
+       */
+      $scope.removeDrug = function (drug) {
+        DrugsList.remove(drug.name); //use the service to remove from stored values
+        $scope.followedDrugs = _.reject($scope.followedDrugs, {name: drug.name})
+      };
 
-		/**
-		 * handle hover state for button
-		 */
-		$scope.hoverFollow = function() {
-			this.followHovered = true;
-		};
+      /**
+       * handle hover state for button
+       */
+      $scope.hoverFollow = function () {
+        this.followHovered = true;
+      };
 
-		/**
-		 * handle hover state for button
-		 */
-		$scope.leaveFollow = function() {
-			this.followHovered = false;
-		};
+      /**
+       * handle hover state for button
+       */
+      $scope.leaveFollow = function () {
+        this.followHovered = false;
+      };
 
-		/**
-		 * select a drug outside of the ui-select control. Triggers the $watch
-		 * function when a drug is selected
-		 * @param drug the selected drug
-		 */
-		$scope.manuallySelectDrug = function(drug) {
-			$scope.drug.selected = drug.name;
-		};
-		/**
-		 * Provides the user with modal detailing the selected drug
-		 */
-		function openDetails() {
-			if ($scope.drug && $scope.drug.selected) {
-				var drugName = $scope.drug.selected,
-					drug = _.findWhere($scope.followedDrugs, {name: drugName}) || {name: drugName};
+      /**
+       * select a drug outside of the ui-select control. Triggers the $watch
+       * function when a drug is selected
+       * @param drug the selected drug
+       */
+      $scope.manuallySelectDrug = function (drug) {
+        $scope.drug.selected = drug.name;
+      };
+      /**
+       * Provides the user with modal detailing the selected drug
+       */
+      function openDetails() {
+        if ($scope.drug && $scope.drug.selected) {
+          var drugName = $scope.drug.selected,
+              drug = _.findWhere($scope.followedDrugs, {name: drugName}) || {name: drugName};
 
-        drug.following = _.includes(DrugsList.all(), drugName);
+          drug.following = _.includes(DrugsList.all(), drugName);
 
-        /*clear the selected drug when opening the modal. we must do this because
-        the opening of the drug details modal is triggered by a $watch on the
-        selected drug. if we don't clear it, then if the next drug selected
-        is the same one then the $watch won't fire*/
-        $scope.drug.selected = undefined;
+          /*clear the selected drug when opening the modal. we must do this because
+           the opening of the drug details modal is triggered by a $watch on the
+           selected drug. if we don't clear it, then if the next drug selected
+           is the same one then the $watch won't fire*/
+          $scope.drug.selected = undefined;
 
-				var modalInstance = $modal.open({
-					animation: $scope.animationsEnabled,
-					templateUrl: "assets/main/partials/details-modal.html",
-					controller: "DrugDetailsCtrl",
-					resolve: {
-						drug: function () {
-							return drug;
-						}
-					}
-				}).result;
-			}
-		}
-
-
-		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		 Watches
-		 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-		$scope.$watch('drug', function(){
-			if($scope.drug && $scope.drug.selected) {
-				openDetails();
-			}
-		}, true);
+          var modalInstance = $modal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: "assets/main/partials/details-modal.html",
+            controller: "DrugDetailsCtrl",
+            resolve: {
+              drug: function () {
+                return drug;
+              }
+            }
+          }).result;
+        }
+      }
 
 
-		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		 Private helper functions
-		 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       Watches
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-		/**
-		 * Loads drugs using the DrugList service and for each one makes an
-		 * additional API call to populate the details for that drug
-		 * @private
-		 */
-		function _loadFollowedDrugs(){
-		$scope.followedDrugs = _.map(DrugsList.all(), function(name){
-			return {name: name, following: true}
-		});
-
-		_.forEach($scope.followedDrugs, function(drug){
-			DrugService.getDrugByName(drug.name).then(
-				function(response){
-					drug.details = response;
-				}
-			);
-		});
-		}
-	}])
-
-	/**
-	 * Controller for drug details
-	 */
-	.controller('DrugDetailsCtrl', ["$scope", "$log", "$location", "$modalInstance", "DrugService", "DrugsList", "drug", function ($scope, $log, $location, $modalInstance, DrugService,
-											 DrugsList, drug) {
-
-		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		 Controller Initialization
-		 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+      $scope.$watch('drug', function () {
+        if ($scope.drug && $scope.drug.selected) {
+          openDetails();
+        }
+      }, true);
 
 
-		$scope.drug = drug;
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       Private helper functions
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-		//use the service to load detail information for the given drug if necessary
-		if (!drug.details){
-			DrugService.getDrugByName($scope.drug.name).then(
-				function(response){
-					$scope.drug.details = response;
-				}
-			);
-		}
+      /**
+       * Loads drugs using the DrugList service and for each one makes an
+       * additional API call to populate the details for that drug
+       * @private
+       */
+      function _loadFollowedDrugs() {
+        $scope.followedDrugs = _.map(DrugsList.all(), function (name) {
+          return {name: name, following: true}
+        });
 
-		/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		 Scope functions
-		 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+        _.forEach($scope.followedDrugs, function (drug) {
+          DrugService.getDrugByName(drug.name).then(
+              function (response) {
+                drug.details = response;
+              }
+          );
+        });
+      }
+    }])
 
-		/**
-		 * Allow the user to follow/unfollow a drug from the details view via the
-		 * DrugsList service
-		 */
-		$scope.toggleFollow = function() {
-			DrugsList[$scope.drug.following ? 'remove' : 'add']($scope.drug.name);
-			drug.following = !drug.following;
-		};
+/**
+ * Controller for drug details
+ */
+    .controller('DrugDetailsCtrl', ["$scope", "$log", "$location", "$modalInstance", "DrugService", "DrugsList", "drug", function ($scope, $log, $location, $modalInstance, DrugService,
+                                             DrugsList, drug) {
 
-		$scope.done = function() {
-			$modalInstance.close();
-		};
-	}]);
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       Controller Initialization
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+      $scope.drug = drug;
+
+      //use the service to load detail information for the given drug if necessary
+      if (!drug.details) {
+        DrugService.getDrugByName($scope.drug.name).then(
+            function (response) {
+              $scope.drug.details = response;
+            }
+        );
+      }
+
+      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       Scope functions
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+      /**
+       * Allow the user to follow/unfollow a drug from the details view via the
+       * DrugsList service
+       */
+      $scope.toggleFollow = function () {
+        DrugsList[$scope.drug.following ? 'remove' : 'add']($scope.drug.name);
+        drug.following = !drug.following;
+      };
+
+      $scope.interactionPairConcepts = function (interactionPair) {
+        return _(interactionPair.interactionConcept).map(function (c) {
+          return c.minConceptItem.name;
+        }).join(", ")
+      };
+
+      /**
+       * Determines whether or not to show interaction details. If the details
+       * are not populated yet then return true. we don't want to show the
+       * "no information" message if the details haven't had a chance to load yet
+       * @returns {boolean}
+       */
+      $scope.showInteractionDetails = function () {
+        return !drug.details || !_.isEmpty(drug.details.interactionDetails);
+      };
+
+      $scope.done = function () {
+        $modalInstance.close();
+      };
+    }]);
 
 
 
@@ -445,40 +497,3 @@ angular.module('main.routes', [])
       }
     })
 })();
-
-angular.module('pattern.controllers', [])
-
-    /**
-     * Controller module for Pattern library
-     */
-    .controller('PatternCtrl', ["$scope", function ($scope) {
-      $scope.options = [
-        { "name": "Abilify" },
-        { "name": "Namenda"},
-        { "name": "Viagra"},
-        { "name":"Zetia"},
-        { "name": "Cialis"},
-        { "name": "Nasonex"}
-        ];
-    }]);
-/**
- * Pattern library for the application. available at url /pattern. In a real
- * application this would be excluded from the production build and only made
- * available in development.
- */
-angular.module('pattern', [
-  'pattern.controllers',
-  'pattern.routes']);
-angular.module('pattern.routes', [])
-
-    /**
-     * Configure routes for pattern library
-     */
-    .config(["$routeProvider", function ($routeProvider) {
-
-      $routeProvider
-          .when('/pattern', {
-            templateUrl: 'assets/pattern/partials/main.html',
-            controller: 'PatternCtrl'
-          });
-    }]);
