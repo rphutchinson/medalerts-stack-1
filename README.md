@@ -3,15 +3,21 @@ Check out the [live demo](http://18f.sparcedge.com/) or see our [installation in
 
 Also, please enjoy the following haikus our Technical Architect came up during this project
 
-**tuesday 6/23**
-_sparc team writing code_
-_you should pick us 18f_
-_look at our cool app_
+---
+> sparc team writing code
+>
+> you should pick us 18f
+>
+> look at our cool app
 
-**thrusday on 6/25**
-*getting scared of drugs*
-*so many ways to kill you*
-*thank god for medalerts*
+---
+> getting scared of drugs
+> 
+> so many ways to kill you
+> 
+> thank god for medalerts
+
+---
 
 ##  Approach
 
