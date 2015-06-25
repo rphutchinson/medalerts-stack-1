@@ -302,10 +302,6 @@ main.followed-drugs {
 	  background-size: 36px 36px;
 	}
 
-    .drug-status-loading {
-      background-color: @app-gray-01;
-    }
-
 	button.btn-follow {
 		position: absolute;
 		top: 10px;
@@ -401,48 +397,43 @@ aside.about-med-alerts {
 
 footer {
 	background: @app-light-blue;
-	color: white;
+	color: rgba(255,255,255,0.87);;
 	padding-top: 15px;
+	padding-bottom: 40px;
+	a {
+		color: rgba(255,255,255,0.87);
+		text-decoration: none;
+		display: inline-block;
+
+		&:hover, &:active {
+			color: rgba(255,255,255, 0.95);
+		}
+
+	}
+
+	h2 {
+		color: white;
+		font-weight: 300;
+	}
+
 	ul {
 		display: block;
 		width: 100%;
 		margin-bottom: 15px;
 
 		.header {
-			> span,
 			li {
 				color: rgba(255,255,255, 0.77);
-			}
-			> span {
-				a:link, a:visited, a:hover, a:active {
-					color: white;
-					text-decoration: none;
-					display: inline-block;
-					border-bottom: 1px solid white;
-
-				}
-
-			}
-			h2 {
-				color: white;
-				font-weight: 300;
-				text-align: left;
 			}
 		}
 
 		.header ~ li {
-			color: rgba(255,255,255, 0.55);
+			color: rgba(255,255,255, 0.58);
 
 			ul {
 				color: rgba(255,255,255, 0.9);
 			}
 		}
-	}
-
-	[role="contentinfo"] {
-		text-align: center;
-		font-size: 16px;
-		color: rgba(255,255,255,0.66);
 	}
 }
 .modal-backdrop.in {

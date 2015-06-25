@@ -178,15 +178,17 @@ module.run(['$templateCache', function($templateCache) {
     '	<div class="container">\n' +
     '		<div class="row">\n' +
     '\n' +
-    '			<ul class="technical-details list-unstyled col-sm-5 col-sm-offset-1">\n' +
+    '			<ul class="technical-details list-unstyled col-md-6">\n' +
     '				<li class="header">\n' +
     '					<h2>Made by SPARC</h2>\n' +
-    '					<span>Open source technologies used:</span>\n' +
+    '					<p>This prototype was built by <a href="http://www.sparcedge.com/">SPARC LLC</a>, a Veteran Owned Small Business located in Charleston SC.  We use Agile development and multiple open source technologies to deliver for our Federal and Commercial customers. </p>\n' +
+    '					<p>Open source technologies used:</p>\n' +
     '				</li>\n' +
     '\n' +
     '				<li>Development Layer\n' +
     '					<ul>\n' +
-    '						<li>Play Framework using Scala</li>\n' +
+    '						<li>Play Framework</li>\n' +
+    '						<li>Scala</li>\n' +
     '						<li>AngularJS</li>\n' +
     '						<li>lodash</li>\n' +
     '					</ul>\n' +
@@ -194,9 +196,8 @@ module.run(['$templateCache', function($templateCache) {
     '				<li>\n' +
     '					Visual / Design Layer\n' +
     '					<ul>\n' +
-    '						<li>Play Framework using Scala</li>\n' +
-    '						<li>AngularJS</li>\n' +
-    '						<li>lodash</li>\n' +
+    '						<li>Bootstrap</li>\n' +
+    '						<li>Google Fonts</li>\n' +
     '					</ul>\n' +
     '				</li>\n' +
     '				<li>\n' +
@@ -207,20 +208,33 @@ module.run(['$templateCache', function($templateCache) {
     '						<li>Karma</li>\n' +
     '					</ul>\n' +
     '				</li>\n' +
-    '			</ul>\n' +
-    '\n' +
-    '			<ul class="feedback list-unstyled col-sm-5 col-sm-offset-1">\n' +
-    '				<li class="header">\n' +
-    '					<h2>Feedback Welcome</h2>\n' +
-    '					<span>\n' +
-    '						Submit feedback to <a href="mailto:18F@sparcedge.com?Subject=18f%20Feedback" target="_top">18F@sparcedge.com</a>\n' +
-    '					</span>\n' +
+    '				<li>\n' +
+    '					DevOps Layer\n' +
+    '					<ul>\n' +
+    '						<li>GulpJS</li>\n' +
+    '						<li>Docker</li>\n' +
+    '					</ul>\n' +
     '				</li>\n' +
     '			</ul>\n' +
+    '\n' +
+    '			<div class="feedback list-unstyled col-md-6">\n' +
+    '				<h2>Feedback Welcome</h2>\n' +
+    '\n' +
+    '  				<p>Medalerts was built as a beta to showcase our ability to rapidly create a product of value and in response to the RFP from 18F. It was scoped to create a lightweight app that delivers useful functionality to the user. This prototype leverages the openFDA beta research project and not for clinical use. Please refer to the OpenFDA <a href="https://open.fda.gov/terms/">Terms of Service</a>.</p>\n' +
+    '\n' +
+    '  				<p>In future phases of development, the product roadmap may include:</p>\n' +
+    '				<ul>\n' +
+    '					<li>The ability to register and receive email, social or SMS notifications about the medications they follow.</li>\n' +
+    '					<li>Create and follow multiple lists.</li>\n' +
+    '					<li>Integration with other service APIs for a richer experience.</li>\n' +
+    '					<li>The ability to cross reference your list of followed drugs for adverse reactions to each other. </li>\n' +
+    '					<li>Increase information, crowdsourced reviews, and listing alternative drugs within each medications detail view.</li>\n' +
+    '				</ul>\n' +
+    '				<span>\n' +
+    '					Submit feedback to <a href="mailto:18F@sparcedge.com?Subject=18f%20Feedback" target="_top">18F@sparcedge.com</a>\n' +
+    '				</span>\n' +
+    '			</div>\n' +
     '		</div>\n' +
-    '	</div>\n' +
-    '	<div class="container">\n' +
-    '		<p role="contentinfo">This prototype leverages the openFDA research project and is not for clinical use. Please refer to their <a href="https://open.fda.gov/terms/" target="_blank">Terms of Service</a>.</p>\n' +
     '	</div>\n' +
     '</footer>\n' +
     '<!-- Screen Mask for Modals, etc -->\n' +
