@@ -6609,6 +6609,9 @@ main.followed-drugs .drug-status-ok {
   background: #4caf4f url("http://18f-cdn.sparcedge.com/all-good.svg") no-repeat 12px 20px;
   background-size: 36px 36px;
 }
+main.followed-drugs .drug-status-loading {
+  background-color: #bac2c4;
+}
 main.followed-drugs button.btn-follow {
   position: absolute;
   top: 10px;
