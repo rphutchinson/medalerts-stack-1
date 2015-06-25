@@ -6462,6 +6462,10 @@ h6,
 .drug-summary {
   background-color: #ffffff;
 }
+h2,
+.h2 {
+  text-align: left;
+}
 header[role="banner"] {
   background: #02a9f4;
   padding: 40px 0px;
@@ -6502,10 +6506,18 @@ section[role="search"] #selectDrugInput .ui-select-match {
   background: transparent;
   border-radius: 2em;
 }
+section[role="search"] #selectDrugInput .ui-select-match.btn-default-focus {
+  outline: none;
+  outline-offset: 0;
+  box-shadow: inset 0 1px 1px rgba(0, 1, 1, 0.87);
+}
 section[role="search"] #selectDrugInput .ui-select-search {
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: normal;
+  position: relative;
+  z-index: 100;
+  outline: none;
 }
 section[role="search"] #selectDrugInput .ui-select-match .btn,
 section[role="search"] #selectDrugInput .ui-select-search {
@@ -6520,9 +6532,54 @@ section[role="search"] #selectDrugInput .ui-select-search {
   vertical-align: middle;
   box-shadow: 0px 0px 3px 0px #B3B3B3 !important;
 }
+section[role="search"] #selectDrugInput .ui-select-match .btn .ui-select-toggle,
+section[role="search"] #selectDrugInput .ui-select-search .ui-select-toggle {
+  background: transparent;
+}
 section[role="search"] #selectDrugInput .ui-select-match .btn .ui-select-placeholder,
 section[role="search"] #selectDrugInput .ui-select-search .ui-select-placeholder {
   line-height: 62px;
+}
+section[role="search"] #selectDrugInput .ui-select-choices {
+  text-align: left;
+  padding-top: 64px;
+  position: absolute;
+  margin: -64px 0px;
+  border-top-right-radius: 2em;
+  border-top-left-radius: 2em;
+  overflow: hidden;
+  z-index: 1;
+  max-height: 350px;
+}
+.active section[role="search"] #selectDrugInput .ui-select-choices .ui-select-choices-row {
+  color: rgba(255, 255, 255, 0.87) !important;
+}
+section[role="search"] #selectDrugInput .ui-select-choices .ui-select-choices-row a {
+  padding: 10px 10px;
+  font-weight: 400;
+  line-height: 1.42857;
+  white-space: nowrap;
+}
+main.followed-drugs {
+  padding-bottom: 40px;
+}
+main.followed-drugs .empty-drugs-list {
+  position: relative;
+  width: 100%;
+  max-width: 570px;
+  margin: 30px auto 0px;
+  text-align: center;
+}
+main.followed-drugs .empty-drugs-list:after {
+  content: ' ';
+  position: absolute;
+  display: inline-block;
+  background: inherit;
+  width: 28px;
+  height: 28px;
+  left: 50%;
+  top: -15px;
+  transform: translate(-50%) rotate(-45deg);
 }
 main.followed-drugs h2 {
   text-align: center;
@@ -6587,10 +6644,157 @@ main.followed-drugs .drug-summary p:empty {
   margin-bottom: 0;
   display: none;
 }
+aside.about-med-alerts {
+  background: #e4e8ec;
+  padding: 10px 0 112px;
+}
+aside.about-med-alerts h2 {
+  text-align: center;
+}
+aside.about-med-alerts .statistic {
+  max-width: 320px;
+  margin-left: 25px;
+  float: right;
+  padding-left: 92px;
+  padding-right: 8px;
+  position: relative;
+}
+@media (max-width: 991px) {
+  aside.about-med-alerts .statistic {
+    float: none;
+    margin: 25px auto;
+    display: none;
+  }
+}
+aside.about-med-alerts .statistic span.infographic-person {
+  max-width: 100%;
+  position: absolute;
+  left: 0;
+  background: url("/assets/images/infoman.jpg") no-repeat center / contain;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 88px;
+}
+aside.about-med-alerts .statistic span.infographic-person:before {
+  content: '';
+  display: block;
+  width: 100%;
+  padding-bottom: 201.42857142857142%;
+}
+aside.about-med-alerts .statistic p {
+  text-align: center;
+  line-height: 1;
+}
+aside.about-med-alerts .statistic p .percentage {
+  display: inline-block;
+  margin-bottom: 10px;
+  line-height: 0.8;
+  font-size: 80px;
+  font-weight: 300;
+}
+aside.about-med-alerts .purpose > p {
+  margin-bottom: 40px;
+}
 footer {
   background: #02a9f4;
   color: white;
+  padding-top: 15px;
+}
+footer ul {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+}
+footer ul .header > span,
+footer ul .header li {
+  color: rgba(255, 255, 255, 0.77);
+}
+footer ul .header > span a:link,
+footer ul .header > span a:visited,
+footer ul .header > span a:hover,
+footer ul .header > span a:active {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 1px solid white;
+}
+footer ul .header h2 {
+  color: white;
+  font-weight: 300;
+  text-align: left;
+}
+footer ul .header ~ li {
+  color: rgba(255, 255, 255, 0.55);
+}
+footer ul .header ~ li ul {
+  color: rgba(255, 255, 255, 0.9);
+}
+footer [role="contentinfo"] {
   text-align: center;
   font-size: 16px;
-  padding-top: 15px;
+  color: rgba(255, 255, 255, 0.66);
+}
+.modal-backdrop.in {
+  opacity: 0.75;
+}
+.modal-dialog .modal-content {
+  background: transparent;
+}
+.drug-detail-modal {
+  background: #217db5;
+  color: rgba(255, 255, 255, 0.85);
+}
+.drug-detail-modal .modal-header {
+  background: #1589ce;
+  border-bottom: none;
+}
+.drug-detail-modal .modal-header:before,
+.drug-detail-modal .modal-header:after {
+  content: " ";
+  display: table;
+}
+.drug-detail-modal .modal-header:after {
+  clear: both;
+}
+.drug-detail-modal .modal-header:before,
+.drug-detail-modal .modal-header:after {
+  content: " ";
+  display: table;
+}
+.drug-detail-modal .modal-header:after {
+  clear: both;
+}
+.drug-detail-modal .modal-header .modal-title {
+  float: left;
+  color: white;
+}
+.drug-detail-modal .modal-header .follow-button {
+  float: right;
+  width: 150px;
+  padding: 8px 16px;
+  margin-top: 9px;
+  background: #e6e7e8;
+  color: #3c3c3c;
+  border: 1px solid transparent;
+}
+.drug-detail-modal .modal-header .follow-button.following {
+  background: #3c3c3c;
+  color: white;
+}
+.drug-detail-modal .modal-body {
+  background: padding: 15px 25px;
+}
+.drug-detail-modal .modal-body dt {
+  color: rgba(255, 255, 255, 0.54);
+}
+.drug-detail-modal .modal-body dd {
+  color: rgba(255, 255, 255, 0.87);
+}
+.drug-detail-modal .modal-body h2,
+.drug-detail-modal .modal-body h3 {
+  color: rgba(255, 255, 255, 0.87);
+  line-height: 1;
+}
+.drug-detail-modal .modal-body h3 {
+  color: rgba(255, 255, 255, 0.54);
 }

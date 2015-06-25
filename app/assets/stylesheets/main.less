@@ -94,6 +94,21 @@
 
 // Custom // --------------------------------------------------
 
+
+
+
+.aspectRatio(@widthAspect, @heightAspect) {
+	@aspect: @heightAspect/@widthAspect * 100;
+	max-width: 100%;
+
+	&:before {
+		content: '';
+		display: block;
+		width: 100%;
+                padding-bottom: ~"@{aspect}%";
+	}
+}
+
 @app-faint-blue: #edfcff;
 
 // [class*="drug-status"] {
@@ -121,6 +136,10 @@
 
 .drug-summary {
   background-color: #ffffff;
+}
+
+h2, .h2 {
+	text-align: left;
 }
 
 header[role="banner"] {
@@ -165,12 +184,20 @@ section[role="search"] {
 			background: transparent;
 			border-radius: 2em;
 
+			&.btn-default-focus {
+				outline: none;
+				outline-offset: 0;
+				box-shadow: inset 0 1px 1px rgba(0,1,1,0.87);
+			}
 		}
 
 		.ui-select-search {
 			letter-spacing: 1px;
 			text-transform: uppercase;
 			font-weight: normal;
+			position: relative;
+			z-index: 100;
+			outline: none;
 		}
 
 		.ui-select-match .btn,
@@ -185,17 +212,63 @@ section[role="search"] {
 			border-radius: 2em;
 			vertical-align: middle;
 			box-shadow: 0px 0px 3px 0px #B3B3B3 !important;
-
+			.ui-select-toggle {
+				background: transparent;
+			}
 			.ui-select-placeholder {
 				line-height: 62px;
 			}
 
 		}
 
+		.ui-select-choices {
+			text-align: left;
+			padding-top: 64px;
+			position: absolute;
+			margin: -64px 0px;
+			border-top-right-radius: 2em;
+			border-top-left-radius: 2em;
+			overflow: hidden;
+			z-index: 1;
+			max-height: 350px;
+
+			.ui-select-choices-row {
+				.active & {
+					color: rgba(255,255,255,0.87) !important;
+				}
+				a {
+					padding: 10px 10px;
+				    font-weight: 400;
+				    line-height: 1.42857;
+				    white-space: nowrap;
+				}
+			}
+		}
+
 	}
 }
 
 main.followed-drugs {
+	padding-bottom: 40px;
+	.empty-drugs-list {
+		position: relative;
+		width: 100%;
+		max-width: 570px;
+		margin: 30px auto 0px;
+		text-align: center;
+		&:after {
+			content: ' ';
+			position: absolute;
+			display: inline-block;
+			background: inherit;
+			width: 28px;
+			height: 28px;
+			left: 50%;
+			top: -15px;
+			transform: translate(-50%) rotate(-45deg);
+		}
+	}
+
 	h2 {
 		text-align: center;
 	}
@@ -206,6 +279,7 @@ main.followed-drugs {
 		position: relative;
 		list-style-type: none;
 		padding: 0;
+
 		li {
 			cursor: default;
 			position: relative;
@@ -247,6 +321,7 @@ main.followed-drugs {
 		display: inline-block;
 		margin: 0;
 		color: white;
+
 		&:hover {
 			color: #1B1B1B;
 			text-decoration: underline;
@@ -270,13 +345,152 @@ main.followed-drugs {
 }
 
 aside.about-med-alerts {
-	// .make-sm-column();
+	background: #e4e8ec;
+	padding: 10px 0 112px;
+	h2 {
+		text-align: center;
+	}
+	.statistic {
+
+		max-width: 320px;
+		margin-left: 25px;
+		float: right;
+		padding-left: 92px;
+		padding-right: 8px;
+		position: relative;
+
+		@media (max-width: @screen-sm-max) {
+			float: none;
+			margin: 25px auto;
+			display: none;
+		}
+
+		span.infographic-person {
+			.aspectRatio(140, 282);
+			position: absolute;
+			left: 0;
+			background: url("/assets/images/infoman.jpg") no-repeat center/contain;
+			top: 50%;
+			transform: translate(0, -50%);
+			width: 88px;
+		}
+		p {
+			text-align: center;
+			line-height: 1;
+			.percentage {
+				display: inline-block;
+				margin-bottom: 10px;
+				line-height: 0.8;
+				font-size: 80px;
+				font-weight: 300;
+			}
+
+		}
+
+
+
+	}
+	.purpose > p {
+		margin-bottom: 40px;
+	}
 }
 
 footer {
 	background: @app-light-blue;
 	color: white;
-	text-align: center;
-	font-size: 16px;
 	padding-top: 15px;
+	ul {
+		display: block;
+		width: 100%;
+		margin-bottom: 15px;
+
+		.header {
+			> span,
+			li {
+				color: rgba(255,255,255, 0.77);
+			}
+			> span {
+				a:link, a:visited, a:hover, a:active {
+					color: white;
+					text-decoration: none;
+					display: inline-block;
+					border-bottom: 1px solid white;
+
+				}
+
+			}
+			h2 {
+				color: white;
+				font-weight: 300;
+				text-align: left;
+			}
+		}
+
+		.header ~ li {
+			color: rgba(255,255,255, 0.55);
+
+			ul {
+				color: rgba(255,255,255, 0.9);
+			}
+		}
+	}
+
+	[role="contentinfo"] {
+		text-align: center;
+		font-size: 16px;
+		color: rgba(255,255,255,0.66);
+	}
+}
+.modal-backdrop.in {
+	opacity: 0.75;
+}
+
+.modal-dialog .modal-content {
+	background: transparent;
+}
+
+.drug-detail-modal {
+	background: RGBA(33, 125, 181, 1);
+	color: rgba(255,255,255,0.85);
+
+	.modal-header {
+		.clearfix();
+		background: rgba(21, 137, 206, 1);
+		border-bottom: none;
+		.modal-title {
+			float: left;
+			color: white;
+		}
+		.follow-button {
+			float: right;
+			width: 150px;
+			padding: 8px 16px;
+  			margin-top: 9px;
+			background: @app-light-gray;
+			color: @app-dark-gray;
+			border: 1px solid transparent;
+  			&.following {
+  				background: @app-dark-gray;
+  				color: white;
+  			}
+		}
+
+	}
+	.modal-body {
+		background:
+		padding: 15px 25px;
+		dt {
+			color: rgba(255,255,255, 0.54);
+		}
+		dd {
+			color: rgba(255,255,255, 0.87);
+		}
+		h2, h3 {
+			color: rgba(255,255,255,0.87);
+			line-height: 1;
+		}
+		h3 {
+			color: rgba(255,255,255, 0.54);
+		}
+	}
 }

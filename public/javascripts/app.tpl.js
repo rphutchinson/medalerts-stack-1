@@ -83,9 +83,13 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/main/partials/drug-detail.html',
-    '<div class="container">\n' +
+    '\n' +
+    '<div class="container" class="drug-details-container">\n' +
+    '\n' +
     '    <div class="col-sm-12">\n' +
     '        <div class="page-header">\n' +
+    '\n' +
+    '\n' +
     '            <h1>{{ drug }}</h1>\n' +
     '            <a class="btn btn-default" data-ng-href="/">\n' +
     '                <i class="icon-arrow-left"></i> Back\n' +
@@ -165,71 +169,122 @@ module.run(['$templateCache', function($templateCache) {
     '				theme="bootstrap"\n' +
     '				data-ng-model="drug.selected"\n' +
     '				search-enabled="true"\n' +
-    '				reset-search-input="true"\n' +
-    '				>\n' +
+    '				reset-search-input="true">\n' +
+    '			<img style="width: 64px; height: 64px;" src="assets/images/icon-search.svg" alt="">\n' +
     '			<ui-select-match placeholder="Type a Medication Name...">\n' +
-    '				{{$select.selected}}\n' +
+    '\n' +
     '			</ui-select-match>\n' +
+    '\n' +
     '			<ui-select-choices\n' +
     '					repeat="drug as drug in drugs | filter: $select.search">\n' +
-    '				{{drug}}\n' +
+    '				{{ drug }}\n' +
     '			</ui-select-choices>\n' +
+    '\n' +
     '		</ui-select>\n' +
     '	</div>\n' +
     '</section>\n' +
     '<main role="main" class="followed-drugs">\n' +
     '	<div id="content" class="container">\n' +
-    '		<div class="row">\n' +
-    '			<h2>Medications you\'re Following</h2>\n' +
-    '			<p data-ng-show="followedDrugs.length === 0">\n' +
-    '                To follow a medication, search above and click the “follow” button.\n' +
-    '            </p>\n' +
-    '            <ul data-ng-show="followedDrugs.length">\n' +
-    '				<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">\n' +
-    '					<span class="status-icon"></span>\n' +
-    '					<h3 data-ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>\n' +
-    '					<button class="btn btn-xs btn-follow" data-ng-click="removeDrug(drug)" data-ng-mouseover="hoverFollow()" data-ng-mouseleave="leaveFollow()">\n' +
-    '							<span data-ng-show="followHovered">Unfollow</span>\n' +
-    '							<span data-ng-hide="followHovered">Following</span>\n' +
-    '					</button>\n' +
-    '                    <div class="drug-summary">\n' +
-    '                        <p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" \'recall\' " ></p>\n' +
-    '                        <p data-ng-if="drug.details.labelChanges" data-drug-summary data-drug="drug" data-type=" \'label\' "></p>\n' +
-    '                    </div>\n' +
-    '				</li>\n' +
-    '			</ul>\n' +
-    '		</div>\n' +
+    '		<h2>Medications you\'re Following</h2>\n' +
+    '		<p class="empty-drugs-list alert alert-info" data-ng-show="followedDrugs.length === 0">\n' +
+    '	        To follow a medication, search above and click the “follow” button.\n' +
+    '	    </p>\n' +
+    '	    <ul data-ng-show="followedDrugs.length">\n' +
+    '			<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">\n' +
+    '				<span class="status-icon"></span>\n' +
+    '				<h3 data-ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>\n' +
+    '				<button class="btn btn-xs btn-follow" data-ng-click="removeDrug(drug)" data-ng-mouseover="hoverFollow()" data-ng-mouseleave="leaveFollow()">\n' +
+    '						<span data-ng-show="followHovered">Unfollow</span>\n' +
+    '						<span data-ng-hide="followHovered">Following</span>\n' +
+    '				</button>\n' +
+    '	            <div class="drug-summary">\n' +
+    '	                <p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" \'recall\' " ></p>\n' +
+    '	                <p data-ng-if="drug.details.labelChanges" data-drug-summary data-drug="drug" data-type=" \'label\' "></p>\n' +
+    '	            </div>\n' +
+    '			</li>\n' +
+    '		</ul>\n' +
     '	</div>\n' +
     '</main>\n' +
     '<aside class="about-med-alerts">\n' +
     '	<div class="container">\n' +
     '		<div class="row">\n' +
-    '			<h2>Why Med Alerts</h2>\n' +
-    '<<<<<<< HEAD\n' +
-    '			<p>The Med Alerts website allows the informed consumer to research individual drugs for recent recalls, changes to the drug\'s label, or other useful information. Just like subscribing to follow updates on social media, you may choose to "follow" a frequently used drug to be alerted of future changes.</p>\n' +
-    '			<p>According to FDA Research, approximately 106,000 deaths per year can be attributed to adverse reactions to prescription medications. One in five hospital visits is the direct result of a drug reaction, and adverse drug reactions are estimated to cost our country $135 billion dollars annually.</p>\n' +
-    '		</aside>\n' +
-    '=======\n' +
-    '			<div class="col-sm-4 col-sm-push-8">\n' +
-    '				<p><span clas="percentage">82%</span> of American adults take at least one medication.</p>\n' +
-    '			</div>\n' +
-    '			<div class="introduction col-sm-8 col-sm-pull-4">\n' +
-    '				<p>The Med Alerts website allows the informed consumer to research individual drugs for recent recals, changes to the drug\'s label or other useful information. Just like subscribing to follow updates on social media, you may choose to "follow" a frequently used drug to be alerted of future changes.</p>\n' +
+    '			<div class="col-sm-10 col-sm-offset-1 ">\n' +
+    '				<h2>Why Med Alerts?</h2>\n' +
+    '				<div class="purpose">\n' +
+    '					<aside class="statistic">\n' +
+    '						<span class="infographic-person"></span>\n' +
+    '						<p>\n' +
+    '							<span class="percentage">82%</span>\n' +
+    '							<br> of American adults take at least one perscription medications.\n' +
+    '						</p>\n' +
+    '					</aside>\n' +
+    '					<p>The Med Alerts website allows the informed consumer to research individual drugs for recent recals, changes to the drug\'s label or other useful information. Just like subscribing to follow updates on social media, you may choose to "follow" a frequently used drug to be alerted of future changes.</p>\n' +
+    '				</div>\n' +
+    '				<div class="statistics">\n' +
+    '					<aside class="statistic">\n' +
+    '						<span class="infographic-person"></span>\n' +
+    '						<p>\n' +
+    '							<span class="percentage">29%</span>\n' +
+    '							<br> of American adults take 5 or more medications.\n' +
+    '						</p>\n' +
+    '					</aside>\n' +
+    '					<p>According to FDA Research,approximately 106,000 deaths per year can be attributed to adverse reactions to prescription medications. One in five hospital visits is the direct result of a drug reaction. And adverse drug reactions are estimate to cost our country $135 billion dollars anually.</p>\n' +
+    '				</div>\n' +
     '			</div>\n' +
     '		</div>\n' +
-    '		<div class="row">\n' +
-    '			<div class="statistics">\n' +
-    '				<p>According to FDA Research,approximately 106,000 deaths per year can be attributed to adverse reactions to prescription medications. One in five hospital visits is the direct result of a drug reaction. And adverse drug reactions are estimate to cost our country $135 billion dollars anually.</p>\n' +
-    '			</div>\n' +
-    '		</div>\n' +
-    '>>>>>>> more layout\n' +
     '	</div>\n' +
     '</aside>\n' +
     '<footer>\n' +
     '	<div class="container">\n' +
+    '		<div class="row">\n' +
+    '\n' +
+    '			<ul class="technical-details list-unstyled col-sm-5 col-sm-offset-1">\n' +
+    '				<li class="header">\n' +
+    '					<h2>Made by SPARC</h2>\n' +
+    '					<span>Open source technologies used:</span>\n' +
+    '				</li>\n' +
+    '\n' +
+    '				<li>Development Layer\n' +
+    '					<ul>\n' +
+    '						<li>Play Framework using Scala</li>\n' +
+    '						<li>AngularJS</li>\n' +
+    '						<li>lodash</li>\n' +
+    '					</ul>\n' +
+    '				</li>\n' +
+    '				<li>\n' +
+    '					Visual / Design Layer\n' +
+    '					<ul>\n' +
+    '						<li>Play Framework using Scala</li>\n' +
+    '						<li>AngularJS</li>\n' +
+    '						<li>lodash</li>\n' +
+    '					</ul>\n' +
+    '				</li>\n' +
+    '				<li>\n' +
+    '					QA Layer\n' +
+    '					<ul>\n' +
+    '						<li>Scala Test</li>\n' +
+    '						<li>Jasmine</li>\n' +
+    '						<li>Karma</li>\n' +
+    '					</ul>\n' +
+    '				</li>\n' +
+    '			</ul>\n' +
+    '\n' +
+    '			<ul class="feedback list-unstyled col-sm-5 col-sm-offset-1">\n' +
+    '				<li class="header">\n' +
+    '					<h2>Feedback Welcome</h2>\n' +
+    '					<span>\n' +
+    '						Submit feedback to <a href="mailto:18F@sparcedge.com?Subject=18f%20Feedback" target="_top">18F@sparcedge.com</a>\n' +
+    '					</span>\n' +
+    '				</li>\n' +
+    '			</ul>\n' +
+    '		</div>\n' +
+    '	</div>\n' +
+    '	<div class="container">\n' +
     '		<p role="contentinfo">This prototype leverages the openFDA research project and is not for clinical use. Please refer to their <a href="https://open.fda.gov/terms/" target="_blank">Terms of Service</a>.</p>\n' +
     '	</div>\n' +
     '</footer>\n' +
+    '<!-- Screen Mask for Modals, etc -->\n' +
+    '<div id="mask" ng-class=\'{"mask-open": maskOpen}\'></div>\n' +
     '');
 }]);
 })();
