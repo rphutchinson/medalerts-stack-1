@@ -6502,23 +6502,6 @@ section[role="search"] #selectDrugInput {
   margin: 0 auto;
   position: relative;
 }
-section[role="search"] #selectDrugInput .ui-select-match {
-  background: transparent;
-  border-radius: 2em;
-}
-section[role="search"] #selectDrugInput .ui-select-match.btn-default-focus {
-  outline: none;
-  outline-offset: 0;
-  box-shadow: inset 0 1px 1px rgba(0, 1, 1, 0.87);
-}
-section[role="search"] #selectDrugInput .ui-select-search {
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: normal;
-  position: relative;
-  z-index: 100;
-  outline: none;
-}
 section[role="search"] #selectDrugInput .ui-select-match .btn,
 section[role="search"] #selectDrugInput .ui-select-search {
   width: 100%;
@@ -6540,6 +6523,23 @@ section[role="search"] #selectDrugInput .ui-select-match .btn .ui-select-placeho
 section[role="search"] #selectDrugInput .ui-select-search .ui-select-placeholder {
   line-height: 62px;
 }
+section[role="search"] #selectDrugInput .ui-select-match {
+  background: transparent;
+  border-radius: 2em;
+}
+section[role="search"] #selectDrugInput .ui-select-match.btn-default-focus {
+  outline: none;
+  outline-offset: 0;
+  box-shadow: inset 0 1px 1px rgba(0, 1, 1, 0.87);
+}
+section[role="search"] #selectDrugInput .ui-select-search {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: normal;
+  position: relative;
+  z-index: 100;
+  outline: none;
+}
 section[role="search"] #selectDrugInput .ui-select-choices {
   text-align: left;
   padding-top: 64px;
@@ -6547,7 +6547,6 @@ section[role="search"] #selectDrugInput .ui-select-choices {
   margin: -64px 0px;
   border-top-right-radius: 2em;
   border-top-left-radius: 2em;
-  overflow: hidden;
   z-index: 1;
   max-height: 350px;
 }

@@ -157,45 +157,41 @@ module.run(['$templateCache', function($templateCache) {
     '				<h2>Why Med Alerts?</h2>\n' +
     '				<div class="purpose">\n' +
     '					<aside class="statistic">\n' +
-    '						<div> <!-- @todo: remove extraneous div -->\n' +
-    '							<div class="circle-graph" data-graph-pct="82">\n' +
-    '								<div class="circle">\n' +
-    '									<div class="mask full">\n' +
-    '										<div class="fill"></div>\n' +
-    '									</div>\n' +
-    '									<div class="mask half">\n' +
-    '										<div class="fill"></div>\n' +
-    '										<div class="fill fix"></div>\n' +
-    '									</div>\n' +
+    '						<div class="circle-graph" data-graph-pct="82">\n' +
+    '							<div class="circle">\n' +
+    '								<div class="mask full">\n' +
+    '									<div class="fill"></div>\n' +
     '								</div>\n' +
-    '								<div class="inset">\n' +
-    '									<div class="percentage"></div>\n' +
+    '								<div class="mask half">\n' +
+    '									<div class="fill"></div>\n' +
+    '									<div class="fill fix"></div>\n' +
     '								</div>\n' +
     '							</div>\n' +
-    '							<span>of American adults take at least one medication.</span>\n' +
+    '							<div class="inset">\n' +
+    '								<div class="percentage"></div>\n' +
+    '							</div>\n' +
     '						</div>\n' +
+    '						<span>of American adults take at least one medication.</span>\n' +
     '					</aside>\n' +
     '					<p>The Med Alerts application allows an informed consumer to research individual drugs for recent recalls or label changes through the <a href="http://open.fda.gov">OpenFDA API</a>. Similar to subscribing for updates on social media, you may choose to “follow” a drug of interest and be alerted of changes when you revisit <a href="http://18f.sparcedge.com">18f.sparcedge.com</a>.</p>\n' +
     '				</div>\n' +
     '				<div class="statistics">\n' +
     '					<aside class="statistic">\n' +
-    '						<div> <!-- @todo: remove extraneous div -->\n' +
-    '							<div class="circle-graph" data-graph-pct="29">\n' +
-    '								<div class="circle">\n' +
-    '									<div class="mask full">\n' +
-    '										<div class="fill"></div>\n' +
-    '									</div>\n' +
-    '									<div class="mask half">\n' +
-    '										<div class="fill"></div>\n' +
-    '										<div class="fill fix"></div>\n' +
-    '									</div>\n' +
+    '						<div class="circle-graph" data-graph-pct="29">\n' +
+    '							<div class="circle">\n' +
+    '								<div class="mask full">\n' +
+    '									<div class="fill"></div>\n' +
     '								</div>\n' +
-    '								<div class="inset">\n' +
-    '									<div class="percentage"></div>\n' +
+    '								<div class="mask half">\n' +
+    '									<div class="fill"></div>\n' +
+    '									<div class="fill fix"></div>\n' +
     '								</div>\n' +
     '							</div>\n' +
-    '							<span>of American adults take 5 or more medications.</span>\n' +
+    '							<div class="inset">\n' +
+    '								<div class="percentage"></div>\n' +
+    '							</div>\n' +
     '						</div>\n' +
+    '						<span>of American adults take 5 or more medications.</span>\n' +
     '					</aside>\n' +
     '					<p><a href="http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm">According to FDA research</a>, there are approximately 106,000 deaths per year attributed to adverse reactions to prescription drugs. One in five hospital visits are the result of a drug reaction. And adverse drug reactions are estimated to cost our country $135 Billion dollars a year.</p>\n' +
     '				</div>\n' +
@@ -266,8 +262,6 @@ module.run(['$templateCache', function($templateCache) {
     '		</div>\n' +
     '	</div>\n' +
     '</footer>\n' +
-    '<!-- Screen Mask for Modals, etc -->\n' +
-    '<div id="mask" ng-class=\'{"mask-open": maskOpen}\'></div>\n' +
     '');
 }]);
 })();

@@ -169,6 +169,26 @@ section[role="search"] {
 		margin: 0 auto;
 		position: relative;
 
+		.ui-select-match .btn,
+		.ui-select-search {
+			width: 100%;
+			height: 64px;
+			background: white;
+			font-size: 1em;
+			line-height: 2em;
+			border: 1px solid #EFEFEF;
+			padding: 0px 15px;
+			border-radius: 2em;
+			vertical-align: middle;
+			box-shadow: 0px 0px 3px 0px #B3B3B3 !important;
+			.ui-select-toggle {
+				background: transparent;
+			}
+			.ui-select-placeholder {
+				line-height: 62px;
+			}
+		}
+
 		.ui-select-match {
 			background: transparent;
 			border-radius: 2em;
@@ -189,27 +209,6 @@ section[role="search"] {
 			outline: none;
 		}
 
-		.ui-select-match .btn,
-		.ui-select-search {
-			width: 100%;
-			height: 64px;
-			background: white;
-			font-size: 1em;
-			line-height: 2em;
-			border: 1px solid #EFEFEF;
-			padding: 0px 15px;
-			border-radius: 2em;
-			vertical-align: middle;
-			box-shadow: 0px 0px 3px 0px #B3B3B3 !important;
-			.ui-select-toggle {
-				background: transparent;
-			}
-			.ui-select-placeholder {
-				line-height: 62px;
-			}
-
-		}
-
 		.ui-select-choices {
 			text-align: left;
 			padding-top: 64px;
@@ -217,7 +216,6 @@ section[role="search"] {
 			margin: -64px 0px;
 			border-top-right-radius: 2em;
 			border-top-left-radius: 2em;
-			overflow: hidden;
 			z-index: 1;
 			max-height: 350px;
 
@@ -528,7 +526,7 @@ footer {
 			font-size:   @percentage-font-size;
 		}
 	}
-
+	// @todo: lookup transform for 82 29
 	@i: 0;
 	@increment: 180deg / 100;
 	.loop (@i) when (@i <= 100) {
