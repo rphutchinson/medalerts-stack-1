@@ -1,7 +1,7 @@
 # 18F Demo Application
 Check out the [live demo](http://18f.sparcedge.com/) or our [installation instructions](INSTALLATION.md) for standing this up yourself. Also, Please see our [license](LICENSE.md) regarding details rights and usage for this prototype.
 
-##  Approach
+##  Approach  
 
 ### Operations Considerations
 
