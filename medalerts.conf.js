@@ -15,9 +15,20 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'target/web/public/main/lib/angularjs/*.js',
-      'app/assets/*.js',
-      'app/assets/main/*.js',
+	  'target/web/public/main/lib/jquery/*.min.js',
+	  'target/web/public/main/lib/lodash/*.min.js',
+	  'target/web/public/main/lib/angularjs/angular.js',
+	  'target/web/public/main/lib/angularjs/angular-route.js',
+	  'target/web/public/main/lib/angularjs/angular-resource.js',
+	  'target/web/public/main/lib/angularjs/angular-cookies.js',
+	  'target/web/public/main/lib/angularjs/angular-sanitize.js',
+	  'target/web/public/main/lib/angularjs/angular-mocks.js',
+	  'target/web/public/main/lib/bootstrap/*.min.js',
+	  'target/web/public/main/lib/angular-ui-bootstrap/*.min.js',
+	  'target/web/public/main/lib/angular-ui-select/*.min.js',
+
+      'public/javascripts/app.js',
+      'public/javascripts/app.tpl.js',
       'app/assets/test/*.spec.js'
     ],
 
