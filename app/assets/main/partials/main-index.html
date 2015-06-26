@@ -25,9 +25,9 @@
 	<div id="content" class="container">
 		<h2>Medications you're Following</h2>
 		<p class="empty-drugs-list alert alert-info" data-ng-show="followedDrugs.length === 0">
-	        To follow a medication, search above and click the “follow” button.
-	    </p>
-	    <ul data-ng-show="followedDrugs.length">
+			To follow a medication, search above and click the “follow” button.
+		</p>
+		<ul data-ng-show="followedDrugs.length">
 			<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">
 				<span class="status-icon"></span>
 				<h3 data-ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>
@@ -35,10 +35,10 @@
 						<span data-ng-show="followHovered">Unfollow</span>
 						<span data-ng-hide="followHovered">Following</span>
 				</button>
-	            <div class="drug-summary">
-	                <p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" 'recall' " ></p>
-	                <p data-ng-if="drug.details.labelChanges" data-drug-summary data-drug="drug" data-type=" 'label' "></p>
-	            </div>
+				<div class="drug-summary">
+					<p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" 'recall' " ></p>
+					<p data-ng-if="drug.details.labelChanges" data-drug-summary data-drug="drug" data-type=" 'label' "></p>
+				</div>
 			</li>
 		</ul>
 	</div>
@@ -50,23 +50,47 @@
 				<h2>Why Med Alerts?</h2>
 				<div class="purpose">
 					<aside class="statistic">
-						<span class="infographic-person"></span>
-						<p>
-							<span class="percentage">82%</span>
-							<br> of American adults take at least one medication.
-						</p>
+						<div> <!-- @todo: remove extraneous div -->
+							<div class="circle-graph" data-graph-pct="82">
+								<div class="circle">
+									<div class="mask full">
+										<div class="fill"></div>
+									</div>
+									<div class="mask half">
+										<div class="fill"></div>
+										<div class="fill fix"></div>
+									</div>
+								</div>
+								<div class="inset">
+									<div class="percentage"></div>
+								</div>
+							</div>
+							<span>of American adults take at least one medication.</span>
+						</div>
 					</aside>
 					<p>The Med Alerts application allows an informed consumer to research individual drugs for recent recalls or label changes through the <a href="http://open.fda.gov">OpenFDA API</a>. Similar to subscribing for updates on social media, you may choose to “follow” a drug of interest and be alerted of changes when you revisit <a href="http://18f.sparcedge.com">18f.sparcedge.com</a>.</p>
 				</div>
 				<div class="statistics">
 					<aside class="statistic">
-						<span class="infographic-person"></span>
-						<p>
-							<span class="percentage">29%</span>
-							<br> of American adults take 5 or more medications.
-						</p>
+						<div> <!-- @todo: remove extraneous div -->
+							<div class="circle-graph" data-graph-pct="29">
+								<div class="circle">
+									<div class="mask full">
+										<div class="fill"></div>
+									</div>
+									<div class="mask half">
+										<div class="fill"></div>
+										<div class="fill fix"></div>
+									</div>
+								</div>
+								<div class="inset">
+									<div class="percentage"></div>
+								</div>
+							</div>
+							<span>of American adults take 5 or more medications.</span>
+						</div>
 					</aside>
-        			<p><a href="http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm">According to FDA research</a>, there are approximately 106,000 deaths per year attributed to adverse reactions to prescription drugs. One in five hospital visits are the result of a drug reaction. And adverse drug reactions are estimated to cost our country $135 Billion dollars a year.</p>
+					<p><a href="http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm">According to FDA research</a>, there are approximately 106,000 deaths per year attributed to adverse reactions to prescription drugs. One in five hospital visits are the result of a drug reaction. And adverse drug reactions are estimated to cost our country $135 Billion dollars a year.</p>
 				</div>
 			</div>
 		</div>
@@ -118,9 +142,9 @@
 			<div class="feedback list-unstyled col-md-6">
 				<h2>Feedback Welcome</h2>
 
-  				<p>Medalerts was built as a beta to showcase our ability to rapidly create a product of value and in response to the RFP from 18F. It was scoped to create a lightweight app that delivers useful functionality to the user. This prototype leverages the openFDA beta research project and not for clinical use. Please refer to the OpenFDA <a href="https://open.fda.gov/terms/">Terms of Service</a>.</p>
+				<p>Medalerts was built as a beta to showcase our ability to rapidly create a product of value and in response to the RFP from 18F. It was scoped to create a lightweight app that delivers useful functionality to the user. This prototype leverages the openFDA beta research project and not for clinical use. Please refer to the OpenFDA <a href="https://open.fda.gov/terms/">Terms of Service</a>.</p>
 
-  				<p>In future phases of development, the product roadmap may include:</p>
+				<p>In future phases of development, the product roadmap may include:</p>
 				<ul>
 					<li>The ability to register and receive email, social or SMS notifications about the medications they follow.</li>
 					<li>Create and follow multiple lists.</li>

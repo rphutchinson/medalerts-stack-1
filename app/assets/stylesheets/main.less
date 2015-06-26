@@ -111,28 +111,17 @@
 
 @app-faint-blue: #edfcff;
 
-// [class*="drug-status"] {
-// 	background: @app-light-blue url("http://18f-cdn.sparcedge.com/recall.svg") no-repeat 8px 30%;
-//   background-size: 36px;
-// }
-
-// .drug-status-recall {
-//   background: @brand-danger url("http://18f-cdn.sparcedge.com/recall.svg")  no-repeat scroll 12px 30% / 36px 36px;
-//   background-size: 36px;
-
-// .drug-status-label {
-//   background: @brand-info url("http://18f-cdn.sparcedge.com/label-change.svg")  no-repeat scroll 12px 30% / 36px 36px;
-//   background-size: 36px;
-// }
-
-// .drug-status-loading {
-//   //???
-// }
-
-// .drug-status-ok {
-//   background: @brand-success url("http://18f-cdn.sparcedge.com/all-good.svg")  no-repeat scroll 12px 30% / 36px 36px;
-// 	background-size: 43px;
-// }
+@content-background: #EAEDEF;
+@circle-size: 120px;
+@circle-background: #fff;
+@circle-color: @app-light-blue;
+@inset-size: 110px;
+@inset-color: @content-background;
+@transition-length: 1s;
+@shadow: 6px 6px 10px rgba(0,0,0,0);
+@percentage-color: @app-light-blue;
+@percentage-font-size: 42px;
+@percentage-text-width: 70px;
 
 .drug-summary {
   background-color: #ffffff;
@@ -351,42 +340,24 @@ aside.about-med-alerts {
 		text-align: center;
 	}
 	.statistic {
-
 		max-width: 320px;
 		margin-left: 25px;
 		float: right;
-		padding-left: 92px;
 		padding-right: 8px;
 		position: relative;
-
-		@media (max-width: @screen-sm-max) {
-			float: none;
-			margin: 25px auto;
-			display: none;
+		display: none;
+		@media (min-width: @screen-lg-min) {
+			display: block;
 		}
-
-		span.infographic-person {
-			.aspectRatio(140, 282);
-			position: absolute;
-			left: 0;
-			background: url("/assets/images/infoman.jpg") no-repeat center/contain;
-			top: 50%;
-			transform: translate(0, -50%);
-			width: 88px;
+		.circle-graph {
+			vertical-align: middle;
 		}
-		p {
-			text-align: center;
-			line-height: 1;
-			.percentage {
-				display: inline-block;
-				margin-bottom: 10px;
-				line-height: 0.8;
-				font-size: 80px;
-				font-weight: 300;
-			}
-
+		span {
+			vertical-align: middle;
+			max-width: 180px;
+			display: inline-block;
+			font-size: 16px;
 		}
-
 
 
 	}
@@ -499,4 +470,86 @@ footer {
 			color: rgba(255,255,255, 0.54);
 		}
 	}
+}
+.circle-graph {
+  //   float: left;
+  // clear: left;
+  display: inline-block;
+	width:  @circle-size;
+	height: @circle-size;
+
+	background-color: @circle-background;
+	border-radius: 50%;
+	.circle {
+		.mask, .fill, .shadow {
+			width:    @circle-size;
+			height:   @circle-size;
+			position: absolute;
+			border-radius: 50%;
+		}
+		.shadow {
+			box-shadow: @shadow inset;
+		}
+		.mask, .fill {
+			-webkit-backface-visibility: hidden;
+			transition: -webkit-transform @transition-length;
+			transition: -ms-transform @transition-length;
+			transition: transform @transition-length;
+			border-radius: 50%;
+		}
+		.mask {
+			clip: rect(0px, @circle-size, @circle-size, @circle-size/2);
+			.fill {
+				clip: rect(0px, @circle-size/2, @circle-size, 0px);
+				background-color: @circle-color;
+			}
+		}
+	}
+	.inset {
+		width:       @inset-size;
+		height:      @inset-size;
+		position:    absolute;
+		margin-left: (@circle-size - @inset-size)/2;
+		margin-top:  (@circle-size - @inset-size)/2;
+
+		background-color: @inset-color;
+		border-radius: 50%;
+		box-shadow: @shadow;
+		.percentage {
+			width:       @percentage-text-width;
+			position:    absolute;
+			top:         (@inset-size - @percentage-font-size) / 2;
+			left:        (@inset-size - @percentage-text-width) / 2;
+			line-height: 1;
+			text-align:  center;
+			font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			color:       @percentage-color;
+			font-weight: 300;
+			font-size:   @percentage-font-size;
+		}
+	}
+
+	@i: 0;
+	@increment: 180deg / 100;
+	.loop (@i) when (@i <= 100) {
+		&[data-graph-pct="@{i}"] {
+			.circle {
+				.mask.full, .fill {
+					-webkit-transform: rotate(@increment * @i);
+					-ms-transform: rotate(@increment * @i);
+					transform: rotate(@increment * @i);
+				}
+				.fill.fix {
+					-webkit-transform: rotate(@increment * @i * 2);
+					-ms-transform: rotate(@increment * @i * 2);
+					transform: rotate(@increment * @i * 2);
+				}
+			}
+			.inset .percentage:before {
+				content: "@{i}%"
+			}
+		}
+		.loop(@i + 1);
+	}
+	.loop(@i);
 }
