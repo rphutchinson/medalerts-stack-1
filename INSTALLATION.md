@@ -94,7 +94,7 @@ $ cd <projects folder>/medalerts-dev
 $ sbt run
 ```
 
-This will make the app available via [localhost on port 9000](http://localhost:9000), will enable debugging on port 999, and set the server timezone to GMT by default.
+This will make the app available via [localhost on port 9000](http://localhost:9000) (if you're using Vagrant use [this url](http://192.168.43.10:9000/) from your host OS), will enable debugging on port 999, and set the server timezone to GMT by default.
 
 ## Developer FAQs
 __How do I add a new JavaScript dependency?__
