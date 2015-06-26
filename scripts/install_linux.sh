@@ -20,13 +20,6 @@ sudo apt-get install -y curl
 curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
 sudo apt-get install -y nodejs
 
-echo "installing VirtualBox..."
-sudo apt-get install virtualbox
-
-echo "installing Docker..."
-sudo apt-get install wget
-wget -qO- https://get.docker.com/ | sh
-
 echo "installing required npm packages..."
 cd ..
 sudo npm install -g gulp

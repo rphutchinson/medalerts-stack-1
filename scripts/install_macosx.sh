@@ -15,13 +15,6 @@ brew install scala
 brew install sbt
 brew install node
 
-echo "installing VirtualBox..."
-brew cask install virtualbox
-
-echo "installing Docker..."
-brew link docker
-brew install boot2docker
-
 echo "installing required npm packages"
 cd ..
 sudo npm install -g gulp
