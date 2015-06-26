@@ -9,9 +9,11 @@ module.run(['$templateCache', function($templateCache) {
     '<div class="drug-detail-modal">\n' +
     '	<div class="modal-header">\n' +
     '		<h1 class="modal-title h2">\n' +
-    '			<span role="button" ng-click="done()">{{ drug.name }}</span>\n' +
+    '			{{ drug.name }}\n' +
     '		</h1>\n' +
-    '\n' +
+    '	    <a class="close-button btn btn-primary" ng-click="done()">\n' +
+    '	    	Done\n' +
+    '	    </a>\n' +
     '	    <a class="follow-button btn btn-default"\n' +
     '	    	ng-click="toggleFollow()"\n' +
     '	    	ng-class="{\'following\': drug.following}">\n' +
@@ -21,6 +23,9 @@ module.run(['$templateCache', function($templateCache) {
     '\n' +
     '	</div>\n' +
     '	<div class="modal-body">\n' +
+    '		<div class="loading-message" data-ng-if="!drug.details">\n' +
+    '			<p>Fetching info about {{drug.name}}...</p>\n' +
+    '		</div>\n' +
     '	 	<div data-ng-if="drug.details">\n' +
     '			<h2>Recalls</h2>\n' +
     '\n' +

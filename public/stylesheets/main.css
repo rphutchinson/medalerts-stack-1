@@ -6762,6 +6762,13 @@ footer ul .header ~ li ul {
   float: left;
   color: white;
 }
+.drug-detail-modal .modal-header .close-button {
+  float: right;
+  padding: 8px 16px;
+  margin-top: 9px;
+  border: 1px solid transparent;
+  margin-left: 15px;
+}
 .drug-detail-modal .modal-header .follow-button {
   float: right;
   width: 150px;
@@ -6776,7 +6783,12 @@ footer ul .header ~ li ul {
   color: white;
 }
 .drug-detail-modal .modal-body {
-  background: padding: 15px 25px;
+  padding: 15px 25px;
+  position: relative;
+}
+.drug-detail-modal .modal-body .loading-message {
+  text-align: center;
+  padding: 40px 0px;
 }
 .drug-detail-modal .modal-body dt {
   color: rgba(255, 255, 255, 0.54);

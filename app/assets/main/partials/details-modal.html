@@ -1,9 +1,11 @@
 <div class="drug-detail-modal">
 	<div class="modal-header">
 		<h1 class="modal-title h2">
-			<span role="button" ng-click="done()">{{ drug.name }}</span>
+			{{ drug.name }}
 		</h1>
-
+	    <a class="close-button btn btn-primary" ng-click="done()">
+	    	Done
+	    </a>
 	    <a class="follow-button btn btn-default"
 	    	ng-click="toggleFollow()"
 	    	ng-class="{'following': drug.following}">
@@ -13,6 +15,9 @@
 
 	</div>
 	<div class="modal-body">
+		<div class="loading-message" data-ng-if="!drug.details">
+			<p>Fetching info about {{drug.name}}...</p>
+		</div>
 	 	<div data-ng-if="drug.details">
 			<h2>Recalls</h2>
 
