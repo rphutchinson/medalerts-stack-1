@@ -132,9 +132,9 @@ module.run(['$templateCache', function($templateCache) {
     '	<div id="content" class="container">\n' +
     '		<h2>Medications you\'re Following</h2>\n' +
     '		<p class="empty-drugs-list alert alert-info" data-ng-show="followedDrugs.length === 0">\n' +
-    '	        To follow a medication, search above and click the “follow” button.\n' +
-    '	    </p>\n' +
-    '	    <ul data-ng-show="followedDrugs.length">\n' +
+    '			To follow a medication, search above and click the “follow” button.\n' +
+    '		</p>\n' +
+    '		<ul data-ng-show="followedDrugs.length">\n' +
     '			<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">\n' +
     '				<span class="status-icon"></span>\n' +
     '				<h3 data-ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>\n' +
@@ -142,10 +142,10 @@ module.run(['$templateCache', function($templateCache) {
     '						<span data-ng-show="followHovered">Unfollow</span>\n' +
     '						<span data-ng-hide="followHovered">Following</span>\n' +
     '				</button>\n' +
-    '	            <div class="drug-summary">\n' +
-    '	                <p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" \'recall\' " ></p>\n' +
-    '	                <p data-ng-if="drug.details.labelChanges" data-drug-summary data-drug="drug" data-type=" \'label\' "></p>\n' +
-    '	            </div>\n' +
+    '				<div class="drug-summary">\n' +
+    '					<p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" \'recall\' " ></p>\n' +
+    '					<p data-ng-if="drug.details.labelChanges" data-drug-summary data-drug="drug" data-type=" \'label\' "></p>\n' +
+    '				</div>\n' +
     '			</li>\n' +
     '		</ul>\n' +
     '	</div>\n' +
@@ -157,23 +157,43 @@ module.run(['$templateCache', function($templateCache) {
     '				<h2>Why Med Alerts?</h2>\n' +
     '				<div class="purpose">\n' +
     '					<aside class="statistic">\n' +
-    '						<span class="infographic-person"></span>\n' +
-    '						<p>\n' +
-    '							<span class="percentage">82%</span>\n' +
-    '							<br> of American adults take at least one perscription medications.\n' +
-    '						</p>\n' +
+    '						<div class="circle-graph" data-graph-pct="82">\n' +
+    '							<div class="circle">\n' +
+    '								<div class="mask full">\n' +
+    '									<div class="fill"></div>\n' +
+    '								</div>\n' +
+    '								<div class="mask half">\n' +
+    '									<div class="fill"></div>\n' +
+    '									<div class="fill fix"></div>\n' +
+    '								</div>\n' +
+    '							</div>\n' +
+    '							<div class="inset">\n' +
+    '								<div class="percentage"></div>\n' +
+    '							</div>\n' +
+    '						</div>\n' +
+    '						<span>of American adults take at least one medication.</span>\n' +
     '					</aside>\n' +
-    '					<p>The Med Alerts website allows the informed consumer to research individual drugs for recent recals, changes to the drug\'s label or other useful information. Just like subscribing to follow updates on social media, you may choose to "follow" a frequently used drug to be alerted of future changes.</p>\n' +
+    '					<p>The Med Alerts application allows an informed consumer to research individual drugs for recent recalls or label changes through the <a href="http://open.fda.gov">OpenFDA API</a>. Similar to subscribing for updates on social media, you may choose to “follow” a drug of interest and be alerted of changes when you revisit <a href="http://18f.sparcedge.com">18f.sparcedge.com</a>.</p>\n' +
     '				</div>\n' +
     '				<div class="statistics">\n' +
     '					<aside class="statistic">\n' +
-    '						<span class="infographic-person"></span>\n' +
-    '						<p>\n' +
-    '							<span class="percentage">29%</span>\n' +
-    '							<br> of American adults take 5 or more medications.\n' +
-    '						</p>\n' +
+    '						<div class="circle-graph" data-graph-pct="29">\n' +
+    '							<div class="circle">\n' +
+    '								<div class="mask full">\n' +
+    '									<div class="fill"></div>\n' +
+    '								</div>\n' +
+    '								<div class="mask half">\n' +
+    '									<div class="fill"></div>\n' +
+    '									<div class="fill fix"></div>\n' +
+    '								</div>\n' +
+    '							</div>\n' +
+    '							<div class="inset">\n' +
+    '								<div class="percentage"></div>\n' +
+    '							</div>\n' +
+    '						</div>\n' +
+    '						<span>of American adults take 5 or more medications.</span>\n' +
     '					</aside>\n' +
-    '					<p>According to FDA Research,approximately 106,000 deaths per year can be attributed to adverse reactions to prescription medications. One in five hospital visits is the direct result of a drug reaction. And adverse drug reactions are estimate to cost our country $135 billion dollars anually.</p>\n' +
+    '					<p><a href="http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm">According to FDA research</a>, there are approximately 106,000 deaths per year attributed to adverse reactions to prescription drugs. One in five hospital visits are the result of a drug reaction. And adverse drug reactions are estimated to cost our country $135 Billion dollars a year.</p>\n' +
     '				</div>\n' +
     '			</div>\n' +
     '		</div>\n' +
@@ -225,9 +245,9 @@ module.run(['$templateCache', function($templateCache) {
     '			<div class="feedback list-unstyled col-md-6">\n' +
     '				<h2>Feedback Welcome</h2>\n' +
     '\n' +
-    '  				<p>Medalerts was built as a beta to showcase our ability to rapidly create a product of value and in response to the RFP from 18F. It was scoped to create a lightweight app that delivers useful functionality to the user. This prototype leverages the openFDA beta research project and not for clinical use. Please refer to the OpenFDA <a href="https://open.fda.gov/terms/">Terms of Service</a>.</p>\n' +
+    '				<p>Medalerts was built as a beta to showcase our ability to rapidly create a product of value and in response to the RFP from 18F. It was scoped to create a lightweight app that delivers useful functionality to the user. This prototype leverages the openFDA beta research project and not for clinical use. Please refer to the OpenFDA <a href="https://open.fda.gov/terms/">Terms of Service</a>.</p>\n' +
     '\n' +
-    '  				<p>In future phases of development, the product roadmap may include:</p>\n' +
+    '				<p>In future phases of development, the product roadmap may include:</p>\n' +
     '				<ul>\n' +
     '					<li>The ability to register and receive email, social or SMS notifications about the medications they follow.</li>\n' +
     '					<li>Create and follow multiple lists.</li>\n' +
@@ -242,8 +262,6 @@ module.run(['$templateCache', function($templateCache) {
     '		</div>\n' +
     '	</div>\n' +
     '</footer>\n' +
-    '<!-- Screen Mask for Modals, etc -->\n' +
-    '<div id="mask" ng-class=\'{"mask-open": maskOpen}\'></div>\n' +
     '');
 }]);
 })();
