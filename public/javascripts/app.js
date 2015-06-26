@@ -107,13 +107,22 @@ angular.module('main.controllers', [])
       };
 
       /**
-       * Adds or removes a drug from the DrugList
+       * Removes drug from the DrugsList
        * @param drug
        */
       $scope.removeDrug = function (drug) {
         DrugsList.remove(drug.name); //use the service to remove from stored values
         $scope.followedDrugs = _.reject($scope.followedDrugs, {name: drug.name})
       };
+
+      /**
+       * Adds a drug to the DrugsList
+       * @param drug
+       */
+      $scope.addDrug = function (drug) {
+      	DrugsList.add(drug.name);
+      	$scope.followedDrugs.push(drug);
+      }
 
       /**
        * handle hover state for button
@@ -177,7 +186,9 @@ angular.module('main.controllers', [])
         }
       }, true);
 
-
+      $scope.$on('subscription-change', function(e, data) {
+      	$scope[data.action + 'Drug'](data.drug);
+      })
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Private helper functions
        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -205,7 +216,7 @@ angular.module('main.controllers', [])
 /**
  * Controller for drug details
  */
-    .controller('DrugDetailsCtrl', ["$scope", "$log", "$location", "$modalInstance", "DrugService", "DrugsList", "drug", function ($scope, $log, $location, $modalInstance, DrugService,
+    .controller('DrugDetailsCtrl', ["$scope", "$log", "$location", "$modalInstance", "$rootScope", "DrugService", "DrugsList", "drug", function ($scope, $log, $location, $modalInstance, $rootScope, DrugService,
                                              DrugsList, drug) {
 
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -233,7 +244,8 @@ angular.module('main.controllers', [])
        * DrugsList service
        */
       $scope.toggleFollow = function () {
-        DrugsList[$scope.drug.following ? 'remove' : 'add']($scope.drug.name);
+      	var action = $scope.drug.following ? 'remove' : 'add';
+      	$rootScope.$broadcast('subscription-change', {action: action, drug: $scope.drug});
         drug.following = !drug.following;
       };
 
