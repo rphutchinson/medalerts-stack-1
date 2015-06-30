@@ -1,4 +1,4 @@
-# MedAlerts Pool Three
+# MedPal Pool Three
 
 Check out the [live demo](http://medpal.sparcedge.com) or see our [installation instructions](INSTALLATION.md).
 
