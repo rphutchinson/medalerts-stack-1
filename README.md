@@ -7,7 +7,7 @@ Check out the [live demo](http://medpal.sparcedge.com) or see our [installation 
 
 ## Address the Whole Experience from Start to Finish
 
-SPARC’s [Agile Design process](http://www.sparcedge.com/what-an-agile-design-process-looks-like/) took the broad concept of drug safety and narrowed our product vision.  Our product leverages OpenFDA’s data and API to proactively educate users about their medications through an intuitive user experience.
+SPARC’s [Agile Design process](http://www.sparcedge.com/what-an-agile-design-process-looks-like/) took the broad concept of drug safety and narrowed our product vision.  Our product leverages data from OpenFDA’s API and the [RxNav Drug Interactions](http://rxnav.nlm.nih.gov/InteractionAPIs.html#) API to proactively educate users about their medications through an intuitive user experience.
 
 The user can:
 
@@ -27,7 +27,7 @@ We created product features based on SPARC’s agile product model:
 * Define business goals 
 * Understand OpenFDA API
 * Understand the User 
-* Conduct brainstorming sessions to choose features based on business goals, technical feasibility, and value to the User
+* Conduct brainstorming sessions
 * Refine concept
 
 **Iterative Prototyping and Design Features**
