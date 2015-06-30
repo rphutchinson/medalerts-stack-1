@@ -18,7 +18,7 @@ The user can:
 
 ## Make it Simple and Intuitive
 
-SPARC’s Agile Design process showed that “following” a medication was the user’s preferred, intuitive experience.  ‘Following’ medication updates via feeds reduced the prototype’s user-flow to a single screen. SPARC used [Bootstrap](http://getbootstrap.com) as a front-end framework. Bootstrap increases application accessibility by supporting use on numerous devices and platforms.
+SPARC’s Agile Design process showed that “following” a medication was the user’s preferred, intuitive experience.  ‘Following’ medication updates via feeds reduced the prototype’s user-flow to a single screen. SPARC used [Material](https://material.angularjs.org/latest/#/) as a front-end framework. Material increases application accessibility by supporting use on numerous devices and platforms.
 
 We created product features based on SPARC’s agile product model: 
 
@@ -80,7 +80,7 @@ Every layer of the stack leverages Open Source Software solutions:
 
 **Visual / Design Layer**
 
-* [Bootstrap](http://getbootstrap.com)
+* [Material](https://material.angularjs.org/latest/#/)
 * [Google Fonts](https://www.google.com/fonts)
 
 **QA Layer**
