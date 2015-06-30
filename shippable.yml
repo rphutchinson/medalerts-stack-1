@@ -10,7 +10,7 @@ branches:
 env:
   global:
     - AWS_ACCESS_KEY_ID=AKIAJ5DLTV3B2BBLBJPQ
-    #Encrypted AWS Secret Key
+    #Encrypted AWS Secret Key 
     - secure: Xsizsakc8w3OBYOlZ9wldLBeXirMKDkGkviJUhbunsMZh3q3qbOe15IDjI7S43At+sEsLUl2SQYlBXfjdJqfusD3ic6SLrhx8Pm6lR1aw73oLZ4Wb3DfguHhsT+vcLJhL9z9O9jCxu7ZZPvLz7FKp97JUCc+nGJ18E5Ycek829g5c54QqO04Qzfdx3gS3ViPibDh3x5m5oB3f3eNLLftJeEw+TIVybXz3DWA2v6EF3Bkz67hyYS9VjdELs9PByVmCwpIpKi6kVqEc5h5q4JxSL575TfIBWNg7BbAp96WgGgl3PddqomCUDU3uEVbl+/0rciFZnsMNWG8mdbfa5dm0Q==    
     - AWS_DEFAULT_REGION=us-east-1
 
