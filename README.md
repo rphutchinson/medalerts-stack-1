@@ -1,6 +1,6 @@
 # MedAlerts Pool Three
 
-Check out the [live demo](http://medalerts-stack.sparcedge.com/) or see our [installation instructions](INSTALLATION.md).
+Check out the [live demo](http://medpal.sparcedge.com) or see our [installation instructions](INSTALLATION.md).
 
 ## Understand What People Need
 [SPARC](http://sparcedge.com) utilized a [design studio approach](https://18f.gsa.gov/2014/09/25/design-studio-onrr/) to select a focus based on [OpenFDA’s](https://open.fda.gov/) business goals and technical feasibility. Research revealed adverse medication side effects impact the population with [106,000 yearly deaths at an estimated cost of $135 billion per year](http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm); therefore, we chose drug safety as the prototype focus.
