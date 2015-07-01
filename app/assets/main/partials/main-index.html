@@ -1,157 +1,101 @@
-<section role="search">
-	<div class="container">
-		<label for="selectDrugInput" class="sr-only">Search for medications by
-			name</label>
-		<ui-select id="selectDrugInput"
-				class="ui-select-scroll ui-select-auto-width ui-select-opaque"
-				theme="bootstrap"
-				data-ng-model="drug.selected"
-				search-enabled="true"
-				reset-search-input="true">
-			<img style="width: 64px; height: 64px;" src="assets/images/icon-search.svg" alt="">
-			<ui-select-match placeholder="Type a Medication Name...">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <header role="banner">
+                <div>
+                    <img src="assets/images/medpal-logo.svg" alt="Med Pal logo">
+                </div>
+            </header>
+            <div>
+                <label for="selectDrugInput" class="sr-only">Search for medications by
+                    name</label>
+                <ui-select id="selectDrugInput"
+                           class="ui-select-scroll ui-select-auto-width ui-select-opaque"
+                           theme="bootstrap"
+                           data-ng-model="drug.selected"
+                           search-enabled="true"
+                           reset-search-input="true">
+                    <img style="width: 64px; height: 64px;" src="assets/images/icon-search.svg" alt="">
+                    <ui-select-match placeholder="Type a Medication Name...">
 
-			</ui-select-match>
+                    </ui-select-match>
 
-			<ui-select-choices
-					repeat="drug as drug in drugs | filter: $select.search">
-				{{ drug }}
-			</ui-select-choices>
+                    <ui-select-choices
+                            repeat="drug as drug in drugs | filter: $select.search">
+                        {{ drug }}
+                    </ui-select-choices>
 
-		</ui-select>
-	</div>
-</section>
-<main role="main" class="followed-drugs">
-	<div id="content" class="container">
-		<h2>Medications you're Following</h2>
-		<p class="empty-drugs-list alert alert-info" data-ng-show="followedDrugs.length === 0">
-			To follow a medication, search above and click the “follow” button.
-		</p>
-		<ul data-ng-show="followedDrugs.length">
-			<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">
-				<span class="status-icon"></span>
-				<h3 data-ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>
-				<button class="btn btn-xs btn-follow" data-ng-click="removeDrug(drug)" data-ng-mouseover="hoverFollow()" data-ng-mouseleave="leaveFollow()">
-						<span data-ng-show="followHovered">Unfollow</span>
-						<span data-ng-hide="followHovered">Following</span>
-				</button>
-				<div class="drug-summary">
-					<p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" 'recall' " ></p>
-					<p data-ng-if="drug.details.labelChanges" data-drug-summary data-drug="drug" data-type=" 'label' "></p>
-				</div>
-			</li>
-		</ul>
-	</div>
-</main>
-<aside class="about-med-alerts">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-10 col-sm-offset-1 ">
-				<h2>Why Med Alerts?</h2>
-				<div class="purpose">
-					<aside class="statistic">
-						<div class="circle-graph" data-graph-pct="82">
-							<div class="circle">
-								<div class="mask full">
-									<div class="fill"></div>
-								</div>
-								<div class="mask half">
-									<div class="fill"></div>
-									<div class="fill fix"></div>
-								</div>
-							</div>
-							<div class="inset">
-								<div class="percentage"></div>
-							</div>
-						</div>
-						<span>of American adults take at least one medication.</span>
-					</aside>
-					<p>The Med Alerts application allows an informed consumer to research individual drugs for recent recalls or label changes through the <a href="http://open.fda.gov">OpenFDA API</a>. Similar to subscribing for updates on social media, you may choose to “follow” a drug of interest and be alerted of changes when you revisit <a href="http://18f.sparcedge.com">18f.sparcedge.com</a>.</p>
-				</div>
-				<div class="statistics">
-					<aside class="statistic">
-						<div class="circle-graph" data-graph-pct="29">
-							<div class="circle">
-								<div class="mask full">
-									<div class="fill"></div>
-								</div>
-								<div class="mask half">
-									<div class="fill"></div>
-									<div class="fill fix"></div>
-								</div>
-							</div>
-							<div class="inset">
-								<div class="percentage"></div>
-							</div>
-						</div>
-						<span>of American adults take 5 or more medications.</span>
-					</aside>
-					<p><a href="http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm">According to FDA research</a>, there are approximately 106,000 deaths per year attributed to adverse reactions to prescription drugs. One in five hospital visits are the result of a drug reaction. And adverse drug reactions are estimated to cost our country $135 Billion dollars a year.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</aside>
-<footer>
-	<div class="container">
-		<div class="row">
+                </ui-select>
+            </div>
+            <div role="main" class="followed-drugs">
+                <div id="content" class="">
+                    <h2>Medications you're Following</h2>
+                    <p class="empty-drugs-list alert alert-info" data-ng-show="followedDrugs.length === 0">
+                        To follow a medication, search above and click the “follow” button.
+                    </p>
+                    <ul data-ng-show="followedDrugs.length">
+                        <li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">
+                            <span class="status-icon"></span>
+                            <h3 data-ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>
+                            <button class="btn btn-xs btn-follow" data-ng-click="removeDrug(drug)" data-ng-mouseover="hoverFollow()" data-ng-mouseleave="leaveFollow()">
+                                <span data-ng-show="followHovered">Unfollow</span>
+                                <span data-ng-hide="followHovered">Following</span>
+                            </button>
+                            <div class="drug-summary">
+                                <p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" 'recall' " ></p>
+                                <p data-ng-if="drug.details.labelChanges" data-drug-summary data-drug="drug" data-type=" 'label' "></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-			<ul class="technical-details list-unstyled col-md-6">
-				<li class="header">
-					<h2>Made by SPARC</h2>
-					<p>This prototype was built by <a href="http://www.sparcedge.com/">SPARC LLC</a>, a Veteran Owned Small Business located in Charleston SC.  We use Agile development and multiple open source technologies to deliver for our Federal and Commercial customers. </p>
-					<p>Open source technologies used:</p>
-				</li>
+        <div class="col-md-8 why-med-pal">
+            <h2>Why Med Pal?</h2>
+            <p>The Med Pal application allows an informed consumer to research individual drugs for recent recalls or label changes through the <a href="http://open.fda.gov">OpenFDA API</a>. Similar to subscribing for updates on social media, you may choose to “follow” a drug of interest and be alerted of changes when you revisit <a href="http://18f.sparcedge.com">18f.sparcedge.com</a>.</p>
+            <p><a href="http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm">According to FDA research</a>, there are approximately 106,000 deaths per year attributed to adverse reactions to prescription drugs. One in five hospital visits are the result of a drug reaction. And adverse drug reactions are estimated to cost our country $135 Billion dollars a year.</p>
 
-				<li>Development Layer
-					<ul>
-						<li>Play Framework</li>
-						<li>Scala</li>
-						<li>AngularJS</li>
-						<li>lodash</li>
-					</ul>
-				</li>
-				<li>
-					Visual / Design Layer
-					<ul>
-						<li>Bootstrap</li>
-						<li>Google Fonts</li>
-					</ul>
-				</li>
-				<li>
-					QA Layer
-					<ul>
-						<li>Scala Test</li>
-						<li>Jasmine</li>
-						<li>Karma</li>
-					</ul>
-				</li>
-				<li>
-					DevOps Layer
-					<ul>
-						<li>GulpJS</li>
-						<li>Docker</li>
-					</ul>
-				</li>
-			</ul>
+            <div class="purpose">
+                <aside class="statistic">
+                    <div class="circle-graph" data-graph-pct="82">
+                        <div class="circle">
+                            <div class="mask full">
+                                <div class="fill"></div>
+                            </div>
+                            <div class="mask half">
+                                <div class="fill"></div>
+                                <div class="fill fix"></div>
+                            </div>
+                        </div>
+                        <div class="inset">
+                            <div class="percentage"></div>
+                        </div>
+                    </div>
+                    <span>of American adults take at least one medication.</span>
+                </aside>
+            </div>
+            <div class="statistics">
+                <aside class="statistic">
+                    <div class="circle-graph" data-graph-pct="29">
+                        <div class="circle">
+                            <div class="mask full">
+                                <div class="fill"></div>
+                            </div>
+                            <div class="mask half">
+                                <div class="fill"></div>
+                                <div class="fill fix"></div>
+                            </div>
+                        </div>
+                        <div class="inset">
+                            <div class="percentage"></div>
+                        </div>
+                    </div>
+                    <span>of American adults take 5 or more medications.</span>
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>
 
-			<div class="feedback list-unstyled col-md-6">
-				<h2>Feedback Welcome</h2>
 
-				<p>Medalerts was built as a beta to showcase our ability to rapidly create a product of value and in response to the RFP from 18F. It was scoped to create a lightweight app that delivers useful functionality to the user. This prototype leverages the openFDA beta research project and not for clinical use. Please refer to the OpenFDA <a href="https://open.fda.gov/terms/">Terms of Service</a>.</p>
-
-				<p>In future phases of development, the product roadmap may include:</p>
-				<ul>
-					<li>The ability to register and receive email, social or SMS notifications about the medications they follow.</li>
-					<li>Create and follow multiple lists.</li>
-					<li>Integration with other service APIs for a richer experience.</li>
-					<li>The ability to cross reference your list of followed drugs for adverse reactions to each other. </li>
-					<li>Increase information, crowdsourced reviews, and listing alternative drugs within each medications detail view.</li>
-				</ul>
-				<span>
-					Submit feedback to <a href="mailto:18F@sparcedge.com?Subject=18f%20Feedback" target="_top">18F@sparcedge.com</a>
-				</span>
-			</div>
-		</div>
-	</div>
-</footer>

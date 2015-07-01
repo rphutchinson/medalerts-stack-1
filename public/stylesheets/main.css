@@ -6459,6 +6459,11 @@ h6,
 #navbar li {
   list-style: none;
 }
+.why-med-pal {
+  background-color: #ededed;
+  min-height: 960px;
+  margin-left: -15px;
+}
 .drug-summary {
   background-color: #ffffff;
 }
@@ -6477,7 +6482,7 @@ header[role="banner"] img {
   display: table-cell;
   display: inline-block;
   vertical-align: middle;
-  height: 64px;
+  height: 120px;
   pointer-events: none;
 }
 section[role="search"] {

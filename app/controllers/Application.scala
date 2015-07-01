@@ -12,6 +12,6 @@ object Application extends Controller with XhrActionSupport {
   def index = indexWithPath("/")
 
   def indexWithPath(path: String) = Action {
-    Ok(views.html.main("Med Alerts"))
+    Ok(views.html.main("Med Pal"))
   }
 }

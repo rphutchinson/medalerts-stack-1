@@ -5,6 +5,82 @@ try {
   module = angular.module('app.tpl', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/main/partials/about.html',
+    '<div class="container">\n' +
+    '    <div class="row">\n' +
+    '\n' +
+    '        <ul class="technical-details list-unstyled col-md-6">\n' +
+    '            <li class="header">\n' +
+    '                <h2>Made by SPARC</h2>\n' +
+    '                <p>This prototype was built by <a href="http://www.sparcedge.com/">SPARC LLC</a>, a Veteran Owned Small Business located in Charleston SC.  We use Agile development and multiple open source technologies to deliver for our Federal and Commercial customers. </p>\n' +
+    '                <p>Open source technologies used:</p>\n' +
+    '            </li>\n' +
+    '\n' +
+    '            <li>Development Layer\n' +
+    '                <ul>\n' +
+    '                    <li>Play Framework</li>\n' +
+    '                    <li>Scala</li>\n' +
+    '                    <li>AngularJS</li>\n' +
+    '                    <li>lodash</li>\n' +
+    '                </ul>\n' +
+    '            </li>\n' +
+    '            <li>\n' +
+    '                Visual / Design Layer\n' +
+    '                <ul>\n' +
+    '                    <li>Bootstrap</li>\n' +
+    '                    <li>Google Fonts</li>\n' +
+    '                </ul>\n' +
+    '            </li>\n' +
+    '            <li>\n' +
+    '                QA Layer\n' +
+    '                <ul>\n' +
+    '                    <li>Scala Test</li>\n' +
+    '                    <li>Jasmine</li>\n' +
+    '                    <li>Karma</li>\n' +
+    '                </ul>\n' +
+    '            </li>\n' +
+    '            <li>\n' +
+    '                DevOps Layer\n' +
+    '                <ul>\n' +
+    '                    <li>GulpJS</li>\n' +
+    '                    <li>Docker</li>\n' +
+    '                </ul>\n' +
+    '            </li>\n' +
+    '        </ul>\n' +
+    '\n' +
+    '        <div class="feedback list-unstyled col-md-6">\n' +
+    '            <h2>Feedback Welcome</h2>\n' +
+    '\n' +
+    '            <p>Medalerts was built as a beta to showcase our ability to rapidly create a product of value and in response to the RFP from 18F. It was scoped to create a lightweight app that delivers useful functionality to the user. This prototype leverages the openFDA beta research project and not for clinical use. Please refer to the OpenFDA <a href="https://open.fda.gov/terms/">Terms of Service</a>.</p>\n' +
+    '\n' +
+    '            <p>In future phases of development, the product roadmap may include:</p>\n' +
+    '            <ul>\n' +
+    '                <li>The ability to register and receive email, social or SMS notifications about the medications they follow.</li>\n' +
+    '                <li>Create and follow multiple lists.</li>\n' +
+    '                <li>Integration with other service APIs for a richer experience.</li>\n' +
+    '                <li>The ability to cross reference your list of followed drugs for adverse reactions to each other. </li>\n' +
+    '                <li>Increase information, crowdsourced reviews, and listing alternative drugs within each medications detail view.</li>\n' +
+    '            </ul>\n' +
+    '				<span>\n' +
+    '					Submit feedback to <a href="mailto:18F@sparcedge.com?Subject=18f%20Feedback" target="_top">18F@sparcedge.com</a>\n' +
+    '				</span>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '</div>\n' +
+    '</div>\n' +
+    '</div>\n' +
+    '</div>\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('app.tpl');
+} catch (e) {
+  module = angular.module('app.tpl', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/main/partials/details-modal.html',
     '<div class="drug-detail-modal">\n' +
     '	<div class="modal-header">\n' +
@@ -105,163 +181,107 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/main/partials/main-index.html',
-    '<section role="search">\n' +
-    '	<div class="container">\n' +
-    '		<label for="selectDrugInput" class="sr-only">Search for medications by\n' +
-    '			name</label>\n' +
-    '		<ui-select id="selectDrugInput"\n' +
-    '				class="ui-select-scroll ui-select-auto-width ui-select-opaque"\n' +
-    '				theme="bootstrap"\n' +
-    '				data-ng-model="drug.selected"\n' +
-    '				search-enabled="true"\n' +
-    '				reset-search-input="true">\n' +
-    '			<img style="width: 64px; height: 64px;" src="assets/images/icon-search.svg" alt="">\n' +
-    '			<ui-select-match placeholder="Type a Medication Name...">\n' +
+    '<div class="container-fluid">\n' +
+    '    <div class="row">\n' +
+    '        <div class="col-md-4">\n' +
+    '            <header role="banner">\n' +
+    '                <div>\n' +
+    '                    <img src="assets/images/medpal-logo.svg" alt="Med Pal logo">\n' +
+    '                </div>\n' +
+    '            </header>\n' +
+    '            <div>\n' +
+    '                <label for="selectDrugInput" class="sr-only">Search for medications by\n' +
+    '                    name</label>\n' +
+    '                <ui-select id="selectDrugInput"\n' +
+    '                           class="ui-select-scroll ui-select-auto-width ui-select-opaque"\n' +
+    '                           theme="bootstrap"\n' +
+    '                           data-ng-model="drug.selected"\n' +
+    '                           search-enabled="true"\n' +
+    '                           reset-search-input="true">\n' +
+    '                    <img style="width: 64px; height: 64px;" src="assets/images/icon-search.svg" alt="">\n' +
+    '                    <ui-select-match placeholder="Type a Medication Name...">\n' +
     '\n' +
-    '			</ui-select-match>\n' +
+    '                    </ui-select-match>\n' +
     '\n' +
-    '			<ui-select-choices\n' +
-    '					repeat="drug as drug in drugs | filter: $select.search">\n' +
-    '				{{ drug }}\n' +
-    '			</ui-select-choices>\n' +
+    '                    <ui-select-choices\n' +
+    '                            repeat="drug as drug in drugs | filter: $select.search">\n' +
+    '                        {{ drug }}\n' +
+    '                    </ui-select-choices>\n' +
     '\n' +
-    '		</ui-select>\n' +
-    '	</div>\n' +
-    '</section>\n' +
-    '<main role="main" class="followed-drugs">\n' +
-    '	<div id="content" class="container">\n' +
-    '		<h2>Medications you\'re Following</h2>\n' +
-    '		<p class="empty-drugs-list alert alert-info" data-ng-show="followedDrugs.length === 0">\n' +
-    '			To follow a medication, search above and click the “follow” button.\n' +
-    '		</p>\n' +
-    '		<ul data-ng-show="followedDrugs.length">\n' +
-    '			<li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">\n' +
-    '				<span class="status-icon"></span>\n' +
-    '				<h3 data-ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>\n' +
-    '				<button class="btn btn-xs btn-follow" data-ng-click="removeDrug(drug)" data-ng-mouseover="hoverFollow()" data-ng-mouseleave="leaveFollow()">\n' +
-    '						<span data-ng-show="followHovered">Unfollow</span>\n' +
-    '						<span data-ng-hide="followHovered">Following</span>\n' +
-    '				</button>\n' +
-    '				<div class="drug-summary">\n' +
-    '					<p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" \'recall\' " ></p>\n' +
-    '					<p data-ng-if="drug.details.labelChanges" data-drug-summary data-drug="drug" data-type=" \'label\' "></p>\n' +
-    '				</div>\n' +
-    '			</li>\n' +
-    '		</ul>\n' +
-    '	</div>\n' +
-    '</main>\n' +
-    '<aside class="about-med-alerts">\n' +
-    '	<div class="container">\n' +
-    '		<div class="row">\n' +
-    '			<div class="col-sm-10 col-sm-offset-1 ">\n' +
-    '				<h2>Why Med Alerts?</h2>\n' +
-    '				<div class="purpose">\n' +
-    '					<aside class="statistic">\n' +
-    '						<div class="circle-graph" data-graph-pct="82">\n' +
-    '							<div class="circle">\n' +
-    '								<div class="mask full">\n' +
-    '									<div class="fill"></div>\n' +
-    '								</div>\n' +
-    '								<div class="mask half">\n' +
-    '									<div class="fill"></div>\n' +
-    '									<div class="fill fix"></div>\n' +
-    '								</div>\n' +
-    '							</div>\n' +
-    '							<div class="inset">\n' +
-    '								<div class="percentage"></div>\n' +
-    '							</div>\n' +
-    '						</div>\n' +
-    '						<span>of American adults take at least one medication.</span>\n' +
-    '					</aside>\n' +
-    '					<p>The Med Alerts application allows an informed consumer to research individual drugs for recent recalls or label changes through the <a href="http://open.fda.gov">OpenFDA API</a>. Similar to subscribing for updates on social media, you may choose to “follow” a drug of interest and be alerted of changes when you revisit <a href="http://18f.sparcedge.com">18f.sparcedge.com</a>.</p>\n' +
-    '				</div>\n' +
-    '				<div class="statistics">\n' +
-    '					<aside class="statistic">\n' +
-    '						<div class="circle-graph" data-graph-pct="29">\n' +
-    '							<div class="circle">\n' +
-    '								<div class="mask full">\n' +
-    '									<div class="fill"></div>\n' +
-    '								</div>\n' +
-    '								<div class="mask half">\n' +
-    '									<div class="fill"></div>\n' +
-    '									<div class="fill fix"></div>\n' +
-    '								</div>\n' +
-    '							</div>\n' +
-    '							<div class="inset">\n' +
-    '								<div class="percentage"></div>\n' +
-    '							</div>\n' +
-    '						</div>\n' +
-    '						<span>of American adults take 5 or more medications.</span>\n' +
-    '					</aside>\n' +
-    '					<p><a href="http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm">According to FDA research</a>, there are approximately 106,000 deaths per year attributed to adverse reactions to prescription drugs. One in five hospital visits are the result of a drug reaction. And adverse drug reactions are estimated to cost our country $135 Billion dollars a year.</p>\n' +
-    '				</div>\n' +
-    '			</div>\n' +
-    '		</div>\n' +
-    '	</div>\n' +
-    '</aside>\n' +
-    '<footer>\n' +
-    '	<div class="container">\n' +
-    '		<div class="row">\n' +
+    '                </ui-select>\n' +
+    '            </div>\n' +
+    '            <div role="main" class="followed-drugs">\n' +
+    '                <div id="content" class="">\n' +
+    '                    <h2>Medications you\'re Following</h2>\n' +
+    '                    <p class="empty-drugs-list alert alert-info" data-ng-show="followedDrugs.length === 0">\n' +
+    '                        To follow a medication, search above and click the “follow” button.\n' +
+    '                    </p>\n' +
+    '                    <ul data-ng-show="followedDrugs.length">\n' +
+    '                        <li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">\n' +
+    '                            <span class="status-icon"></span>\n' +
+    '                            <h3 data-ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>\n' +
+    '                            <button class="btn btn-xs btn-follow" data-ng-click="removeDrug(drug)" data-ng-mouseover="hoverFollow()" data-ng-mouseleave="leaveFollow()">\n' +
+    '                                <span data-ng-show="followHovered">Unfollow</span>\n' +
+    '                                <span data-ng-hide="followHovered">Following</span>\n' +
+    '                            </button>\n' +
+    '                            <div class="drug-summary">\n' +
+    '                                <p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" \'recall\' " ></p>\n' +
+    '                                <p data-ng-if="drug.details.labelChanges" data-drug-summary data-drug="drug" data-type=" \'label\' "></p>\n' +
+    '                            </div>\n' +
+    '                        </li>\n' +
+    '                    </ul>\n' +
+    '                </div>\n' +
+    '            </div>\n' +
+    '        </div>\n' +
     '\n' +
-    '			<ul class="technical-details list-unstyled col-md-6">\n' +
-    '				<li class="header">\n' +
-    '					<h2>Made by SPARC</h2>\n' +
-    '					<p>This prototype was built by <a href="http://www.sparcedge.com/">SPARC LLC</a>, a Veteran Owned Small Business located in Charleston SC.  We use Agile development and multiple open source technologies to deliver for our Federal and Commercial customers. </p>\n' +
-    '					<p>Open source technologies used:</p>\n' +
-    '				</li>\n' +
+    '        <div class="col-md-8 why-med-pal">\n' +
+    '            <h2>Why Med Pal?</h2>\n' +
+    '            <p>The Med Pal application allows an informed consumer to research individual drugs for recent recalls or label changes through the <a href="http://open.fda.gov">OpenFDA API</a>. Similar to subscribing for updates on social media, you may choose to “follow” a drug of interest and be alerted of changes when you revisit <a href="http://18f.sparcedge.com">18f.sparcedge.com</a>.</p>\n' +
+    '            <p><a href="http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm">According to FDA research</a>, there are approximately 106,000 deaths per year attributed to adverse reactions to prescription drugs. One in five hospital visits are the result of a drug reaction. And adverse drug reactions are estimated to cost our country $135 Billion dollars a year.</p>\n' +
     '\n' +
-    '				<li>Development Layer\n' +
-    '					<ul>\n' +
-    '						<li>Play Framework</li>\n' +
-    '						<li>Scala</li>\n' +
-    '						<li>AngularJS</li>\n' +
-    '						<li>lodash</li>\n' +
-    '					</ul>\n' +
-    '				</li>\n' +
-    '				<li>\n' +
-    '					Visual / Design Layer\n' +
-    '					<ul>\n' +
-    '						<li>Bootstrap</li>\n' +
-    '						<li>Google Fonts</li>\n' +
-    '					</ul>\n' +
-    '				</li>\n' +
-    '				<li>\n' +
-    '					QA Layer\n' +
-    '					<ul>\n' +
-    '						<li>Scala Test</li>\n' +
-    '						<li>Jasmine</li>\n' +
-    '						<li>Karma</li>\n' +
-    '					</ul>\n' +
-    '				</li>\n' +
-    '				<li>\n' +
-    '					DevOps Layer\n' +
-    '					<ul>\n' +
-    '						<li>GulpJS</li>\n' +
-    '						<li>Docker</li>\n' +
-    '					</ul>\n' +
-    '				</li>\n' +
-    '			</ul>\n' +
+    '            <div class="purpose">\n' +
+    '                <aside class="statistic">\n' +
+    '                    <div class="circle-graph" data-graph-pct="82">\n' +
+    '                        <div class="circle">\n' +
+    '                            <div class="mask full">\n' +
+    '                                <div class="fill"></div>\n' +
+    '                            </div>\n' +
+    '                            <div class="mask half">\n' +
+    '                                <div class="fill"></div>\n' +
+    '                                <div class="fill fix"></div>\n' +
+    '                            </div>\n' +
+    '                        </div>\n' +
+    '                        <div class="inset">\n' +
+    '                            <div class="percentage"></div>\n' +
+    '                        </div>\n' +
+    '                    </div>\n' +
+    '                    <span>of American adults take at least one medication.</span>\n' +
+    '                </aside>\n' +
+    '            </div>\n' +
+    '            <div class="statistics">\n' +
+    '                <aside class="statistic">\n' +
+    '                    <div class="circle-graph" data-graph-pct="29">\n' +
+    '                        <div class="circle">\n' +
+    '                            <div class="mask full">\n' +
+    '                                <div class="fill"></div>\n' +
+    '                            </div>\n' +
+    '                            <div class="mask half">\n' +
+    '                                <div class="fill"></div>\n' +
+    '                                <div class="fill fix"></div>\n' +
+    '                            </div>\n' +
+    '                        </div>\n' +
+    '                        <div class="inset">\n' +
+    '                            <div class="percentage"></div>\n' +
+    '                        </div>\n' +
+    '                    </div>\n' +
+    '                    <span>of American adults take 5 or more medications.</span>\n' +
+    '                </aside>\n' +
+    '            </div>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '</div>\n' +
     '\n' +
-    '			<div class="feedback list-unstyled col-md-6">\n' +
-    '				<h2>Feedback Welcome</h2>\n' +
     '\n' +
-    '				<p>Medalerts was built as a beta to showcase our ability to rapidly create a product of value and in response to the RFP from 18F. It was scoped to create a lightweight app that delivers useful functionality to the user. This prototype leverages the openFDA beta research project and not for clinical use. Please refer to the OpenFDA <a href="https://open.fda.gov/terms/">Terms of Service</a>.</p>\n' +
-    '\n' +
-    '				<p>In future phases of development, the product roadmap may include:</p>\n' +
-    '				<ul>\n' +
-    '					<li>The ability to register and receive email, social or SMS notifications about the medications they follow.</li>\n' +
-    '					<li>Create and follow multiple lists.</li>\n' +
-    '					<li>Integration with other service APIs for a richer experience.</li>\n' +
-    '					<li>The ability to cross reference your list of followed drugs for adverse reactions to each other. </li>\n' +
-    '					<li>Increase information, crowdsourced reviews, and listing alternative drugs within each medications detail view.</li>\n' +
-    '				</ul>\n' +
-    '				<span>\n' +
-    '					Submit feedback to <a href="mailto:18F@sparcedge.com?Subject=18f%20Feedback" target="_top">18F@sparcedge.com</a>\n' +
-    '				</span>\n' +
-    '			</div>\n' +
-    '		</div>\n' +
-    '	</div>\n' +
-    '</footer>\n' +
     '');
 }]);
 })();
