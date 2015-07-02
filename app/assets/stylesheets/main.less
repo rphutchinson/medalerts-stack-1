@@ -13,6 +13,9 @@
 //Angular UI-Select
 @import (less) "lib/angular-ui-select/select.css";
 
+//Animate
+@import (less) "lib/animate.css/animate.css";
+
 // Core variables and mixins
 @import "@{bootstrap}/variables.less";
 @import "@{bootstrap}/mixins.less";
@@ -406,6 +409,7 @@ aside.statistic {
       text-decoration: none;
       color: white !important;
       cursor: pointer;
+      padding-right: 30px;
     }
 
     .follow-button {
@@ -428,6 +432,7 @@ aside.statistic {
     min-height: 600px;
     margin-top: -30px;
     padding-left: 30px;
+    padding-bottom: 40px;
     color: white;
     h3 {
       color: white;
@@ -452,63 +457,6 @@ aside.statistic {
   }
 }
 
-
-//.drug-detail-modal {
-//	background: RGBA(33, 125, 181, 1);
-//	color: rgba(255,255,255,0.85);
-//
-//	.modal-header {
-//		.clearfix();
-//		background: rgba(21, 137, 206, 1);
-//		border-bottom: none;
-//		.modal-title {
-//			float: left;
-//			color: white;
-//		}
-//		.close-button {
-//			float: right;
-//			padding: 8px 16px;
-//  			margin-top: 9px;
-//  			border: 1px solid transparent;
-//  			margin-left: 15px;
-//		}
-//		.follow-button {
-//			float: right;
-//			width: 150px;
-//			padding: 8px 16px;
-//  			margin-top: 9px;
-//			background: @app-light-gray;
-//			color: @app-dark-gray;
-//			border: 1px solid transparent;
-//  			&.following {
-//  				background: @app-dark-gray;
-//  				color: white;
-//  			}
-//		}
-//
-//	}
-//	.modal-body {
-//		padding: 15px 25px;
-//		position: relative;
-//		.loading-message {
-//			text-align: center;
-//			padding: 40px 0px;
-//		}
-//		dt {
-//			color: rgba(255,255,255, 0.54);
-//		}
-//		dd {
-//			color: rgba(255,255,255, 0.87);
-//		}
-//		h2, h3 {
-//			color: rgba(255,255,255,0.87);
-//			line-height: 1;
-//		}
-//		h3 {
-//			color: rgba(255,255,255, 0.54);
-//		}
-//	}
-//}
 .circle-graph {
   //   float: left;
   // clear: left;
@@ -589,4 +537,17 @@ aside.statistic {
 		.loop(@i + 1);
 	}
 	.loop(@i);
+}
+
+
+//animations
+.side-panel.ng-hide-remove {
+  -webkit-animation: slideInRight .5s;
+  animation: slideInRight .5s;
+}
+
+.side-panel.ng-hide-add {
+  -webkit-animation: slideOutRight .5s;
+  animation: slideOutRight .5s;
+  display: block !important;
 }

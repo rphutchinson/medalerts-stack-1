@@ -260,11 +260,11 @@ module.run(['$templateCache', function($templateCache) {
     '            </div>\n' +
     '        </div>\n' +
     '\n' +
-    '        <div class="col-md-8 no-padding" data-ng-show="drug.name">\n' +
+    '        <div class="col-md-8 no-padding side-panel" data-ng-show="drug.name">\n' +
     '            <div data-drug-detail data-drug="drug"></div>\n' +
     '        </div>\n' +
     '\n' +
-    '        <div data-ng-show="!drug.name" class="col-md-8 no-padding why-med-pal">\n' +
+    '        <div data-ng-show="!drug.name" class="col-md-8 no-padding why-med-pal side-panel">\n' +
     '            <div data-ng-include="supplemental"></div>\n' +
     '        </div>\n' +
     '    </div>\n' +

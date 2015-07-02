@@ -38,7 +38,8 @@ libraryDependencies ++= Seq(
   "org.webjars" % "bootstrap" % "3.1.1-2",
   "org.webjars" % "angular-ui-bootstrap" % "0.12.1-1",
   "org.webjars" % "angular-ui-select" % "0.11.2",
-  "org.webjars.bower" % "lodash" % "3.9.3"
+  "org.webjars.bower" % "lodash" % "3.9.3",
+  "org.webjars" % "animate.css" % "3.3.0"
 ) 
 
 // new relic config
