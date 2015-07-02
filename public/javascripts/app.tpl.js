@@ -6,49 +6,54 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/main/partials/about.html',
-    '<div class="content">\n' +
-    '    <div class="row">\n' +
+    '<div class="content supplemental">\n' +
+    '    <ul class="technical-details list-unstyled">\n' +
+    '        <li class="header">\n' +
+    '            <h2>About this App</h2>\n' +
     '\n' +
-    '        <ul class="technical-details list-unstyled col-md-6">\n' +
-    '            <li class="header">\n' +
-    '                <h2>Made by SPARC</h2>\n' +
-    '                <p>This prototype was built by <a href="http://www.sparcedge.com/">SPARC LLC</a>, a Veteran Owned Small Business located in Charleston SC.  We use Agile development and multiple open source technologies to deliver for our Federal and Commercial customers. </p>\n' +
-    '                <p>Open source technologies used:</p>\n' +
-    '            </li>\n' +
+    '            <p><strong>Open Source & Built by SPARC</strong></p>\n' +
     '\n' +
-    '            <li>Development Layer\n' +
-    '                <ul>\n' +
-    '                    <li>Play Framework</li>\n' +
-    '                    <li>Scala</li>\n' +
-    '                    <li>AngularJS</li>\n' +
-    '                    <li>lodash</li>\n' +
-    '                </ul>\n' +
-    '            </li>\n' +
-    '            <li>\n' +
-    '                Visual / Design Layer\n' +
-    '                <ul>\n' +
-    '                    <li>Bootstrap</li>\n' +
-    '                    <li>Google Fonts</li>\n' +
-    '                </ul>\n' +
-    '            </li>\n' +
-    '            <li>\n' +
-    '                QA Layer\n' +
-    '                <ul>\n' +
-    '                    <li>Scala Test</li>\n' +
-    '                    <li>Jasmine</li>\n' +
-    '                    <li>Karma</li>\n' +
-    '                </ul>\n' +
-    '            </li>\n' +
-    '            <li>\n' +
-    '                DevOps Layer\n' +
-    '                <ul>\n' +
-    '                    <li>GulpJS</li>\n' +
-    '                    <li>Docker</li>\n' +
-    '                </ul>\n' +
-    '            </li>\n' +
-    '        </ul>\n' +
+    '            <p>This prototype was built by <a href="http://www.sparcedge.com/">SPARC\n' +
+    '                LLC</a>, a Veteran Owned Small Business located in Charleston\n' +
+    '                SC. We use Agile development and multiple open source\n' +
+    '                technologies to deliver for our Federal and Commercial\n' +
+    '                customers. </p>\n' +
     '\n' +
-    '    </div>\n' +
+    '            <p><strong>Open source technologies used:</strong></p>\n' +
+    '        </li>\n' +
+    '\n' +
+    '        <li>Development Layer\n' +
+    '            <ul>\n' +
+    '                <li>Play Framework</li>\n' +
+    '                <li>Scala</li>\n' +
+    '                <li>AngularJS</li>\n' +
+    '                <li>lodash</li>\n' +
+    '            </ul>\n' +
+    '        </li>\n' +
+    '        <li>\n' +
+    '            Visual / Design Layer\n' +
+    '            <ul>\n' +
+    '                <li>Bootstrap</li>\n' +
+    '                <li>Google Fonts</li>\n' +
+    '            </ul>\n' +
+    '        </li>\n' +
+    '        <li>\n' +
+    '            QA Layer\n' +
+    '            <ul>\n' +
+    '                <li>Scala Test</li>\n' +
+    '                <li>Jasmine</li>\n' +
+    '                <li>Karma</li>\n' +
+    '            </ul>\n' +
+    '        </li>\n' +
+    '        <li>\n' +
+    '            DevOps Layer\n' +
+    '            <ul>\n' +
+    '                <li>GulpJS</li>\n' +
+    '                <li>Docker</li>\n' +
+    '            </ul>\n' +
+    '        </li>\n' +
+    '    </ul>\n' +
+    '\n' +
     '</div>\n' +
     '');
 }]);
@@ -159,17 +164,21 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/main/partials/feedback.html',
-    '<div class="feedback list-unstyled col-md-6">\n' +
+    '<div class="feedback list-unstyled content supplemental">\n' +
     '    <h2>Feedback Welcome</h2>\n' +
     '\n' +
-    '    <p>Medalerts was built as a beta to showcase our ability to rapidly create a product of value and in response to the RFP from 18F. It was scoped to create a lightweight app that delivers useful functionality to the user. This prototype leverages the openFDA beta research project and not for clinical use. Please refer to the OpenFDA <a href="https://open.fda.gov/terms/">Terms of Service</a>.</p>\n' +
-    '\n' +
-    '    <p>In future phases of development, the product roadmap may include:</p>\n' +
+    '    <p>\n' +
+    '        SPARC built Med PAL to demonstrate our ability to rapidly create a\n' +
+    '        product of value using an Agile development methodology. This\n' +
+    '        prototype leverages the openFDA beta research project and is not for\n' +
+    '        clinical use. Please refer to the OpenFDA <a href="https://open.fda.gov/terms/">Terms of Service</a>.\n' +
+    '    </p>\n' +
+    '    <p><strong>In future phases of development, the product roadmap may include the ability to:</strong></p>\n' +
     '    <ul>\n' +
-    '        <li>The ability to register and receive email, social or SMS notifications about the medications they follow.</li>\n' +
+    '        <li>Register and receive email, social or SMS notifications about the medications they follow.</li>\n' +
     '        <li>Create and follow multiple lists.</li>\n' +
     '        <li>Integration with other service APIs for a richer experience.</li>\n' +
-    '        <li>The ability to cross reference your list of followed drugs for adverse reactions to each other. </li>\n' +
+    '        <li>Cross-reference your list of followed drugs for adverse reactions to each other.</li>\n' +
     '        <li>Increase information, crowdsourced reviews, and listing alternative drugs within each medications detail view.</li>\n' +
     '    </ul>\n' +
     '    <span>\n' +
@@ -274,7 +283,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/main/partials/why.html',
-    '<div class="content">\n' +
+    '<div class="content supplemental">\n' +
     '    <h2>Why Med Pal?</h2>\n' +
     '    <p>The Med Pal application allows an informed consumer to research individual drugs for recent recalls or label changes through the <a href="http://open.fda.gov">OpenFDA API</a>. Similar to subscribing for updates on social media, you may choose to “follow” a drug of interest and be alerted of changes when you revisit <a href="http://18f.sparcedge.com">18f.sparcedge.com</a>.</p>\n' +
     '    <p><a href="http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm">According to FDA research</a>, there are approximately 106,000 deaths per year attributed to adverse reactions to prescription drugs. One in five hospital visits are the result of a drug reaction. And adverse drug reactions are estimated to cost our country $135 Billion dollars a year.</p>\n' +
