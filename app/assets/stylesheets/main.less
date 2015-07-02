@@ -97,7 +97,14 @@
 .why-med-pal {
   background-color: @app-gray-00;
   min-height: 960px;
-  margin-left: -15px;
+  .content{
+    padding: 0 20px;
+  }
+}
+
+.no-padding{
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .aspectRatio(@widthAspect, @heightAspect) {
@@ -117,12 +124,12 @@
 @content-background: #EAEDEF;
 @circle-size: 120px;
 @circle-background: #fff;
-@circle-color: @app-light-blue;
+@circle-color: @app-red02;
 @inset-size: 110px;
 @inset-color: @content-background;
 @transition-length: 1s;
 @shadow: 6px 6px 10px rgba(0,0,0,0);
-@percentage-color: @app-light-blue;
+@percentage-color: @app-gray-03;
 @percentage-font-size: 42px;
 @percentage-text-width: 70px;
 
@@ -135,7 +142,7 @@ h2, .h2 {
 }
 
 header[role="banner"] {
-	background: @app-light-blue;
+	background: @app-red02;
 	padding: 40px 0px;
 	display: table;
 	width: 100%;
@@ -148,6 +155,15 @@ header[role="banner"] {
 		pointer-events: none;
 	}
 }
+header[role="bg-fill"] {
+  padding: 40px 0px;
+  display: table;
+  width: 100%;
+  min-height: 100px;
+  background: @app-red01;
+  z-index: -1;
+  margin-top: -100px;
+}
 
 section[role="search"] {
 	position: relative;
@@ -159,29 +175,27 @@ section[role="search"] {
 	&::before {
 		content: '';
 		display: block;
-		background: @app-light-blue;
+		background: @app-red01;
 		position: absolute;
-		height: 64px;
+		height: 80px;
 		width: 100%;
-		bottom: 32px;
+		bottom: -10px;
 	}
 
 	#selectDrugInput {
-		width: 100%;
+		width: 95%;
 		max-width: 570px;
 		margin: 0 auto;
 		position: relative;
 
 		.ui-select-match .btn,
 		.ui-select-search {
-			width: 100%;
 			height: 64px;
 			background: white;
 			font-size: 1em;
 			line-height: 2em;
 			border: 1px solid #EFEFEF;
 			padding: 0px 15px;
-			border-radius: 2em;
 			vertical-align: middle;
 			box-shadow: 0px 0px 3px 0px #B3B3B3 !important;
 			.ui-select-toggle {
@@ -194,7 +208,6 @@ section[role="search"] {
 
 		.ui-select-match {
 			background: transparent;
-			border-radius: 2em;
 
 			&.btn-default-focus {
 				outline: none;
@@ -217,8 +230,6 @@ section[role="search"] {
 			padding-top: 64px;
 			position: absolute;
 			margin: -64px 0px;
-			border-top-right-radius: 2em;
-			border-top-left-radius: 2em;
 			z-index: 1;
 			max-height: 350px;
 
@@ -238,240 +249,265 @@ section[role="search"] {
 	}
 }
 
-main.followed-drugs {
-	padding-bottom: 40px;
-	.empty-drugs-list {
-		position: relative;
-		width: 100%;
-		max-width: 570px;
-		margin: 30px auto 0px;
-		text-align: center;
-		&:after {
-			content: ' ';
-			position: absolute;
-			display: inline-block;
-			background: inherit;
-			width: 28px;
-			height: 28px;
-			left: 50%;
-			top: -15px;
-			transform: translate(-50%) rotate(-45deg);
-		}
-	}
+.followed-drugs{
+  h3 {
+    font-weight: lighter;
+    font-size: 18px;
+    line-height: 8px;
+    text-align: center;
+  }
 
-	h2 {
-		text-align: center;
-	}
-	ul {
-		width: 100%;
-		max-width: 570px;
-		margin: 0 auto;
-		position: relative;
-		list-style-type: none;
-		padding: 0;
+  .empty-drugs-list {
+    position: relative;
+    width: 95%;
+    max-width: 570px;
+    margin: 30px auto 0px;
+    text-align: center;
+    &:after {
+      content: ' ';
+      position: absolute;
+      display: inline-block;
+      background: inherit;
+      width: 28px;
+      height: 28px;
+      left: 50%;
+      top: -15px;
+      transform: translate(-50%) rotate(-45deg);
+    }
+  }
 
-		li {
-			cursor: default;
-			position: relative;
-			padding: 4px;
-		}
-	}
+  ul {
+    width: 100%;
+    max-width: 570px;
+    margin: 0 auto;
+    position: relative;
+    list-style-type: none;
+    padding: 0;
 
-	.drug-status-recall {
-	  background: @brand-danger url("http://18f-cdn.sparcedge.com/recall.svg") no-repeat 12px 20px;
-	  background-size: 36px 36px;
-	}
+    li {
+      cursor: pointer;
+      position: relative;
+      padding: 4px;
 
-	.drug-status-label {
-	  background: @brand-info url("http://18f-cdn.sparcedge.com/label-change.svg") no-repeat 12px 20px;
-	  background-size: 36px 36px;
-	}
+      &.selected {
+        background: @app-blue02;
+        color: white;
+      }
 
-	.drug-status-ok {
-	  background: @brand-success url("http://18f-cdn.sparcedge.com/all-good.svg") no-repeat 12px 20px;
-	  background-size: 36px 36px;
-	}
+      .status-icon {
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        margin-right: 10px;
 
-	button.btn-follow {
-		position: absolute;
-		top: 10px;
-		right: 20px;
-		height: 43px;
-		width: 90px;
-		display: inline-block;
+        &.drug-status-recall {
+          background: @app-red01;
+        }
 
-		&:hover {
-			background: @app-dark-gray;
-			color: white;
-		}
-	}
-	h3 {
-		padding: 10px 54px;
-		cursor: pointer;
-		display: inline-block;
-		margin: 0;
-		color: white;
+        &.drug-status-label {
+          background: @app-yellow-02
+        }
 
-		&:hover {
-			color: #1B1B1B;
-			text-decoration: underline;
-		}
-	}
+        &.drug-status-ok {
+          background: @app-light-blue;
+        }
 
-	.drug-summary {
-		padding: 0 16px;
-		background: rgba(255,255,255,0.6);
-		p {
-			&:last-child,
-			&:empty {
-				margin-bottom: 0;
-			}
-			&:empty {
-				margin-bottom: 0;
-				display: none;
-			}
-		}
-	}
+        &.drug-status-loading {
+          background: @app-gray-01;
+        }
+      }
+
+      span.summary{
+        display: inline-block;
+      }
+
+      span.name {
+        display: inline-block;
+      }
+    }
+  }
 }
 
-aside.about-med-alerts {
-	background: #e4e8ec;
-	padding: 10px 0 112px;
-	h2 {
-		text-align: center;
-	}
-	.statistic {
-		max-width: 320px;
-		margin-left: 25px;
-		float: right;
-		padding-right: 8px;
-		position: relative;
-		display: none;
-		@media (min-width: @screen-lg-min) {
-			display: block;
-		}
-		.circle-graph {
-			vertical-align: middle;
-		}
-		span {
-			vertical-align: middle;
-			max-width: 180px;
-			display: inline-block;
-			font-size: 16px;
-		}
+.links {
+  padding-top: 40px;
 
+  ul{
+    border-top: 1px solid #000000;
+    width: 95%;
+    max-width: 570px;
+    margin: 0 auto;
+    position: relative;
+    list-style-type: none;
+    padding: 0;
 
-	}
-	.purpose > p {
-		margin-bottom: 40px;
-	}
+    li {
+      line-height: 1;
+      cursor: pointer;
+      position: relative;
+      padding: 4px;
+
+      a {
+        font-size: 60%;
+      }
+    }
+  }
 }
 
-footer {
-	background: @app-light-blue;
-	color: rgba(255,255,255,0.87);;
-	padding-top: 15px;
-	padding-bottom: 40px;
-	a {
-		color: rgba(255,255,255,0.87);
-		text-decoration: none;
-		display: inline-block;
+aside.statistic {
+  padding: 10px 0 20px;
+  h2 {
+    text-align: center;
+  }
 
-		&:hover, &:active {
-			color: rgba(255,255,255, 0.95);
-		}
-
-	}
-
-	h2 {
-		color: white;
-		font-weight: 300;
-	}
-
-	ul {
-		display: block;
-		width: 100%;
-		margin-bottom: 15px;
-
-		.header {
-			li {
-				color: rgba(255,255,255, 0.77);
-			}
-		}
-
-		.header ~ li {
-			color: rgba(255,255,255, 0.58);
-
-			ul {
-				color: rgba(255,255,255, 0.9);
-			}
-		}
-	}
-}
-.modal-backdrop.in {
-	opacity: 0.75;
+  max-width: 320px;
+  margin-left: 25px;
+  padding-right: 8px;
+  position: relative;
+  display: none;
+  @media (min-width: @screen-lg-min) {
+    display: block;
+  }
+  .circle-graph {
+    vertical-align: middle;
+  }
+  span {
+    vertical-align: middle;
+    max-width: 180px;
+    display: inline-block;
+    font-size: 16px;
+  }
+  .purpose > p {
+    margin-bottom: 40px;
+  }
 }
 
-.modal-dialog .modal-content {
-	background: transparent;
+.stat-source {
+  font-size: 12px;
+  font-style: italic;
 }
 
-.drug-detail-modal {
-	background: RGBA(33, 125, 181, 1);
-	color: rgba(255,255,255,0.85);
+.drug-detail {
+  header {
+    background: @app-blue01;
+    padding: 29px 0px;
+    display: table;
+    width: 100%;
+    text-align: center;
+    h2 {
+      color: white;
+      text-align: center;
+      line-height: 30px;
+      margin: 0;
+      display: inline-block;
+    }
+    a.done {
+      text-decoration: none;
+      color: white !important;
+      cursor: pointer;
+    }
 
-	.modal-header {
-		.clearfix();
-		background: rgba(21, 137, 206, 1);
-		border-bottom: none;
-		.modal-title {
-			float: left;
-			color: white;
-		}
-		.close-button {
-			float: right;
-			padding: 8px 16px;
-  			margin-top: 9px;
-  			border: 1px solid transparent;
-  			margin-left: 15px;
-		}
-		.follow-button {
-			float: right;
-			width: 150px;
-			padding: 8px 16px;
-  			margin-top: 9px;
-			background: @app-light-gray;
-			color: @app-dark-gray;
-			border: 1px solid transparent;
-  			&.following {
-  				background: @app-dark-gray;
-  				color: white;
-  			}
-		}
+    .follow-button {
+      width: 150px;
+      padding: 8px 16px;
+      margin-top: -12px;
+      margin-left: 30px;
+      background: @app-light-gray;
+      color: @app-dark-gray;
+      border: 1px solid transparent;
+      &.following {
+        background: @app-dark-gray;
+        color: white;
+      }
+    }
+  }
 
-	}
-	.modal-body {
-		padding: 15px 25px;
-		position: relative;
-		.loading-message {
-			text-align: center;
-			padding: 40px 0px;
-		}
-		dt {
-			color: rgba(255,255,255, 0.54);
-		}
-		dd {
-			color: rgba(255,255,255, 0.87);
-		}
-		h2, h3 {
-			color: rgba(255,255,255,0.87);
-			line-height: 1;
-		}
-		h3 {
-			color: rgba(255,255,255, 0.54);
-		}
-	}
+  .drug-detail-content {
+    background: @app-blue02;
+    min-height: 600px;
+    margin-top: -30px;
+    padding-left: 30px;
+    color: white;
+    h3 {
+      color: white;
+      font-size: 22px;
+      line-height: 30px;
+    }
+
+    h4 {
+      color: @app-gray-00;
+      font-size: 18px;
+      line-height: 24px;
+      font-style: italic;
+    }
+
+    dt {
+      font-size: 14px;
+    }
+
+    dd {
+      font-size: 14px;
+    }
+  }
 }
+
+
+//.drug-detail-modal {
+//	background: RGBA(33, 125, 181, 1);
+//	color: rgba(255,255,255,0.85);
+//
+//	.modal-header {
+//		.clearfix();
+//		background: rgba(21, 137, 206, 1);
+//		border-bottom: none;
+//		.modal-title {
+//			float: left;
+//			color: white;
+//		}
+//		.close-button {
+//			float: right;
+//			padding: 8px 16px;
+//  			margin-top: 9px;
+//  			border: 1px solid transparent;
+//  			margin-left: 15px;
+//		}
+//		.follow-button {
+//			float: right;
+//			width: 150px;
+//			padding: 8px 16px;
+//  			margin-top: 9px;
+//			background: @app-light-gray;
+//			color: @app-dark-gray;
+//			border: 1px solid transparent;
+//  			&.following {
+//  				background: @app-dark-gray;
+//  				color: white;
+//  			}
+//		}
+//
+//	}
+//	.modal-body {
+//		padding: 15px 25px;
+//		position: relative;
+//		.loading-message {
+//			text-align: center;
+//			padding: 40px 0px;
+//		}
+//		dt {
+//			color: rgba(255,255,255, 0.54);
+//		}
+//		dd {
+//			color: rgba(255,255,255, 0.87);
+//		}
+//		h2, h3 {
+//			color: rgba(255,255,255,0.87);
+//			line-height: 1;
+//		}
+//		h3 {
+//			color: rgba(255,255,255, 0.54);
+//		}
+//	}
+//}
 .circle-graph {
   //   float: left;
   // clear: left;
@@ -529,7 +565,6 @@ footer {
 			font-size:   @percentage-font-size;
 		}
 	}
-	// @todo: lookup transform for 82 29
 	@i: 0;
 	@increment: 180deg / 100;
 	.loop (@i) when (@i <= 100) {

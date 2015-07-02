@@ -6462,7 +6462,13 @@ h6,
 .why-med-pal {
   background-color: #ededed;
   min-height: 960px;
-  margin-left: -15px;
+}
+.why-med-pal .content {
+  padding: 0 20px;
+}
+.no-padding {
+  padding-left: 0;
+  padding-right: 0;
 }
 .drug-summary {
   background-color: #ffffff;
@@ -6472,7 +6478,7 @@ h2,
   text-align: left;
 }
 header[role="banner"] {
-  background: #02a9f4;
+  background: #ba403d;
   padding: 40px 0px;
   display: table;
   width: 100%;
@@ -6485,6 +6491,15 @@ header[role="banner"] img {
   height: 120px;
   pointer-events: none;
 }
+header[role="bg-fill"] {
+  padding: 40px 0px;
+  display: table;
+  width: 100%;
+  min-height: 100px;
+  background: #ef5549;
+  z-index: -1;
+  margin-top: -100px;
+}
 section[role="search"] {
   position: relative;
   display: table;
@@ -6495,28 +6510,26 @@ section[role="search"] {
 section[role="search"]::before {
   content: '';
   display: block;
-  background: #02a9f4;
+  background: #ef5549;
   position: absolute;
-  height: 64px;
+  height: 80px;
   width: 100%;
-  bottom: 32px;
+  bottom: -10px;
 }
 section[role="search"] #selectDrugInput {
-  width: 100%;
+  width: 95%;
   max-width: 570px;
   margin: 0 auto;
   position: relative;
 }
 section[role="search"] #selectDrugInput .ui-select-match .btn,
 section[role="search"] #selectDrugInput .ui-select-search {
-  width: 100%;
   height: 64px;
   background: white;
   font-size: 1em;
   line-height: 2em;
   border: 1px solid #EFEFEF;
   padding: 0px 15px;
-  border-radius: 2em;
   vertical-align: middle;
   box-shadow: 0px 0px 3px 0px #B3B3B3 !important;
 }
@@ -6530,7 +6543,6 @@ section[role="search"] #selectDrugInput .ui-select-search .ui-select-placeholder
 }
 section[role="search"] #selectDrugInput .ui-select-match {
   background: transparent;
-  border-radius: 2em;
 }
 section[role="search"] #selectDrugInput .ui-select-match.btn-default-focus {
   outline: none;
@@ -6550,8 +6562,6 @@ section[role="search"] #selectDrugInput .ui-select-choices {
   padding-top: 64px;
   position: absolute;
   margin: -64px 0px;
-  border-top-right-radius: 2em;
-  border-top-left-radius: 2em;
   z-index: 1;
   max-height: 350px;
 }
@@ -6564,17 +6574,20 @@ section[role="search"] #selectDrugInput .ui-select-choices .ui-select-choices-ro
   line-height: 1.42857;
   white-space: nowrap;
 }
-main.followed-drugs {
-  padding-bottom: 40px;
+.followed-drugs h3 {
+  font-weight: lighter;
+  font-size: 18px;
+  line-height: 8px;
+  text-align: center;
 }
-main.followed-drugs .empty-drugs-list {
+.followed-drugs .empty-drugs-list {
   position: relative;
-  width: 100%;
+  width: 95%;
   max-width: 570px;
   margin: 30px auto 0px;
   text-align: center;
 }
-main.followed-drugs .empty-drugs-list:after {
+.followed-drugs .empty-drugs-list:after {
   content: ' ';
   position: absolute;
   display: inline-block;
@@ -6585,10 +6598,7 @@ main.followed-drugs .empty-drugs-list:after {
   top: -15px;
   transform: translate(-50%) rotate(-45deg);
 }
-main.followed-drugs h2 {
-  text-align: center;
-}
-main.followed-drugs ul {
+.followed-drugs ul {
   width: 100%;
   max-width: 570px;
   margin: 0 auto;
@@ -6596,198 +6606,148 @@ main.followed-drugs ul {
   list-style-type: none;
   padding: 0;
 }
-main.followed-drugs ul li {
-  cursor: default;
+.followed-drugs ul li {
+  cursor: pointer;
   position: relative;
   padding: 4px;
 }
-main.followed-drugs .drug-status-recall {
-  background: #f54336 url("http://18f-cdn.sparcedge.com/recall.svg") no-repeat 12px 20px;
-  background-size: 36px 36px;
-}
-main.followed-drugs .drug-status-label {
-  background: #fbc02c url("http://18f-cdn.sparcedge.com/label-change.svg") no-repeat 12px 20px;
-  background-size: 36px 36px;
-}
-main.followed-drugs .drug-status-ok {
-  background: #4caf4f url("http://18f-cdn.sparcedge.com/all-good.svg") no-repeat 12px 20px;
-  background-size: 36px 36px;
-}
-main.followed-drugs button.btn-follow {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  height: 43px;
-  width: 90px;
-  display: inline-block;
-}
-main.followed-drugs button.btn-follow:hover {
-  background: #3c3c3c;
+.followed-drugs ul li.selected {
+  background: #217db5;
   color: white;
 }
-main.followed-drugs h3 {
-  padding: 10px 54px;
+.followed-drugs ul li .status-icon {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 10px;
+}
+.followed-drugs ul li .status-icon.drug-status-recall {
+  background: #ef5549;
+}
+.followed-drugs ul li .status-icon.drug-status-label {
+  background: #ffce00;
+}
+.followed-drugs ul li .status-icon.drug-status-ok {
+  background: #02a9f4;
+}
+.followed-drugs ul li .status-icon.drug-status-loading {
+  background: #bac2c4;
+}
+.followed-drugs ul li span.summary {
+  display: inline-block;
+}
+.followed-drugs ul li span.name {
+  display: inline-block;
+}
+.links {
+  padding-top: 40px;
+}
+.links ul {
+  border-top: 1px solid #000000;
+  width: 95%;
+  max-width: 570px;
+  margin: 0 auto;
+  position: relative;
+  list-style-type: none;
+  padding: 0;
+}
+.links ul li {
+  line-height: 1;
   cursor: pointer;
-  display: inline-block;
-  margin: 0;
-  color: white;
+  position: relative;
+  padding: 4px;
 }
-main.followed-drugs h3:hover {
-  color: #1B1B1B;
-  text-decoration: underline;
+.links ul li a {
+  font-size: 60%;
 }
-main.followed-drugs .drug-summary {
-  padding: 0 16px;
-  background: rgba(255, 255, 255, 0.6);
-}
-main.followed-drugs .drug-summary p:last-child,
-main.followed-drugs .drug-summary p:empty {
-  margin-bottom: 0;
-}
-main.followed-drugs .drug-summary p:empty {
-  margin-bottom: 0;
-  display: none;
-}
-aside.about-med-alerts {
-  background: #e4e8ec;
-  padding: 10px 0 112px;
-}
-aside.about-med-alerts h2 {
-  text-align: center;
-}
-aside.about-med-alerts .statistic {
+aside.statistic {
+  padding: 10px 0 20px;
   max-width: 320px;
   margin-left: 25px;
-  float: right;
   padding-right: 8px;
   position: relative;
   display: none;
 }
+aside.statistic h2 {
+  text-align: center;
+}
 @media (min-width: 1200px) {
-  aside.about-med-alerts .statistic {
+  aside.statistic {
     display: block;
   }
 }
-aside.about-med-alerts .statistic .circle-graph {
+aside.statistic .circle-graph {
   vertical-align: middle;
 }
-aside.about-med-alerts .statistic span {
+aside.statistic span {
   vertical-align: middle;
   max-width: 180px;
   display: inline-block;
   font-size: 16px;
 }
-aside.about-med-alerts .purpose > p {
+aside.statistic .purpose > p {
   margin-bottom: 40px;
 }
-footer {
-  background: #02a9f4;
-  color: rgba(255, 255, 255, 0.87);
-  padding-top: 15px;
-  padding-bottom: 40px;
+.stat-source {
+  font-size: 12px;
+  font-style: italic;
 }
-footer a {
-  color: rgba(255, 255, 255, 0.87);
-  text-decoration: none;
+.drug-detail header {
+  background: #1589ce;
+  padding: 29px 0px;
+  display: table;
+  width: 100%;
+  text-align: center;
+}
+.drug-detail header h2 {
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  margin: 0;
   display: inline-block;
 }
-footer a:hover,
-footer a:active {
-  color: rgba(255, 255, 255, 0.95);
+.drug-detail header a.done {
+  text-decoration: none;
+  color: white !important;
+  cursor: pointer;
 }
-footer h2 {
-  color: white;
-  font-weight: 300;
-}
-footer ul {
-  display: block;
-  width: 100%;
-  margin-bottom: 15px;
-}
-footer ul .header li {
-  color: rgba(255, 255, 255, 0.77);
-}
-footer ul .header ~ li {
-  color: rgba(255, 255, 255, 0.58);
-}
-footer ul .header ~ li ul {
-  color: rgba(255, 255, 255, 0.9);
-}
-.modal-backdrop.in {
-  opacity: 0.75;
-}
-.modal-dialog .modal-content {
-  background: transparent;
-}
-.drug-detail-modal {
-  background: #217db5;
-  color: rgba(255, 255, 255, 0.85);
-}
-.drug-detail-modal .modal-header {
-  background: #1589ce;
-  border-bottom: none;
-}
-.drug-detail-modal .modal-header:before,
-.drug-detail-modal .modal-header:after {
-  content: " ";
-  display: table;
-}
-.drug-detail-modal .modal-header:after {
-  clear: both;
-}
-.drug-detail-modal .modal-header:before,
-.drug-detail-modal .modal-header:after {
-  content: " ";
-  display: table;
-}
-.drug-detail-modal .modal-header:after {
-  clear: both;
-}
-.drug-detail-modal .modal-header .modal-title {
-  float: left;
-  color: white;
-}
-.drug-detail-modal .modal-header .close-button {
-  float: right;
-  padding: 8px 16px;
-  margin-top: 9px;
-  border: 1px solid transparent;
-  margin-left: 15px;
-}
-.drug-detail-modal .modal-header .follow-button {
-  float: right;
+.drug-detail header .follow-button {
   width: 150px;
   padding: 8px 16px;
-  margin-top: 9px;
+  margin-top: -12px;
+  margin-left: 30px;
   background: #e6e7e8;
   color: #3c3c3c;
   border: 1px solid transparent;
 }
-.drug-detail-modal .modal-header .follow-button.following {
+.drug-detail header .follow-button.following {
   background: #3c3c3c;
   color: white;
 }
-.drug-detail-modal .modal-body {
-  padding: 15px 25px;
-  position: relative;
+.drug-detail .drug-detail-content {
+  background: #217db5;
+  min-height: 600px;
+  margin-top: -30px;
+  padding-left: 30px;
+  color: white;
 }
-.drug-detail-modal .modal-body .loading-message {
-  text-align: center;
-  padding: 40px 0px;
+.drug-detail .drug-detail-content h3 {
+  color: white;
+  font-size: 22px;
+  line-height: 30px;
 }
-.drug-detail-modal .modal-body dt {
-  color: rgba(255, 255, 255, 0.54);
+.drug-detail .drug-detail-content h4 {
+  color: #ededed;
+  font-size: 18px;
+  line-height: 24px;
+  font-style: italic;
 }
-.drug-detail-modal .modal-body dd {
-  color: rgba(255, 255, 255, 0.87);
+.drug-detail .drug-detail-content dt {
+  font-size: 14px;
 }
-.drug-detail-modal .modal-body h2,
-.drug-detail-modal .modal-body h3 {
-  color: rgba(255, 255, 255, 0.87);
-  line-height: 1;
-}
-.drug-detail-modal .modal-body h3 {
-  color: rgba(255, 255, 255, 0.54);
+.drug-detail .drug-detail-content dd {
+  font-size: 14px;
 }
 .circle-graph {
   display: inline-block;
@@ -6820,7 +6780,7 @@ footer ul .header ~ li ul {
 }
 .circle-graph .circle .mask .fill {
   clip: rect(0px, 60px, 120px, 0px);
-  background-color: #02a9f4;
+  background-color: #ba403d;
 }
 .circle-graph .inset {
   width: 110px;
@@ -6840,7 +6800,7 @@ footer ul .header ~ li ul {
   line-height: 1;
   text-align: center;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #02a9f4;
+  color: #555c5e;
   font-weight: 300;
   font-size: 42px;
 }

@@ -6,7 +6,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/main/partials/about.html',
-    '<div class="container">\n' +
+    '<div class="content">\n' +
     '    <div class="row">\n' +
     '\n' +
     '        <ul class="technical-details list-unstyled col-md-6">\n' +
@@ -48,29 +48,9 @@ module.run(['$templateCache', function($templateCache) {
     '            </li>\n' +
     '        </ul>\n' +
     '\n' +
-    '        <div class="feedback list-unstyled col-md-6">\n' +
-    '            <h2>Feedback Welcome</h2>\n' +
-    '\n' +
-    '            <p>Medalerts was built as a beta to showcase our ability to rapidly create a product of value and in response to the RFP from 18F. It was scoped to create a lightweight app that delivers useful functionality to the user. This prototype leverages the openFDA beta research project and not for clinical use. Please refer to the OpenFDA <a href="https://open.fda.gov/terms/">Terms of Service</a>.</p>\n' +
-    '\n' +
-    '            <p>In future phases of development, the product roadmap may include:</p>\n' +
-    '            <ul>\n' +
-    '                <li>The ability to register and receive email, social or SMS notifications about the medications they follow.</li>\n' +
-    '                <li>Create and follow multiple lists.</li>\n' +
-    '                <li>Integration with other service APIs for a richer experience.</li>\n' +
-    '                <li>The ability to cross reference your list of followed drugs for adverse reactions to each other. </li>\n' +
-    '                <li>Increase information, crowdsourced reviews, and listing alternative drugs within each medications detail view.</li>\n' +
-    '            </ul>\n' +
-    '				<span>\n' +
-    '					Submit feedback to <a href="mailto:18F@sparcedge.com?Subject=18f%20Feedback" target="_top">18F@sparcedge.com</a>\n' +
-    '				</span>\n' +
-    '        </div>\n' +
     '    </div>\n' +
     '</div>\n' +
-    '</div>\n' +
-    '</div>\n' +
-    '</div>\n' +
-    '</div>');
+    '');
 }]);
 })();
 
@@ -81,32 +61,30 @@ try {
   module = angular.module('app.tpl', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('/main/partials/details-modal.html',
-    '<div class="drug-detail-modal">\n' +
-    '	<div class="modal-header">\n' +
-    '		<h1 class="modal-title h2">\n' +
-    '			{{ drug.name }}\n' +
-    '		</h1>\n' +
-    '	    <a class="close-button btn btn-primary" ng-click="done()">\n' +
-    '	    	Done\n' +
-    '	    </a>\n' +
-    '	    <a class="follow-button btn btn-default"\n' +
-    '	    	ng-click="toggleFollow()"\n' +
-    '	    	ng-class="{\'following\': drug.following}">\n' +
-    '	        <span ng-hide="drug.following">Follow</span>\n' +
-    '	        <span ng-show="drug.following">Unfollow</span>\n' +
-    '	    </a>\n' +
+  $templateCache.put('/main/partials/drug-details.html',
     '\n' +
-    '	</div>\n' +
-    '	<div class="modal-body">\n' +
+    '\n' +
+    '<div class="drug-detail">\n' +
+    '    <header>\n' +
+    '        <h2><a class="done" data-ng-click="done()">< </a> {{drug.name}}</h2>\n' +
+    '        <a class="follow-button btn btn-default"\n' +
+    '           ng-click="toggleFollow()"\n' +
+    '           ng-class="{\'following\': drug.following}">\n' +
+    '            <span ng-hide="drug.following">Follow</span>\n' +
+    '            <span ng-show="drug.following">Unfollow</span>\n' +
+    '        </a>\n' +
+    '    </header>\n' +
+    '\n' +
+    '\n' +
+    '	<div class="drug-detail-content">\n' +
     '		<div class="loading-message" data-ng-if="!drug.details">\n' +
     '			<p>Fetching info about {{drug.name}}...</p>\n' +
     '		</div>\n' +
     '	 	<div data-ng-if="drug.details">\n' +
-    '			<h2>Recalls</h2>\n' +
+    '			<h3>Recalls</h3>\n' +
     '\n' +
     '			<div data-ng-if="drug.details.recalls">\n' +
-    '			    <h3>{{drug.details.recallDetails.length}} ongoing recall(s)</h3>\n' +
+    '			    <h4>{{drug.details.recallDetails.length}} ongoing recall(s)</h4>\n' +
     '\n' +
     '			    <div data-ng-repeat="r in drug.details.recallDetails">\n' +
     '			        <dl>\n' +
@@ -122,13 +100,13 @@ module.run(['$templateCache', function($templateCache) {
     '			    </div>\n' +
     '			</div>\n' +
     '			<div data-ng-if="!drug.details.recalls">\n' +
-    '			    <p>There are no open recalls.</p>\n' +
+    '			    <h4>There are no open recalls.</h4>\n' +
     '			</div>\n' +
     '\n' +
-    '            <h2>Drug Interaction Information</h2>\n' +
+    '            <h3>Drug Interaction Information</h3>\n' +
     '            <dl data-ng-show="showInteractionDetails()" data-ng-repeat="interactionTypeGroup in drug.details.interactionDetails.interactionTypeGroup">\n' +
     '                <div data-ng-repeat="interactionType in interactionTypeGroup.interactionType">\n' +
-    '                    <h3>{{interactionType.comment}}</h3>\n' +
+    '                    <h4>{{interactionType.comment}}</h4>\n' +
     '                    <dl data-ng-repeat="interactionPair in interactionType.interactionPair">\n' +
     '                        <dt>Interactions</dt>\n' +
     '                        <dd>{{interactionPairConcepts(interactionPair)}}</dd>\n' +
@@ -139,14 +117,14 @@ module.run(['$templateCache', function($templateCache) {
     '                <hr data-ng-if="!$last"/>\n' +
     '            </dl>\n' +
     '            <div data-ng-show="!showInteractionDetails()">\n' +
-    '                <p>No drug interaction information available.</p>\n' +
+    '                <h4>No drug interaction information available.</h4>\n' +
     '            </div>\n' +
     '\n' +
-    '			<h2>Label Changes</h2>\n' +
+    '			<h3>Label Changes</h3>\n' +
     '\n' +
     '			<div data-ng-if="drug.details.labelChanges">\n' +
-    '			    <h3>{{drug.details.labelDetails.length}} recent label\n' +
-    '			        change(s)</h3>\n' +
+    '			    <h4>{{drug.details.labelDetails.length}} recent label\n' +
+    '			        change(s)</h4>\n' +
     '\n' +
     '			    <div data-ng-repeat="l in drug.details.labelDetails">\n' +
     '			        <dl>\n' +
@@ -163,7 +141,7 @@ module.run(['$templateCache', function($templateCache) {
     '\n' +
     '			</div>\n' +
     '			<div data-ng-if="!drug.details.labelChanges">\n' +
-    '			    <p>There have been no label changes in the last 90 days.</p>\n' +
+    '			    <h4>There have been no label changes in the last 90 days.</h4>\n' +
     '			</div>\n' +
     '		</div>\n' +
     '	</div>\n' +
@@ -180,109 +158,169 @@ try {
   module = angular.module('app.tpl', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/main/partials/feedback.html',
+    '<div class="feedback list-unstyled col-md-6">\n' +
+    '    <h2>Feedback Welcome</h2>\n' +
+    '\n' +
+    '    <p>Medalerts was built as a beta to showcase our ability to rapidly create a product of value and in response to the RFP from 18F. It was scoped to create a lightweight app that delivers useful functionality to the user. This prototype leverages the openFDA beta research project and not for clinical use. Please refer to the OpenFDA <a href="https://open.fda.gov/terms/">Terms of Service</a>.</p>\n' +
+    '\n' +
+    '    <p>In future phases of development, the product roadmap may include:</p>\n' +
+    '    <ul>\n' +
+    '        <li>The ability to register and receive email, social or SMS notifications about the medications they follow.</li>\n' +
+    '        <li>Create and follow multiple lists.</li>\n' +
+    '        <li>Integration with other service APIs for a richer experience.</li>\n' +
+    '        <li>The ability to cross reference your list of followed drugs for adverse reactions to each other. </li>\n' +
+    '        <li>Increase information, crowdsourced reviews, and listing alternative drugs within each medications detail view.</li>\n' +
+    '    </ul>\n' +
+    '    <span>\n' +
+    '        Submit feedback to <a href="mailto:18F@sparcedge.com?Subject=18f%20Feedback" target="_top">18F@sparcedge.com</a>\n' +
+    '    </span>\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('app.tpl');
+} catch (e) {
+  module = angular.module('app.tpl', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/main/partials/main-index.html',
     '<div class="container-fluid">\n' +
     '    <div class="row">\n' +
-    '        <div class="col-md-4">\n' +
+    '        <div class="col-md-4 no-padding">\n' +
     '            <header role="banner">\n' +
     '                <div>\n' +
     '                    <img src="assets/images/medpal-logo.svg" alt="Med Pal logo">\n' +
     '                </div>\n' +
     '            </header>\n' +
-    '            <div>\n' +
+    '            <header role="bg-fill"></header>\n' +
+    '\n' +
+    '            <section role="search" data-ng-show="!drug.name">\n' +
     '                <label for="selectDrugInput" class="sr-only">Search for medications by\n' +
     '                    name</label>\n' +
-    '                <ui-select id="selectDrugInput"\n' +
-    '                           class="ui-select-scroll ui-select-auto-width ui-select-opaque"\n' +
-    '                           theme="bootstrap"\n' +
-    '                           data-ng-model="drug.selected"\n' +
-    '                           search-enabled="true"\n' +
-    '                           reset-search-input="true">\n' +
-    '                    <img style="width: 64px; height: 64px;" src="assets/images/icon-search.svg" alt="">\n' +
-    '                    <ui-select-match placeholder="Type a Medication Name...">\n' +
+    '                    <ui-select id="selectDrugInput"\n' +
+    '                               class="ui-select-scroll ui-select-auto-width ui-select-opaque"\n' +
+    '                               theme="bootstrap"\n' +
+    '                               data-ng-model="drug.name"\n' +
+    '                               search-enabled="true"\n' +
+    '                               reset-search-input="true"\n' +
+    '                            on-select="clearDrugDetails()">\n' +
+    '                        <img style="width: 64px; height: 64px;" src="assets/images/icon-search.svg" alt="">\n' +
+    '                        <ui-select-match placeholder="Type a Medication Name...">\n' +
     '\n' +
-    '                    </ui-select-match>\n' +
+    '                        </ui-select-match>\n' +
     '\n' +
-    '                    <ui-select-choices\n' +
-    '                            repeat="drug as drug in drugs | filter: $select.search">\n' +
-    '                        {{ drug }}\n' +
-    '                    </ui-select-choices>\n' +
+    '                        <ui-select-choices\n' +
+    '                                repeat="drug as drug in drugs | filter: $select.search">\n' +
+    '                            {{ drug }}\n' +
+    '                        </ui-select-choices>\n' +
     '\n' +
-    '                </ui-select>\n' +
-    '            </div>\n' +
+    '                    </ui-select>\n' +
+    '            </section>\n' +
+    '\n' +
+    '\n' +
     '            <div role="main" class="followed-drugs">\n' +
     '                <div id="content" class="">\n' +
-    '                    <h2>Medications you\'re Following</h2>\n' +
-    '                    <p class="empty-drugs-list alert alert-info" data-ng-show="followedDrugs.length === 0">\n' +
+    '                    <h3 data-ng-show="followedDrugs.length">Medications you\'re Following</h3>\n' +
+    '                    <p class="empty-drugs-list alert alert-info" data-ng-show="!followedDrugs.length">\n' +
     '                        To follow a medication, search above and click the “follow” button.\n' +
     '                    </p>\n' +
+    '\n' +
     '                    <ul data-ng-show="followedDrugs.length">\n' +
-    '                        <li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">\n' +
-    '                            <span class="status-icon"></span>\n' +
-    '                            <h3 data-ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>\n' +
-    '                            <button class="btn btn-xs btn-follow" data-ng-click="removeDrug(drug)" data-ng-mouseover="hoverFollow()" data-ng-mouseleave="leaveFollow()">\n' +
-    '                                <span data-ng-show="followHovered">Unfollow</span>\n' +
-    '                                <span data-ng-hide="followHovered">Following</span>\n' +
-    '                            </button>\n' +
-    '                            <div class="drug-summary">\n' +
-    '                                <p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" \'recall\' " ></p>\n' +
-    '                                <p data-ng-if="drug.details.labelChanges" data-drug-summary data-drug="drug" data-type=" \'label\' "></p>\n' +
-    '                            </div>\n' +
+    '                        <li data-ng-click="manuallySelectDrug(drug)" data-ng-repeat="drug in followedDrugs" class="drug-summary" data-ng-class="highlightSelected(drug)">\n' +
+    '                            <div class="status-icon" data-ng-class="highlightClass(drug)"></div><span class="name">{{ drug.name }}</span><span class="pull-right"> > </span>\n' +
+    '                            <span class="summary" data-ng-if="drug.details.recalls">\n' +
+    '                                : Recall!\n' +
+    '                            </span>\n' +
+    '                             <span class="summary" data-ng-if="drug.details.labelChanges && !drug.details.recalls">\n' +
+    '                                : Updated\n' +
+    '                            </span>\n' +
     '                        </li>\n' +
     '                    </ul>\n' +
     '                </div>\n' +
     '            </div>\n' +
+    '\n' +
+    '            <div class="links">\n' +
+    '                <ul>\n' +
+    '                    <li><a data-ng-click="updateSupplemental(\'why\')">Why Med Pal</a></li>\n' +
+    '                    <li><a data-ng-click="updateSupplemental(\'about\')">About This App</a></li>\n' +
+    '                    <li><a data-ng-click="updateSupplemental(\'feedback\')">Feedback and Support</a></li>\n' +
+    '                </ul>\n' +
+    '            </div>\n' +
     '        </div>\n' +
     '\n' +
-    '        <div class="col-md-8 why-med-pal">\n' +
-    '            <h2>Why Med Pal?</h2>\n' +
-    '            <p>The Med Pal application allows an informed consumer to research individual drugs for recent recalls or label changes through the <a href="http://open.fda.gov">OpenFDA API</a>. Similar to subscribing for updates on social media, you may choose to “follow” a drug of interest and be alerted of changes when you revisit <a href="http://18f.sparcedge.com">18f.sparcedge.com</a>.</p>\n' +
-    '            <p><a href="http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm">According to FDA research</a>, there are approximately 106,000 deaths per year attributed to adverse reactions to prescription drugs. One in five hospital visits are the result of a drug reaction. And adverse drug reactions are estimated to cost our country $135 Billion dollars a year.</p>\n' +
+    '        <div class="col-md-8 no-padding" data-ng-show="drug.name">\n' +
+    '            <div data-drug-detail data-drug="drug"></div>\n' +
+    '        </div>\n' +
     '\n' +
-    '            <div class="purpose">\n' +
-    '                <aside class="statistic">\n' +
-    '                    <div class="circle-graph" data-graph-pct="82">\n' +
-    '                        <div class="circle">\n' +
-    '                            <div class="mask full">\n' +
-    '                                <div class="fill"></div>\n' +
-    '                            </div>\n' +
-    '                            <div class="mask half">\n' +
-    '                                <div class="fill"></div>\n' +
-    '                                <div class="fill fix"></div>\n' +
-    '                            </div>\n' +
-    '                        </div>\n' +
-    '                        <div class="inset">\n' +
-    '                            <div class="percentage"></div>\n' +
-    '                        </div>\n' +
-    '                    </div>\n' +
-    '                    <span>of American adults take at least one medication.</span>\n' +
-    '                </aside>\n' +
-    '            </div>\n' +
-    '            <div class="statistics">\n' +
-    '                <aside class="statistic">\n' +
-    '                    <div class="circle-graph" data-graph-pct="29">\n' +
-    '                        <div class="circle">\n' +
-    '                            <div class="mask full">\n' +
-    '                                <div class="fill"></div>\n' +
-    '                            </div>\n' +
-    '                            <div class="mask half">\n' +
-    '                                <div class="fill"></div>\n' +
-    '                                <div class="fill fix"></div>\n' +
-    '                            </div>\n' +
-    '                        </div>\n' +
-    '                        <div class="inset">\n' +
-    '                            <div class="percentage"></div>\n' +
-    '                        </div>\n' +
-    '                    </div>\n' +
-    '                    <span>of American adults take 5 or more medications.</span>\n' +
-    '                </aside>\n' +
-    '            </div>\n' +
+    '        <div data-ng-show="!drug.name" class="col-md-8 no-padding why-med-pal">\n' +
+    '            <div data-ng-include="supplemental"></div>\n' +
     '        </div>\n' +
     '    </div>\n' +
     '</div>\n' +
     '\n' +
     '\n' +
     '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('app.tpl');
+} catch (e) {
+  module = angular.module('app.tpl', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('/main/partials/why.html',
+    '<div class="content">\n' +
+    '    <h2>Why Med Pal?</h2>\n' +
+    '    <p>The Med Pal application allows an informed consumer to research individual drugs for recent recalls or label changes through the <a href="http://open.fda.gov">OpenFDA API</a>. Similar to subscribing for updates on social media, you may choose to “follow” a drug of interest and be alerted of changes when you revisit <a href="http://18f.sparcedge.com">18f.sparcedge.com</a>.</p>\n' +
+    '    <p><a href="http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm">According to FDA research</a>, there are approximately 106,000 deaths per year attributed to adverse reactions to prescription drugs. One in five hospital visits are the result of a drug reaction. And adverse drug reactions are estimated to cost our country $135 Billion dollars a year.</p>\n' +
+    '\n' +
+    '    <div class="purpose">\n' +
+    '        <aside class="statistic">\n' +
+    '            <div class="circle-graph" data-graph-pct="82">\n' +
+    '                <div class="circle">\n' +
+    '                    <div class="mask full">\n' +
+    '                        <div class="fill"></div>\n' +
+    '                    </div>\n' +
+    '                    <div class="mask half">\n' +
+    '                        <div class="fill"></div>\n' +
+    '                        <div class="fill fix"></div>\n' +
+    '                    </div>\n' +
+    '                </div>\n' +
+    '                <div class="inset">\n' +
+    '                    <div class="percentage"></div>\n' +
+    '                </div>\n' +
+    '            </div>\n' +
+    '            <span>of American adults take at least one medication.</span>\n' +
+    '        </aside>\n' +
+    '    </div>\n' +
+    '    <div class="statistics">\n' +
+    '        <aside class="statistic">\n' +
+    '            <div class="circle-graph" data-graph-pct="29">\n' +
+    '                <div class="circle">\n' +
+    '                    <div class="mask full">\n' +
+    '                        <div class="fill"></div>\n' +
+    '                    </div>\n' +
+    '                    <div class="mask half">\n' +
+    '                        <div class="fill"></div>\n' +
+    '                        <div class="fill fix"></div>\n' +
+    '                    </div>\n' +
+    '                </div>\n' +
+    '                <div class="inset">\n' +
+    '                    <div class="percentage"></div>\n' +
+    '                </div>\n' +
+    '            </div>\n' +
+    '            <span>of American adults take 5 or more medications.</span>\n' +
+    '        </aside>\n' +
+    '    </div>\n' +
+    '                <span class="stat-source">\n' +
+    '                    Source: http://www.cdc.gov/MedicationSafety/basics.html\n' +
+    '                </span>\n' +
+    '</div>');
 }]);
 })();
 

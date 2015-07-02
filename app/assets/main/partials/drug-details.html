@@ -1,28 +1,26 @@
-<div class="drug-detail-modal">
-	<div class="modal-header">
-		<h1 class="modal-title h2">
-			{{ drug.name }}
-		</h1>
-	    <a class="close-button btn btn-primary" ng-click="done()">
-	    	Done
-	    </a>
-	    <a class="follow-button btn btn-default"
-	    	ng-click="toggleFollow()"
-	    	ng-class="{'following': drug.following}">
-	        <span ng-hide="drug.following">Follow</span>
-	        <span ng-show="drug.following">Unfollow</span>
-	    </a>
 
-	</div>
-	<div class="modal-body">
+
+<div class="drug-detail">
+    <header>
+        <h2><a class="done" data-ng-click="done()">< </a> {{drug.name}}</h2>
+        <a class="follow-button btn btn-default"
+           ng-click="toggleFollow()"
+           ng-class="{'following': drug.following}">
+            <span ng-hide="drug.following">Follow</span>
+            <span ng-show="drug.following">Unfollow</span>
+        </a>
+    </header>
+
+
+	<div class="drug-detail-content">
 		<div class="loading-message" data-ng-if="!drug.details">
 			<p>Fetching info about {{drug.name}}...</p>
 		</div>
 	 	<div data-ng-if="drug.details">
-			<h2>Recalls</h2>
+			<h3>Recalls</h3>
 
 			<div data-ng-if="drug.details.recalls">
-			    <h3>{{drug.details.recallDetails.length}} ongoing recall(s)</h3>
+			    <h4>{{drug.details.recallDetails.length}} ongoing recall(s)</h4>
 
 			    <div data-ng-repeat="r in drug.details.recallDetails">
 			        <dl>
@@ -38,13 +36,13 @@
 			    </div>
 			</div>
 			<div data-ng-if="!drug.details.recalls">
-			    <p>There are no open recalls.</p>
+			    <h4>There are no open recalls.</h4>
 			</div>
 
-            <h2>Drug Interaction Information</h2>
+            <h3>Drug Interaction Information</h3>
             <dl data-ng-show="showInteractionDetails()" data-ng-repeat="interactionTypeGroup in drug.details.interactionDetails.interactionTypeGroup">
                 <div data-ng-repeat="interactionType in interactionTypeGroup.interactionType">
-                    <h3>{{interactionType.comment}}</h3>
+                    <h4>{{interactionType.comment}}</h4>
                     <dl data-ng-repeat="interactionPair in interactionType.interactionPair">
                         <dt>Interactions</dt>
                         <dd>{{interactionPairConcepts(interactionPair)}}</dd>
@@ -55,14 +53,14 @@
                 <hr data-ng-if="!$last"/>
             </dl>
             <div data-ng-show="!showInteractionDetails()">
-                <p>No drug interaction information available.</p>
+                <h4>No drug interaction information available.</h4>
             </div>
 
-			<h2>Label Changes</h2>
+			<h3>Label Changes</h3>
 
 			<div data-ng-if="drug.details.labelChanges">
-			    <h3>{{drug.details.labelDetails.length}} recent label
-			        change(s)</h3>
+			    <h4>{{drug.details.labelDetails.length}} recent label
+			        change(s)</h4>
 
 			    <div data-ng-repeat="l in drug.details.labelDetails">
 			        <dl>
@@ -79,7 +77,7 @@
 
 			</div>
 			<div data-ng-if="!drug.details.labelChanges">
-			    <p>There have been no label changes in the last 90 days.</p>
+			    <h4>There have been no label changes in the last 90 days.</h4>
 			</div>
 		</div>
 	</div>

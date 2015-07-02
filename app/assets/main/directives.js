@@ -63,4 +63,74 @@ angular.module('main.directives', [])
         },
         controller: controller
       }
+    })
+
+
+    .directive('drugDetail', function(){
+
+      var controller = function($scope, DrugService, DrugsList, $rootScope, $anchorScroll){
+
+        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         Scope functions
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+        /**
+         * Allow the user to follow/unfollow a drug from the details view via the
+         * DrugsList service
+         */
+        $scope.toggleFollow = function () {
+          var action = $scope.drug.following ? 'remove' : 'add';
+          $rootScope.$broadcast('subscription-change', {action: action, drug: $scope.drug});
+          $scope.drug.following = !$scope.drug.following;
+        };
+
+        $scope.interactionPairConcepts = function (interactionPair) {
+          return _(interactionPair.interactionConcept).map(function (c) {
+            return c.minConceptItem.name;
+          }).join(", ")
+        };
+
+        /**
+         * Determines whether or not to show interaction details. If the details
+         * are not populated yet then return true. we don't want to show the
+         * "no information" message if the details haven't had a chance to load yet
+         * @returns {boolean}
+         */
+        $scope.showInteractionDetails = function () {
+          return !$scope.drug || !$scope.drug.details || !_.isEmpty($scope.drug.details.interactionDetails);
+        };
+
+        $scope.done = function () {
+          $scope.drug = {};
+        };
+
+
+        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         Watches
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+        $scope.$watch('drug', function(drug){
+          if(!$scope.drug || !$scope.drug.name){
+            return;
+          }
+
+          $anchorScroll();
+
+          $scope.drug.following = _.includes(DrugsList.all(), $scope.drug.name);
+          //use the service to load detail information for the given drug if necessary
+          if ($scope.drug.name && !$scope.drug.details) {
+            DrugService.getDrugByName($scope.drug.name).then(
+                function (response) {
+                  $scope.drug.details = response;
+                }
+            );
+          }
+        }, true);
+      };
+
+      return {
+        restrict: 'A',
+        templateUrl: '/assets/main/partials/drug-details.html',
+        controller: controller
+      }
     });

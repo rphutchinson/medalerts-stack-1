@@ -1,99 +1,73 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 no-padding">
             <header role="banner">
                 <div>
                     <img src="assets/images/medpal-logo.svg" alt="Med Pal logo">
                 </div>
             </header>
-            <div>
+            <header role="bg-fill"></header>
+
+            <section role="search" data-ng-show="!drug.name">
                 <label for="selectDrugInput" class="sr-only">Search for medications by
                     name</label>
-                <ui-select id="selectDrugInput"
-                           class="ui-select-scroll ui-select-auto-width ui-select-opaque"
-                           theme="bootstrap"
-                           data-ng-model="drug.selected"
-                           search-enabled="true"
-                           reset-search-input="true">
-                    <img style="width: 64px; height: 64px;" src="assets/images/icon-search.svg" alt="">
-                    <ui-select-match placeholder="Type a Medication Name...">
+                    <ui-select id="selectDrugInput"
+                               class="ui-select-scroll ui-select-auto-width ui-select-opaque"
+                               theme="bootstrap"
+                               data-ng-model="drug.name"
+                               search-enabled="true"
+                               reset-search-input="true"
+                            on-select="clearDrugDetails()">
+                        <img style="width: 64px; height: 64px;" src="assets/images/icon-search.svg" alt="">
+                        <ui-select-match placeholder="Type a Medication Name...">
 
-                    </ui-select-match>
+                        </ui-select-match>
 
-                    <ui-select-choices
-                            repeat="drug as drug in drugs | filter: $select.search">
-                        {{ drug }}
-                    </ui-select-choices>
+                        <ui-select-choices
+                                repeat="drug as drug in drugs | filter: $select.search">
+                            {{ drug }}
+                        </ui-select-choices>
 
-                </ui-select>
-            </div>
+                    </ui-select>
+            </section>
+
+
             <div role="main" class="followed-drugs">
                 <div id="content" class="">
-                    <h2>Medications you're Following</h2>
-                    <p class="empty-drugs-list alert alert-info" data-ng-show="followedDrugs.length === 0">
+                    <h3 data-ng-show="followedDrugs.length">Medications you're Following</h3>
+                    <p class="empty-drugs-list alert alert-info" data-ng-show="!followedDrugs.length">
                         To follow a medication, search above and click the “follow” button.
                     </p>
+
                     <ul data-ng-show="followedDrugs.length">
-                        <li data-ng-repeat="drug in followedDrugs" class="panel" data-ng-class="highlightClass(drug)">
-                            <span class="status-icon"></span>
-                            <h3 data-ng-click="manuallySelectDrug(drug)">{{ drug.name }}</h3>
-                            <button class="btn btn-xs btn-follow" data-ng-click="removeDrug(drug)" data-ng-mouseover="hoverFollow()" data-ng-mouseleave="leaveFollow()">
-                                <span data-ng-show="followHovered">Unfollow</span>
-                                <span data-ng-hide="followHovered">Following</span>
-                            </button>
-                            <div class="drug-summary">
-                                <p data-ng-if="drug.details.recalls" data-drug-summary data-drug="drug" data-type=" 'recall' " ></p>
-                                <p data-ng-if="drug.details.labelChanges" data-drug-summary data-drug="drug" data-type=" 'label' "></p>
-                            </div>
+                        <li data-ng-click="manuallySelectDrug(drug)" data-ng-repeat="drug in followedDrugs" class="drug-summary" data-ng-class="highlightSelected(drug)">
+                            <div class="status-icon" data-ng-class="highlightClass(drug)"></div><span class="name">{{ drug.name }}</span><span class="pull-right"> > </span>
+                            <span class="summary" data-ng-if="drug.details.recalls">
+                                : Recall!
+                            </span>
+                             <span class="summary" data-ng-if="drug.details.labelChanges && !drug.details.recalls">
+                                : Updated
+                            </span>
                         </li>
                     </ul>
                 </div>
             </div>
+
+            <div class="links">
+                <ul>
+                    <li><a data-ng-click="updateSupplemental('why')">Why Med Pal</a></li>
+                    <li><a data-ng-click="updateSupplemental('about')">About This App</a></li>
+                    <li><a data-ng-click="updateSupplemental('feedback')">Feedback and Support</a></li>
+                </ul>
+            </div>
         </div>
 
-        <div class="col-md-8 why-med-pal">
-            <h2>Why Med Pal?</h2>
-            <p>The Med Pal application allows an informed consumer to research individual drugs for recent recalls or label changes through the <a href="http://open.fda.gov">OpenFDA API</a>. Similar to subscribing for updates on social media, you may choose to “follow” a drug of interest and be alerted of changes when you revisit <a href="http://18f.sparcedge.com">18f.sparcedge.com</a>.</p>
-            <p><a href="http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm">According to FDA research</a>, there are approximately 106,000 deaths per year attributed to adverse reactions to prescription drugs. One in five hospital visits are the result of a drug reaction. And adverse drug reactions are estimated to cost our country $135 Billion dollars a year.</p>
+        <div class="col-md-8 no-padding" data-ng-show="drug.name">
+            <div data-drug-detail data-drug="drug"></div>
+        </div>
 
-            <div class="purpose">
-                <aside class="statistic">
-                    <div class="circle-graph" data-graph-pct="82">
-                        <div class="circle">
-                            <div class="mask full">
-                                <div class="fill"></div>
-                            </div>
-                            <div class="mask half">
-                                <div class="fill"></div>
-                                <div class="fill fix"></div>
-                            </div>
-                        </div>
-                        <div class="inset">
-                            <div class="percentage"></div>
-                        </div>
-                    </div>
-                    <span>of American adults take at least one medication.</span>
-                </aside>
-            </div>
-            <div class="statistics">
-                <aside class="statistic">
-                    <div class="circle-graph" data-graph-pct="29">
-                        <div class="circle">
-                            <div class="mask full">
-                                <div class="fill"></div>
-                            </div>
-                            <div class="mask half">
-                                <div class="fill"></div>
-                                <div class="fill fix"></div>
-                            </div>
-                        </div>
-                        <div class="inset">
-                            <div class="percentage"></div>
-                        </div>
-                    </div>
-                    <span>of American adults take 5 or more medications.</span>
-                </aside>
-            </div>
+        <div data-ng-show="!drug.name" class="col-md-8 no-padding why-med-pal">
+            <div data-ng-include="supplemental"></div>
         </div>
     </div>
 </div>

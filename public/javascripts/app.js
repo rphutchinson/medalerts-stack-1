@@ -120,6 +120,8 @@ angular.module('main.controllers', [])
 
       _loadFollowedDrugs();
 
+      $scope.supplemental = '/assets/main/partials/why.html';
+
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Scope functions
        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -142,6 +144,12 @@ angular.module('main.controllers', [])
         }
       };
 
+      $scope.highlightSelected = function(drug){
+        if($scope.drug && $scope.drug.name === drug.name){
+          return 'selected';
+        }
+      };
+
       /**
        * Removes drug from the DrugsList
        * @param drug
@@ -158,20 +166,6 @@ angular.module('main.controllers', [])
       $scope.addDrug = function (drug) {
       	DrugsList.add(drug.name);
       	$scope.followedDrugs.push(drug);
-      }
-
-      /**
-       * handle hover state for button
-       */
-      $scope.hoverFollow = function () {
-        this.followHovered = true;
-      };
-
-      /**
-       * handle hover state for button
-       */
-      $scope.leaveFollow = function () {
-        this.followHovered = false;
       };
 
       /**
@@ -180,51 +174,35 @@ angular.module('main.controllers', [])
        * @param drug the selected drug
        */
       $scope.manuallySelectDrug = function (drug) {
-        $scope.drug.selected = drug.name;
+        $scope.drug = drug;
       };
+
       /**
-       * Provides the user with modal detailing the selected drug
+       * clear the details of the selected drug when selecting a new drug from
+       * the list
        */
-      function openDetails() {
-        if ($scope.drug && $scope.drug.selected) {
-          var drugName = $scope.drug.selected,
-              drug = _.findWhere($scope.followedDrugs, {name: drugName}) || {name: drugName};
-
-          drug.following = _.includes(DrugsList.all(), drugName);
-
-          /*clear the selected drug when opening the modal. we must do this because
-           the opening of the drug details modal is triggered by a $watch on the
-           selected drug. if we don't clear it, then if the next drug selected
-           is the same one then the $watch won't fire*/
-          $scope.drug.selected = undefined;
-
-          var modalInstance = $modal.open({
-            animation: $scope.animationsEnabled,
-            templateUrl: "assets/main/partials/details-modal.html",
-            controller: "DrugDetailsCtrl",
-            resolve: {
-              drug: function () {
-                return drug;
-              }
-            }
-          }).result;
+      $scope.clearDrugDetails = function(){
+        if(!$scope.drug){
+          return;
         }
-      }
+
+        delete $scope.drug.details;
+        delete $scope.drug.following;
+      };
+
+      $scope.updateSupplemental = function(which){
+        $scope.drug = {};
+        $scope.supplemental = '/assets/main/partials/' + which + '.html';
+      };
 
 
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Watches
        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-      $scope.$watch('drug', function () {
-        if ($scope.drug && $scope.drug.selected) {
-          openDetails();
-        }
-      }, true);
-
       $scope.$on('subscription-change', function(e, data) {
       	$scope[data.action + 'Drug'](data.drug);
-      })
+      });
       /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
        Private helper functions
        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -247,63 +225,6 @@ angular.module('main.controllers', [])
           );
         });
       }
-    }])
-
-/**
- * Controller for drug details
- */
-    .controller('DrugDetailsCtrl', ["$scope", "$log", "$location", "$modalInstance", "$rootScope", "DrugService", "DrugsList", "drug", function ($scope, $log, $location, $modalInstance, $rootScope, DrugService,
-                                             DrugsList, drug) {
-
-      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-       Controller Initialization
-       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-
-      $scope.drug = drug;
-
-      //use the service to load detail information for the given drug if necessary
-      if (!drug.details) {
-        DrugService.getDrugByName($scope.drug.name).then(
-            function (response) {
-              $scope.drug.details = response;
-            }
-        );
-      }
-
-      /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-       Scope functions
-       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-      /**
-       * Allow the user to follow/unfollow a drug from the details view via the
-       * DrugsList service
-       */
-      $scope.toggleFollow = function () {
-      	var action = $scope.drug.following ? 'remove' : 'add';
-      	$rootScope.$broadcast('subscription-change', {action: action, drug: $scope.drug});
-        drug.following = !drug.following;
-      };
-
-      $scope.interactionPairConcepts = function (interactionPair) {
-        return _(interactionPair.interactionConcept).map(function (c) {
-          return c.minConceptItem.name;
-        }).join(", ")
-      };
-
-      /**
-       * Determines whether or not to show interaction details. If the details
-       * are not populated yet then return true. we don't want to show the
-       * "no information" message if the details haven't had a chance to load yet
-       * @returns {boolean}
-       */
-      $scope.showInteractionDetails = function () {
-        return !drug.details || !_.isEmpty(drug.details.interactionDetails);
-      };
-
-      $scope.done = function () {
-        $modalInstance.close();
-      };
     }]);
 
 
@@ -372,6 +293,77 @@ angular.module('main.directives', [])
           drug: '=',
           type: '='
         },
+        controller: controller
+      }
+    })
+
+
+    .directive('drugDetail', function(){
+
+      var controller = function($scope, DrugService, DrugsList, $rootScope, $anchorScroll){
+
+        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         Scope functions
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+        /**
+         * Allow the user to follow/unfollow a drug from the details view via the
+         * DrugsList service
+         */
+        $scope.toggleFollow = function () {
+          var action = $scope.drug.following ? 'remove' : 'add';
+          $rootScope.$broadcast('subscription-change', {action: action, drug: $scope.drug});
+          $scope.drug.following = !$scope.drug.following;
+        };
+
+        $scope.interactionPairConcepts = function (interactionPair) {
+          return _(interactionPair.interactionConcept).map(function (c) {
+            return c.minConceptItem.name;
+          }).join(", ")
+        };
+
+        /**
+         * Determines whether or not to show interaction details. If the details
+         * are not populated yet then return true. we don't want to show the
+         * "no information" message if the details haven't had a chance to load yet
+         * @returns {boolean}
+         */
+        $scope.showInteractionDetails = function () {
+          return !$scope.drug || !$scope.drug.details || !_.isEmpty($scope.drug.details.interactionDetails);
+        };
+
+        $scope.done = function () {
+          $scope.drug = {};
+        };
+
+
+        /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         Watches
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+        $scope.$watch('drug', function(drug){
+          if(!$scope.drug || !$scope.drug.name){
+            return;
+          }
+
+          $anchorScroll();
+
+          $scope.drug.following = _.includes(DrugsList.all(), $scope.drug.name);
+          //use the service to load detail information for the given drug if necessary
+          if ($scope.drug.name && !$scope.drug.details) {
+            DrugService.getDrugByName($scope.drug.name).then(
+                function (response) {
+                  $scope.drug.details = response;
+                }
+            );
+          }
+        }, true);
+      };
+      controller.$inject = ["$scope", "DrugService", "DrugsList", "$rootScope", "$anchorScroll"];
+
+      return {
+        restrict: 'A',
+        templateUrl: '/assets/main/partials/drug-details.html',
         controller: controller
       }
     });
