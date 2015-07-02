@@ -7,7 +7,7 @@
  * annotations which allows us to define angular functions without using either
  * array notation or explicit dependency injection calls.
  */
-angular.module('app', ['app.tpl', 'ngSanitize', 'ngRoute', 'ngCookies', 'ui.select',
+angular.module('app', ['app.tpl', 'ngSanitize', 'ngRoute', 'ngCookies', 'ngAnimate', 'ui.select',
   'ui.bootstrap', 'main', 'pattern'])
 
     /**

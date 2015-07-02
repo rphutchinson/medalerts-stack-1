@@ -24,7 +24,7 @@ cd ../..
 echo "Using Amazon CLI to deploy zip file to EB environment"
 aws s3 cp target/$COMMIT.zip s3://18f-deploy/18f-$COMMIT.zip
 aws elasticbeanstalk create-application-version --application-name "sparc18f" --version-label $COMMIT --source-bundle S3Bucket="18f-deploy",S3Key="18f-$COMMIT.zip"
-aws elasticbeanstalk update-environment --environment-name "sparc18f" --version-label $COMMIT
+aws elasticbeanstalk update-environment --environment-name "medalerts-stack" --version-label $COMMIT
 
 echo Elastic Beanstalk dev environment updated with version $COMMIT
 exit 0

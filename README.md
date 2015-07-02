@@ -1,13 +1,13 @@
-# MedAlerts Pool Three
+# MedPal Pool Three
 
-Check out the [live demo](http://medalerts-stack.sparcedge.com/) or see our [installation instructions](INSTALLATION.md).
+Check out the [live demo](http://medpal.sparcedge.com) or see our [installation instructions](INSTALLATION.md).
 
 ## Understand What People Need
 [SPARC](http://sparcedge.com) utilized a [design studio approach](https://18f.gsa.gov/2014/09/25/design-studio-onrr/) to select a focus based on [OpenFDA’s](https://open.fda.gov/) business goals and technical feasibility. Research revealed adverse medication side effects impact the population with [106,000 yearly deaths at an estimated cost of $135 billion per year](http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm); therefore, we chose drug safety as the prototype focus.
 
 ## Address the Whole Experience from Start to Finish
 
-SPARC’s [Agile Design process](http://www.sparcedge.com/what-an-agile-design-process-looks-like/) took the broad concept of drug safety and narrowed our product vision.  Our product leverages OpenFDA’s data and API to proactively educate users about their medications through an intuitive user experience.
+SPARC’s [Agile Design process](http://www.sparcedge.com/what-an-agile-design-process-looks-like/) took the broad concept of drug safety and narrowed our product vision.  Our product leverages data from OpenFDA’s API and the [RxNav Drug Interactions](http://rxnav.nlm.nih.gov/InteractionAPIs.html#) API to proactively educate users about their medications through an intuitive user experience.
 
 The user can:
 
@@ -18,7 +18,7 @@ The user can:
 
 ## Make it Simple and Intuitive
 
-SPARC’s Agile Design process showed that “following” a medication was the user’s preferred, intuitive experience.  ‘Following’ medication updates via feeds reduced the prototype’s user-flow to a single screen. SPARC used [Bootstrap](http://getbootstrap.com) as a front-end framework. Bootstrap increases application accessibility by supporting use on numerous devices and platforms.
+SPARC’s Agile Design process showed that “following” a medication was the user’s preferred, intuitive experience.  ‘Following’ medication updates via feeds reduced the prototype’s user-flow to a single screen. SPARC used [Material](https://material.angularjs.org/latest/#/) as a front-end framework. Material increases application accessibility by supporting use on numerous devices and platforms.
 
 We created product features based on SPARC’s agile product model: 
 
@@ -27,7 +27,7 @@ We created product features based on SPARC’s agile product model:
 * Define business goals 
 * Understand OpenFDA API
 * Understand the User 
-* Conduct brainstorming sessions to choose features based on business goals, technical feasibility, and value to the User
+* Conduct brainstorming sessions
 * Refine concept
 
 **Iterative Prototyping and Design Features**
@@ -80,7 +80,7 @@ Every layer of the stack leverages Open Source Software solutions:
 
 **Visual / Design Layer**
 
-* [Bootstrap](http://getbootstrap.com)
+* [Material](https://material.angularjs.org/latest/#/)
 * [Google Fonts](https://www.google.com/fonts)
 
 **QA Layer**
