@@ -1,6 +1,6 @@
 # MedPal Pool Three
 
-Check out the [live demo](http://medpal.sparcedge.com) or see our [installation instructions](INSTALLATION.md).
+Check out http://medpal.sparcedge.com or see our [installation instructions](INSTALLATION.md).
 
 [SPARC](http://sparcedge.com) began by evaluating the [FDA's](http://www.fda.gov/) role and mission with laser focus on determining the most simple, yet impactful way to bolster the health and well-being of the largest percentage of the population as feasible. After timely assessment of applications that would align to the FDA's goals, SPARC created an application that allows consumers to research individual medications for recalls, label changes, and drug interaction data. 
 
