@@ -71,7 +71,7 @@ module.run(['$templateCache', function($templateCache) {
     '\n' +
     '<div class="drug-detail">\n' +
     '    <header>\n' +
-    '        <h2><a class="done" data-ng-click="done()">< </a> {{drug.name}}</h2>\n' +
+    '        <h2><a class="done" data-ng-click="done()">&#x3008;</a> {{drug.name}}</h2>\n' +
     '        <a class="follow-button btn btn-default"\n' +
     '           ng-click="toggleFollow()"\n' +
     '           ng-class="{\'following\': drug.following}">\n' +
@@ -196,81 +196,84 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/main/partials/main-index.html',
-    '<div class="container-fluid">\n' +
-    '    <div class="row">\n' +
-    '        <div class="col-md-4 no-padding">\n' +
-    '            <header role="banner">\n' +
-    '                <div>\n' +
-    '                    <img src="assets/images/medpal-logo.svg" alt="Med Pal logo">\n' +
-    '                </div>\n' +
-    '            </header>\n' +
-    '            <header role="bg-fill"></header>\n' +
-    '\n' +
-    '            <section role="search" data-ng-show="!drug.name">\n' +
-    '                <label for="selectDrugInput" class="sr-only">Search for medications by\n' +
-    '                    name</label>\n' +
-    '                    <ui-select id="selectDrugInput"\n' +
-    '                               class="ui-select-scroll ui-select-auto-width ui-select-opaque"\n' +
-    '                               theme="bootstrap"\n' +
-    '                               data-ng-model="drug.name"\n' +
-    '                               search-enabled="true"\n' +
-    '                               reset-search-input="true"\n' +
-    '                            on-select="clearDrugDetails()">\n' +
-    '                        <img style="width: 64px; height: 64px;" src="assets/images/icon-search.svg" alt="">\n' +
-    '                        <ui-select-match placeholder="Type a Medication Name...">\n' +
-    '\n' +
-    '                        </ui-select-match>\n' +
-    '\n' +
-    '                        <ui-select-choices\n' +
-    '                                repeat="drug as drug in drugs | filter: $select.search">\n' +
-    '                            {{ drug }}\n' +
-    '                        </ui-select-choices>\n' +
-    '\n' +
-    '                    </ui-select>\n' +
-    '            </section>\n' +
-    '\n' +
-    '\n' +
-    '            <div role="main" class="followed-drugs">\n' +
-    '                <div id="content" class="">\n' +
-    '                    <h3 data-ng-show="followedDrugs.length">Medications you\'re Following</h3>\n' +
-    '                    <p class="empty-drugs-list alert alert-info" data-ng-show="!followedDrugs.length">\n' +
-    '                        To follow a medication, search above and click the “follow” button.\n' +
-    '                    </p>\n' +
-    '\n' +
-    '                    <ul data-ng-show="followedDrugs.length">\n' +
-    '                        <li data-ng-click="manuallySelectDrug(drug)" data-ng-repeat="drug in followedDrugs" class="drug-summary" data-ng-class="highlightSelected(drug)">\n' +
-    '                            <div class="status-icon" data-ng-class="highlightClass(drug)"></div><span class="name">{{ drug.name }}</span><span class="pull-right"> > </span>\n' +
-    '                            <span class="summary" data-ng-if="drug.details.recalls">\n' +
-    '                                : Recall!\n' +
-    '                            </span>\n' +
-    '                             <span class="summary" data-ng-if="drug.details.labelChanges && !drug.details.recalls">\n' +
-    '                                : Updated\n' +
-    '                            </span>\n' +
-    '                        </li>\n' +
-    '                    </ul>\n' +
-    '                </div>\n' +
+    '<section class="content-panel">\n' +
+    '    <div class="container-fluid" style="position: absolute; top: 0; bottom: 0; width: 100%;">\n' +
+    '        <div class="row">\n' +
+    '            <div class="col-md-12 no-padding side-panel" data-ng-show="drug.name" >\n' +
+    '                <div data-drug-detail data-drug="drug"></div>\n' +
     '            </div>\n' +
-    '\n' +
-    '            <div class="links">\n' +
-    '                <ul>\n' +
-    '                    <li><a data-ng-click="updateSupplemental(\'why\')">Why Med Pal</a></li>\n' +
-    '                    <li><a data-ng-click="updateSupplemental(\'about\')">About This App</a></li>\n' +
-    '                    <li><a data-ng-click="updateSupplemental(\'feedback\')">Feedback and Support</a></li>\n' +
-    '                </ul>\n' +
-    '            </div>\n' +
-    '        </div>\n' +
-    '\n' +
-    '        <div class="col-md-8 no-padding side-panel" data-ng-show="drug.name">\n' +
-    '            <div data-drug-detail data-drug="drug"></div>\n' +
-    '        </div>\n' +
-    '\n' +
-    '        <div data-ng-show="!drug.name" class="col-md-8 no-padding why-med-pal side-panel">\n' +
-    '            <div data-ng-include="supplemental"></div>\n' +
     '        </div>\n' +
     '    </div>\n' +
-    '</div>\n' +
+    '    <div class="container-fluid" style="position: absolute; top: 0; bottom: 0; width: 100%;">\n' +
+    '        <div class="row">\n' +
+    '            <div data-ng-show="!drug.name" class="col-md-12 no-padding why-med-pal side-panel">\n' +
+    '                <div data-ng-include="supplemental"></div>\n' +
+    '            </div>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '</section>\n' +
     '\n' +
+    '<section class="main-panel">\n' +
+    '    <header role="banner">\n' +
+    '        <h1>\n' +
+    '            <img src="assets/images/medpal-logo.svg" alt="Med Pal logo">\n' +
+    '            <span>Med Pal</span>\n' +
+    '        </h1>\n' +
+    '    </header>\n' +
     '\n' +
+    '    <section role="search" data-ng-show="!drug.name">\n' +
+    '        <label for="selectDrugInput" class="sr-only">Search for medications by\n' +
+    '            name</label>\n' +
+    '            <ui-select id="selectDrugInput"\n' +
+    '                   class="ui-select-scroll ui-select-auto-width ui-select-opaque"\n' +
+    '                   theme="bootstrap"\n' +
+    '                   data-ng-model="drug.name"\n' +
+    '                   search-enabled="true"\n' +
+    '                   reset-search-input="true"\n' +
+    '                    on-select="clearDrugDetails()">\n' +
+    '                <img style="width: 64px; height: 64px;" src="assets/images/icon-search.svg" alt="">\n' +
+    '                <ui-select-match placeholder="Type a Medication Name...">\n' +
+    '\n' +
+    '                </ui-select-match>\n' +
+    '\n' +
+    '                <ui-select-choices\n' +
+    '                        repeat="drug as drug in drugs | filter: $select.search">\n' +
+    '                    {{ drug }}\n' +
+    '                </ui-select-choices>\n' +
+    '\n' +
+    '            </ui-select>\n' +
+    '    </section>\n' +
+    '    <div role="main" class="followed-drugs">\n' +
+    '        <div id="content" class="">\n' +
+    '            <h2 data-ng-show="followedDrugs.length">Medications you\'re Following</h2>\n' +
+    '            <p class="empty-drugs-list alert alert-info" data-ng-show="!followedDrugs.length">\n' +
+    '                To follow a medication, search above and click the “follow” button.\n' +
+    '            </p>\n' +
+    '\n' +
+    '            <ul data-ng-show="followedDrugs.length">\n' +
+    '                <li data-ng-click="manuallySelectDrug(drug)" data-ng-repeat="drug in followedDrugs" class="drug-summary" data-ng-class="highlightSelected(drug)">\n' +
+    '                    <span class="status-icon" data-ng-class="highlightClass(drug)"></span>\n' +
+    '                    <span class="name">{{ drug.name }}</span>\n' +
+    '                    <span class="pull-right">&#x3009;</span>\n' +
+    '                    <span class="summary" data-ng-if="drug.details.recalls">\n' +
+    '                        : Recall!\n' +
+    '                    </span>\n' +
+    '                     <span class="summary" data-ng-if="drug.details.labelChanges && !drug.details.recalls">\n' +
+    '                        : Updated\n' +
+    '                    </span>\n' +
+    '                </li>\n' +
+    '            </ul>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <div class="links">\n' +
+    '        <ul>\n' +
+    '            <li><a data-ng-click="updateSupplemental(\'why\')">Why Med Pal</a></li>\n' +
+    '            <li><a data-ng-click="updateSupplemental(\'about\')">About This App</a></li>\n' +
+    '            <li><a data-ng-click="updateSupplemental(\'feedback\')">Feedback and Support</a></li>\n' +
+    '        </ul>\n' +
+    '    </div>\n' +
+    '</section>\n' +
     '');
 }]);
 })();
@@ -285,7 +288,7 @@ module.run(['$templateCache', function($templateCache) {
   $templateCache.put('/main/partials/why.html',
     '<div class="content supplemental">\n' +
     '    <h2>Why Med Pal?</h2>\n' +
-    '    <p>The Med Pal application allows an informed consumer to research individual drugs for recent recalls or label changes through the <a href="http://open.fda.gov">OpenFDA API</a>. Similar to subscribing for updates on social media, you may choose to “follow” a drug of interest and be alerted of changes when you revisit <a href="http://18f.sparcedge.com">18f.sparcedge.com</a>.</p>\n' +
+    '    <p>The Med Pal application allows an informed consumer to research individual drugs for recent recalls or label changes through the <a href="http://open.fda.gov">OpenFDA API</a>. Similar to subscribing for updates on social media, you may choose to “follow” a drug of interest and be alerted of changes when you revisit <a href="http://medpal.sparcedge.com">medpal.sparcedge.com</a>.</p>\n' +
     '    <p><a href="http://www.fda.gov/Drugs/DevelopmentApprovalProcess/DevelopmentResources/DrugInteractionsLabeling/ucm110632.htm">According to FDA research</a>, there are approximately 106,000 deaths per year attributed to adverse reactions to prescription drugs. One in five hospital visits are the result of a drug reaction. And adverse drug reactions are estimated to cost our country $135 Billion dollars a year.</p>\n' +
     '\n' +
     '    <div class="purpose">\n' +

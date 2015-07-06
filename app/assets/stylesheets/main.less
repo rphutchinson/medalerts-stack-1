@@ -123,6 +123,17 @@
 	}
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
 @app-faint-blue: #edfcff;
 
 @content-background: #EAEDEF;
@@ -137,6 +148,16 @@
 @percentage-font-size: 42px;
 @percentage-text-width: 70px;
 
+html, body {
+	height: 100%;
+}
+
+body > [data-ng-view] {
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
 .drug-summary {
   background-color: #ffffff;
 }
@@ -144,51 +165,54 @@
 h2, .h2 {
 	text-align: left;
 }
-
-header[role="banner"] {
-	background: @app-red02;
-	padding: 40px 0px;
-	display: table;
-	width: 100%;
-	text-align: center;
-	img {
-		display: table-cell;
-		display: inline-block;
-		vertical-align: middle;
-		height: 120px;
-		pointer-events: none;
-	}
+.main-panel {
+	height: 100%;
+	width: 350px;
+	background: #fff;
+	position: fixed;
+	overflow: auto;
 }
-header[role="bg-fill"] {
-  padding: 40px 0px;
-  display: table;
-  width: 100%;
-  min-height: 100px;
-  background: @app-red01;
-  z-index: -1;
-  margin-top: -100px;
+.content-panel {
+	position: relative;
+	margin-left: 350px;
+}
+header[role="banner"] {
+	background: @app-red01;
+	height: 176px; // 176px + 80px = 256px = 64px * 4
+	text-align: center;
+	position: relative;
+	h1 {
+		margin: 0;
+		padding: 24px 0 0;
+		position: relative;
+		img {
+			display: table-cell;
+			display: inline-block;
+			vertical-align: middle;
+			height: 120px;
+			pointer-events: none;
+		}
+		span {
+			.sr-only();
+		}
+	}
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: block;
+		height: 100px;
+		width: 100%;
+		background: @app-red02;
+	}
 }
 
 section[role="search"] {
-	position: relative;
-	display: table;
-	width: 100%;
-	text-align: center;
-	background: #fff;
-
-	&::before {
-		content: '';
-		display: block;
-		background: @app-red01;
-		position: absolute;
-		height: 80px;
-		width: 100%;
-		bottom: -10px;
-	}
-
+	background: @app-red01;
+	padding: 8px 0;
 	#selectDrugInput {
 		width: 95%;
-		max-width: 570px;
 		margin: 0 auto;
 		position: relative;
 
@@ -254,11 +278,11 @@ section[role="search"] {
 }
 
 .followed-drugs{
-  h3 {
+  h2 {
     font-weight: lighter;
     font-size: 18px;
-    line-height: 8px;
-    text-align: center;
+    padding: 0 16px;
+    text-align: left;
   }
 
   .empty-drugs-list {
@@ -291,7 +315,12 @@ section[role="search"] {
     li {
       cursor: pointer;
       position: relative;
-      padding: 4px;
+     	padding: 16px 0px 16px 24px;
+
+			> span {
+				display: inline-block;
+				vertical-align: middle;
+			}
 
       &.selected {
         background: @app-blue02;
@@ -392,19 +421,23 @@ aside.statistic {
 }
 
 .drug-detail {
+	background: @app-blue02;
+	min-height: 100vh;
   header {
     background: @app-blue01;
-    padding: 29px 0px;
-    display: table;
+		height: 100px;
     width: 100%;
-    text-align: center;
+    text-align: left;
+		line-height: 100px;
+
     h2 {
       color: white;
       text-align: center;
-      line-height: 30px;
       margin: 0;
       display: inline-block;
+      vertical-align: middle;
     }
+
     a.done {
       text-decoration: none;
       color: white !important;
@@ -413,9 +446,10 @@ aside.statistic {
     }
 
     .follow-button {
+			display: inline-block;
+			vertical-align: middle;
       width: 150px;
       padding: 8px 16px;
-      margin-top: -12px;
       margin-left: 30px;
       background: @app-light-gray;
       color: @app-dark-gray;
@@ -428,9 +462,6 @@ aside.statistic {
   }
 
   .drug-detail-content {
-    background: @app-blue02;
-    min-height: 600px;
-    margin-top: -30px;
     padding-left: 30px;
     padding-bottom: 40px;
     color: white;
@@ -542,10 +573,13 @@ aside.statistic {
 
 //animations
 .side-panel.ng-hide-remove {
-  -webkit-animation: slideInRight .5s;
-  animation: slideInRight .5s;
+
+  -webkit-animation: slideInRight .4s ease-in;
+  animation: slideInRight .4s ease-in;
 }
 
 .side-panel.ng-hide-add {
-  opacity: 0;
+  // opacity: 0;
+  -webkit-animation: slideOutLeft .4s ease-in;
+  animation: slideOutLeft .4s ease-in;
 }

@@ -1,75 +1,78 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4 no-padding">
-            <header role="banner">
-                <div>
-                    <img src="assets/images/medpal-logo.svg" alt="Med Pal logo">
-                </div>
-            </header>
-            <header role="bg-fill"></header>
-
-            <section role="search" data-ng-show="!drug.name">
-                <label for="selectDrugInput" class="sr-only">Search for medications by
-                    name</label>
-                    <ui-select id="selectDrugInput"
-                               class="ui-select-scroll ui-select-auto-width ui-select-opaque"
-                               theme="bootstrap"
-                               data-ng-model="drug.name"
-                               search-enabled="true"
-                               reset-search-input="true"
-                            on-select="clearDrugDetails()">
-                        <img style="width: 64px; height: 64px;" src="assets/images/icon-search.svg" alt="">
-                        <ui-select-match placeholder="Type a Medication Name...">
-
-                        </ui-select-match>
-
-                        <ui-select-choices
-                                repeat="drug as drug in drugs | filter: $select.search">
-                            {{ drug }}
-                        </ui-select-choices>
-
-                    </ui-select>
-            </section>
-
-
-            <div role="main" class="followed-drugs">
-                <div id="content" class="">
-                    <h3 data-ng-show="followedDrugs.length">Medications you're Following</h3>
-                    <p class="empty-drugs-list alert alert-info" data-ng-show="!followedDrugs.length">
-                        To follow a medication, search above and click the “follow” button.
-                    </p>
-
-                    <ul data-ng-show="followedDrugs.length">
-                        <li data-ng-click="manuallySelectDrug(drug)" data-ng-repeat="drug in followedDrugs" class="drug-summary" data-ng-class="highlightSelected(drug)">
-                            <div class="status-icon" data-ng-class="highlightClass(drug)"></div><span class="name">{{ drug.name }}</span><span class="pull-right"> > </span>
-                            <span class="summary" data-ng-if="drug.details.recalls">
-                                : Recall!
-                            </span>
-                             <span class="summary" data-ng-if="drug.details.labelChanges && !drug.details.recalls">
-                                : Updated
-                            </span>
-                        </li>
-                    </ul>
-                </div>
+<section class="content-panel">
+    <div class="container-fluid" style="position: absolute; top: 0; bottom: 0; width: 100%;">
+        <div class="row">
+            <div class="col-md-12 no-padding side-panel" data-ng-show="drug.name" >
+                <div data-drug-detail data-drug="drug"></div>
             </div>
-
-            <div class="links">
-                <ul>
-                    <li><a data-ng-click="updateSupplemental('why')">Why Med Pal</a></li>
-                    <li><a data-ng-click="updateSupplemental('about')">About This App</a></li>
-                    <li><a data-ng-click="updateSupplemental('feedback')">Feedback and Support</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-md-8 no-padding side-panel" data-ng-show="drug.name">
-            <div data-drug-detail data-drug="drug"></div>
-        </div>
-
-        <div data-ng-show="!drug.name" class="col-md-8 no-padding why-med-pal side-panel">
-            <div data-ng-include="supplemental"></div>
         </div>
     </div>
-</div>
+    <div class="container-fluid" style="position: absolute; top: 0; bottom: 0; width: 100%;">
+        <div class="row">
+            <div data-ng-show="!drug.name" class="col-md-12 no-padding why-med-pal side-panel">
+                <div data-ng-include="supplemental"></div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<section class="main-panel">
+    <header role="banner">
+        <h1>
+            <img src="assets/images/medpal-logo.svg" alt="Med Pal logo">
+            <span>Med Pal</span>
+        </h1>
+    </header>
 
+    <section role="search" data-ng-show="!drug.name">
+        <label for="selectDrugInput" class="sr-only">Search for medications by
+            name</label>
+            <ui-select id="selectDrugInput"
+                   class="ui-select-scroll ui-select-auto-width ui-select-opaque"
+                   theme="bootstrap"
+                   data-ng-model="drug.name"
+                   search-enabled="true"
+                   reset-search-input="true"
+                    on-select="clearDrugDetails()">
+                <img style="width: 64px; height: 64px;" src="assets/images/icon-search.svg" alt="">
+                <ui-select-match placeholder="Type a Medication Name...">
+
+                </ui-select-match>
+
+                <ui-select-choices
+                        repeat="drug as drug in drugs | filter: $select.search">
+                    {{ drug }}
+                </ui-select-choices>
+
+            </ui-select>
+    </section>
+    <div role="main" class="followed-drugs">
+        <div id="content" class="">
+            <h2 data-ng-show="followedDrugs.length">Medications you're Following</h2>
+            <p class="empty-drugs-list alert alert-info" data-ng-show="!followedDrugs.length">
+                To follow a medication, search above and click the “follow” button.
+            </p>
+
+            <ul data-ng-show="followedDrugs.length">
+                <li data-ng-click="manuallySelectDrug(drug)" data-ng-repeat="drug in followedDrugs" class="drug-summary" data-ng-class="highlightSelected(drug)">
+                    <span class="status-icon" data-ng-class="highlightClass(drug)"></span>
+                    <span class="name">{{ drug.name }}</span>
+                    <span class="pull-right">&#x3009;</span>
+                    <span class="summary" data-ng-if="drug.details.recalls">
+                        : Recall!
+                    </span>
+                     <span class="summary" data-ng-if="drug.details.labelChanges && !drug.details.recalls">
+                        : Updated
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li><a data-ng-click="updateSupplemental('why')">Why Med Pal</a></li>
+            <li><a data-ng-click="updateSupplemental('about')">About This App</a></li>
+            <li><a data-ng-click="updateSupplemental('feedback')">Feedback and Support</a></li>
+        </ul>
+    </div>
+</section>

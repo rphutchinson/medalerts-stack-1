@@ -9329,6 +9329,25 @@ h6,
   padding-left: 0;
   padding-right: 0;
 }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+html,
+body {
+  height: 100%;
+}
+body > [data-ng-view] {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 .drug-summary {
   background-color: #ffffff;
 }
@@ -9336,48 +9355,61 @@ h2,
 .h2 {
   text-align: left;
 }
-header[role="banner"] {
-  background: #ba403d;
-  padding: 40px 0px;
-  display: table;
-  width: 100%;
-  text-align: center;
+.main-panel {
+  height: 100%;
+  width: 350px;
+  background: #fff;
+  position: fixed;
+  overflow: auto;
 }
-header[role="banner"] img {
+.content-panel {
+  position: relative;
+  margin-left: 350px;
+}
+header[role="banner"] {
+  background: #ef5549;
+  height: 176px;
+  text-align: center;
+  position: relative;
+}
+header[role="banner"] h1 {
+  margin: 0;
+  padding: 24px 0 0;
+  position: relative;
+}
+header[role="banner"] h1 img {
   display: table-cell;
   display: inline-block;
   vertical-align: middle;
   height: 120px;
   pointer-events: none;
 }
-header[role="bg-fill"] {
-  padding: 40px 0px;
-  display: table;
+header[role="banner"] h1 span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+header[role="banner"]:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 100px;
   width: 100%;
-  min-height: 100px;
-  background: #ef5549;
-  z-index: -1;
-  margin-top: -100px;
+  background: #ba403d;
 }
 section[role="search"] {
-  position: relative;
-  display: table;
-  width: 100%;
-  text-align: center;
-  background: #fff;
-}
-section[role="search"]::before {
-  content: '';
-  display: block;
   background: #ef5549;
-  position: absolute;
-  height: 80px;
-  width: 100%;
-  bottom: -10px;
+  padding: 8px 0;
 }
 section[role="search"] #selectDrugInput {
   width: 95%;
-  max-width: 570px;
   margin: 0 auto;
   position: relative;
 }
@@ -9433,11 +9465,11 @@ section[role="search"] #selectDrugInput .ui-select-choices .ui-select-choices-ro
   line-height: 1.42857;
   white-space: nowrap;
 }
-.followed-drugs h3 {
+.followed-drugs h2 {
   font-weight: lighter;
   font-size: 18px;
-  line-height: 8px;
-  text-align: center;
+  padding: 0 16px;
+  text-align: left;
 }
 .followed-drugs .empty-drugs-list {
   position: relative;
@@ -9468,7 +9500,11 @@ section[role="search"] #selectDrugInput .ui-select-choices .ui-select-choices-ro
 .followed-drugs ul li {
   cursor: pointer;
   position: relative;
-  padding: 4px;
+  padding: 16px 0px 16px 24px;
+}
+.followed-drugs ul li > span {
+  display: inline-block;
+  vertical-align: middle;
 }
 .followed-drugs ul li.selected {
   background: #217db5;
@@ -9552,19 +9588,23 @@ aside.statistic .purpose > p {
   font-size: 12px;
   font-style: italic;
 }
+.drug-detail {
+  background: #217db5;
+  min-height: 100vh;
+}
 .drug-detail header {
   background: #1589ce;
-  padding: 29px 0px;
-  display: table;
+  height: 100px;
   width: 100%;
-  text-align: center;
+  text-align: left;
+  line-height: 100px;
 }
 .drug-detail header h2 {
   color: white;
   text-align: center;
-  line-height: 30px;
   margin: 0;
   display: inline-block;
+  vertical-align: middle;
 }
 .drug-detail header a.done {
   text-decoration: none;
@@ -9573,9 +9613,10 @@ aside.statistic .purpose > p {
   padding-right: 30px;
 }
 .drug-detail header .follow-button {
+  display: inline-block;
+  vertical-align: middle;
   width: 150px;
   padding: 8px 16px;
-  margin-top: -12px;
   margin-left: 30px;
   background: #e6e7e8;
   color: #3c3c3c;
@@ -9586,9 +9627,6 @@ aside.statistic .purpose > p {
   color: white;
 }
 .drug-detail .drug-detail-content {
-  background: #217db5;
-  min-height: 600px;
-  margin-top: -30px;
   padding-left: 30px;
   padding-bottom: 40px;
   color: white;
@@ -11080,9 +11118,10 @@ aside.statistic .purpose > p {
   content: "100%";
 }
 .side-panel.ng-hide-remove {
-  -webkit-animation: slideInRight .5s;
-  animation: slideInRight .5s;
+  -webkit-animation: slideInRight 0.4s ease-in;
+  animation: slideInRight 0.4s ease-in;
 }
 .side-panel.ng-hide-add {
-  opacity: 0;
+  -webkit-animation: slideOutLeft 0.4s ease-in;
+  animation: slideOutLeft 0.4s ease-in;
 }
